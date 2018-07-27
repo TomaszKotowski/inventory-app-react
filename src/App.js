@@ -3,8 +3,7 @@ import {observer} from "mobx-react";
 import logo from './logo.svg';
 import './App.css';
 
-import Users from './models/Users';
-import Device from './models/Device';
+
 
 
 class App extends Component {
