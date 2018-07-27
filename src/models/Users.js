@@ -1,4 +1,5 @@
 import { observable, action, computed } from "mobx";
+import { remove } from 'lodash';
 
 export default class Users {
       @observable id;
@@ -15,19 +16,32 @@ export default class Users {
         devices.push(device)
       }
       removeDevice(deviceId) {
-
+        //skasowac dany element z danym ID z tablicy
+        remove(devices, item => item.id === deviceId);
       }
+      
+
+
 
       @observable places = [];
 
-      constructor({id,avatar,firstName,lastName,email,login,officeId,isAdmin}) {
-          this.id=id;
-          this.avatar=avatar;
-          this.firstName=firstName;
-          this.lastName=lastName;
-          this.email=email;
-          this.login=login;
-          this.officeId=officeId;
-          this.isAdmin=isAdmin;
+      constructor({ id, avatar, firstName, lastName, email, login, officeId, isAdmin}) {
+
+          this.id = id;
+
+          this.avatar = avatar;
+
+          this.firstName = firstName;
+
+          this.lastName = lastName;
+
+          this.email = email;
+
+          this.login = login;
+
+          this.officeId = officeId;
+
+          this.isAdmin = isAdmin;
+
       }
 }

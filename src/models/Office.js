@@ -1,8 +1,6 @@
 import { observable, action, computed } from "mobx";
 
-
-export default class Places {
+export default class Office {
   @observable id;
   @observable name;
-  @observable officeId;
 }
