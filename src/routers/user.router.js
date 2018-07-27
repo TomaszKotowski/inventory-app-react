@@ -1,10 +1,14 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import App from '../App';
+import { Switch, Route } from 'react-router-dom';
 
-const UserRouter = () => (
-    <Route path="/user" component={App} />
-
+const UserRouter = ({ match }) => (
+  <Switch>
+    <Route exact path="/user" render={({ match }) => <div>user {match.path}</div>} />
+    <Route exact path="/user/:id" render={({ match }) => <div>user: {match.params.id} </div>} />
+    <Route exact path="/user/:id/edit" render={({ match }) => <div>user: {match.params.id}: edit</div>} />
+    <Route exact exact path="/user/:id/devices" render={({ match }) => <div>user_devices</div>} />
+    <Route exact path="/user/:id/devices/:id" render={({ match }) => <div>user_devices-id</div>} />
+  </Switch>
 
 );
 

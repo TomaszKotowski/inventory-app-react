@@ -1,23 +1,29 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import createHistory from 'history/createBrowserHistory';
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import App from '../App';
-import UserRouter from './user.router'
+import AuthRouter from './auth.router';
+import UserRouter from './user.router';
+import DevicesRouter from './devices.router';
+import EmployeesRouter from './employees.router';
+import IdentifyRouter from './identify.router';
+import PlacesRouter from './places.router';
 import NoMatch from '../NoMatch';
 
-
-export const history = createHistory();
-
 const AppRouter = () => (
-  <BrowserRouter>
+  <Router>
     <div>
       <Switch>
         <Route exact path="/" component={App}></Route>
-        <Route path="/user" component={App} />
-        <Route path="/*" component={NoMatch}></Route>
+        <Route path="/login" component={AuthRouter} />
+        <Route path="/user" component={UserRouter} />
+        <Route path="/devices" component={DevicesRouter} />
+        <Route path="/employees" component={EmployeesRouter} />
+        <Route path="/identify" component={IdentifyRouter} />
+        <Route path="/places" component={PlacesRouter} />
+        <Route component={NoMatch} />
       </Switch>
     </div>
-  </BrowserRouter>
+  </Router>
 );
 
 export default AppRouter;
