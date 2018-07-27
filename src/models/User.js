@@ -1,7 +1,7 @@
 import { observable, action, computed } from "mobx";
 import { remove } from 'lodash';
 
-export default class Userf {
+export default class User {
       @observable id;
       @observable avatar;
       @observable firstName;
