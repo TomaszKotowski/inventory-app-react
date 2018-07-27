@@ -4,17 +4,21 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
+    "babel-plugin-styled-components": "^1.5.1",
     "mobx": "^5.0.3",
+    "mobx-react": "^5.2.3",
     "react": "^16.4.1",
+    "react-app-rewire-mobx": "^1.0.8",
+    "react-app-rewired": "^1.5.2",
     "react-dom": "^16.4.1",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test --env=jsdom",
+    "eject": "react-app-rewired eject"
   }
 }
