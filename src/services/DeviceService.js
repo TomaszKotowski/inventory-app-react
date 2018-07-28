@@ -1,14 +1,24 @@
+import client from './AxiosClientService';
+
+import DeviceModel from '../models/DeviceModel';
+import DevicesStore from '../stores/DevicesStore';
+
 class Device {
   /**
- * Download all devices list
- */
+   * Download all devices list
+  */
   getAllDevices() {
-    this.axiosInstance.get('/api/devices')
+    client.get('/api/devices')
       .then(result => {
-        return result;
+        result.data.forEach(element => {
+          const device = new Device(result.data);
+          DevicesStore.addNewDevice(device);
+        });
       })
       .catch(err => {
         console.log(err);
       });
   }
 }
+
+export default new Device();
