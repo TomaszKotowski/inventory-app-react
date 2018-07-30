@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import mobx from 'mobx';
 import { Flex, WhiteSpace } from 'antd-mobile';
 import UsersStore from '../../stores/UsersStore';
+import OfficesStore from '../../stores/OfficesStore';
 
-import './profileImage.css';
 
 class ProfileImage extends Component {
   render() {
@@ -18,3 +18,5 @@ class ProfileImage extends Component {
     );
   }
 }
+
+export default new ProfileImage();
