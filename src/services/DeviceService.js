@@ -3,7 +3,7 @@ import client from './AxiosClientService';
 import DeviceModel from '../models/DeviceModel';
 import DevicesStore from '../stores/DevicesStore';
 
-class Device {
+class DeviceService {
   /**
    * Download all devices list
   */
@@ -21,4 +21,4 @@ class Device {
   }
 }
 
-export default new Device();
+export default new DeviceService();

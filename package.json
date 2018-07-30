@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+<<<<<<< HEAD
+=======
+    "antd": "^3.7.2",
+>>>>>>> develop
     "antd-mobile": "^2.2.2",
     "axios": "^0.18.0",
     "babel-plugin-styled-components": "^1.5.1",
