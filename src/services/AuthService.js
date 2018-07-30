@@ -18,8 +18,8 @@ class AuthService {
         'ContentType': 'application/json'
       },
       data: {
-        'login': login,
-        'password': password
+        login: login,
+        password: password
       }
     })
     .then(response => {

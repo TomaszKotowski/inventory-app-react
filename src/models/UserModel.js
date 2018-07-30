@@ -33,15 +33,4 @@ export default class UserModel {
         //skasowac dany element z danym ID z tablicy
         remove(devices, item => item.id === deviceId);
       }
-
-      // constructor({ id, avatar, firstName, lastName, email, login, officeId, isAdmin}) {
-      //     this.id = id;
-      //     this.avatar = avatar;
-      //     this.firstName = firstName;
-      //     this.lastName = lastName;
-      //     this.email = email;
-      //     this.login = login;
-      //     this.officeId = officeId;
-      //     this.isAdmin = isAdmin;
-      // }
 }

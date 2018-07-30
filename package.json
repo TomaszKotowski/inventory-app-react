@@ -3,9 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "antd-mobile": "^2.2.2",
     "axios": "^0.18.0",
     "babel-plugin-styled-components": "^1.5.1",
     "lodash": "^4.17.10",
+    "lodash-decorators": "^6.0.0",
     "mobx": "^5.0.3",
     "mobx-react": "^5.2.3",
     "react": "^16.4.1",

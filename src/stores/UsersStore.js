@@ -18,6 +18,10 @@ class UserStore {
   deleteUser() {
     this.currentUser = {};
   }
+
+  getPictureaAvatar() {
+    return this.currentUser.avatar;
+  }
 }
 
 export default new UserStore();
