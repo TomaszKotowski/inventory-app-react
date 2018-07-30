@@ -59,7 +59,7 @@ class AuthService {
   }
 
   logout() {
-    setToken('');
+    setToken(null);
     UsersStore.deleteUser();
     localStorage.removeItem(this.tokenName);
   }

@@ -1,7 +1,7 @@
 import { observable } from 'mobx';
 import { find } from 'lodash';
 
-class DeviceStore {
+class DevicesStore {
   @observable devicesList;
 
   constructor() {
@@ -43,7 +43,7 @@ class DeviceStore {
       el.id === deviceId
     });
 
-    return (result === null) ? '' : result;
+    return (result === null) ? null : result;
   }
 
   /**
@@ -56,8 +56,8 @@ class DeviceStore {
       el.belongsToId === userId
     });
 
-    return (result === null) ? '' : result;
+    return (result === null) ? null : result;
   }
 }
 
-export default new DeviceStore();
+export default new DevicesStore();
