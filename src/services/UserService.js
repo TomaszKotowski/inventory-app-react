@@ -15,6 +15,10 @@ class User {
       });
   }
 
+  /**
+   * Find user by his/her ID
+   * @param {string} userId 
+   */
   getUserById(userId) {
     client.get('/api/users/' + userId)
     .then(result => {

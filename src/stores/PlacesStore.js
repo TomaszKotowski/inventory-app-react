@@ -1,4 +1,5 @@
 import { observable } from 'mobx';
+import { find } from 'lodash';
 
 class PlacesStore {
 

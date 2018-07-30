@@ -1,15 +1,23 @@
-// 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI3YmE0NmY3LWFjNTktNGY3NS1iNDQ4LWQyMmIzYzkyMTJhNiIsIm5hbWUiOiJNYXJnZSBIYW1pbGwiLCJpYXQiOjE1MzI1MDQ2Nzl9.CxzfI0t6t2JTjf9Zlo8AUjpJW4u4YmfSOPB0uFKahx4';
 
 class AuthData {
 
-  token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI3YmE0NmY3LWFjNTktNGY3NS1iNDQ4LWQyMmIzYzkyMTJhNiIsIm5hbWUiOiJNYXJnZSBIYW1pbGwiLCJpYXQiOjE1MzI1MDQ2Nzl9.CxzfI0t6t2JTjf9Zlo8AUjpJW4u4YmfSOPB0uFKahx4'; 
+  token;
 
   /**
    * Return token value
    * @returns {string} token;
    */
   getToken() {
-    return this.token;
+    if(this.token) {
+      return this.token;
+    }
+
+    const tokenFromStorage = this.getTokenFromLocalStorage();
+    if(tokenFromStorage) {
+      return tokenFromStorage;
+    }
+
+    return '';
   }
 
   /**
@@ -18,7 +26,17 @@ class AuthData {
    */
   setToken(newToken) {
     this.token = newToken;
+    this.setTokenInLocalStorage(newToken);
   }
+
+  setTokenInLocalStorage(token) {
+    localStorage.setItem(this.tokenName, token);
+  }
+
+  getTokenFromLocalStorage() {
+    return localStorage.getItem(this.tokenName);
+  }
+
 }
 
-export default AuthData;
+export default new AuthData();

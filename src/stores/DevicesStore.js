@@ -13,7 +13,7 @@ class DeviceStore {
    * BE CAREFUL!!! It delete all of them!
    */
   clearList() {
-    this.devicesList.length = 0;
+    this.devicesList = [];
   }
 
   /**
