@@ -10,21 +10,13 @@ import { Bind } from 'lodash-decorators';
 import { NoticeBar, Icon } from 'antd-mobile';
 import AuthService from '../../services/AuthService';
 import AuthData from '../../services/AuthorizationData';
+import styles from './loginStyle.css';
 
 const PlaceHolder = ({ className = '', text, ...restProps }) => (
   <div className={`${className} placeholder`} {...restProps}>{text}</div>
 );
 
-const style3 = {
-  padding: "10px"
-}
-const style4 = {
-  height: "100vh"
-}
-const imgStyle = {
-  
-  display: "block"
-}
+
 
 
 @observer
@@ -58,38 +50,35 @@ class Login extends React.Component {
  
   render() {
     return(
-      <Flex direction="column" align="stretch" style={style4}>
-        <Flex.Item flex={1}>
-        <WhiteSpace size="xl" />
-        <WhiteSpace size="lg" />
-        <Flex.Item align="center">
+      <Flex direction="column" align="stretch" className="container-flex-logo">
+        <Flex.Item flex={1}>    
+        <Flex.Item align="center" className = "logo-item">
         <img src={require('../../assets/images/logo.png')} align="center"/>
         </Flex.Item>
-        <WhiteSpace size="xl" />
-        <WhiteSpace size="xl" />
             {this.errorMsg  && <NoticeBar icon={null}>Wrong Login/Password. Please try again.</NoticeBar>}
           <List renderHeader={() => 'Login: '}>
             <InputItem
               clear
               placeholder="Your Login"
               onChange={this.onChangeLogin}
+              className="input-item"
             />
           </List>
-          <WhiteSpace size="lg" />
           <List renderHeader={() => 'Password: '}>
             <InputItem
               clear
               placeholder="Your Password"
               onChange={this.onChangePassword}
               type = "password"
+              className="input-item"
             />
           </List>
         </Flex.Item>
         <Flex>
-          <Flex.Item style={style3}>
+          <Flex.Item className="button-item">
             <Button type="primary" onClick={this.send}>Login</Button>
           </Flex.Item>
-          <Flex.Item style={style3}>
+          <Flex.Item className="button-item2">
             <Button type="primary">Facebook</Button>
           </Flex.Item>
         </Flex>
