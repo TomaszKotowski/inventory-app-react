@@ -25,13 +25,6 @@ class AuthService {
       headers: {
         'ContentType': 'application/json'
       },
-<<<<<<< HEAD
-      data: {
-        login: login,
-        password: password
-      }
-=======
->>>>>>> develop
     })
     .then(response => {
       console.log(response);
