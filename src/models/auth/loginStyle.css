@@ -1,0 +1,15 @@
+.container-flex-logo {
+  height:100vh;
+}
+.logo-item {
+  margin:40px 0 40px 0;
+}
+.button-item {
+  margin-right:10px;
+}
+.button-item2 {
+  margin-left:10px;
+}
+.input-item {
+  margin-bottom: 5px;
+}

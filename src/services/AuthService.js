@@ -1,6 +1,7 @@
 import { observable } from "mobx";
+import { get } from 'lodash';
 import client from './AxiosClientService';
-import { getToken, setToken } from './AuthorizationData';
+import AuthData from './AuthorizationData';
 
 import UsersStore from "../stores/UsersStore";
 import UserModel from '../models/UserModel';
@@ -13,33 +14,48 @@ class AuthService {
   }
 
   login(login, password) {
-    client.post('/api/auth', {
+    const data = JSON.stringify({
+      login: login,
+      password: password
+    });
+
+    return client.post('/api/auth', 
+    data, 
+    {
       headers: {
         'ContentType': 'application/json'
       },
+<<<<<<< HEAD
       data: {
         login: login,
         password: password
       }
+=======
+>>>>>>> develop
     })
     .then(response => {
-      if (response.token) {
-        setToken(response.token);
+      console.log(response);
+      if (response.data.token) {
+        AuthData.setToken(response.data.token);
       }
     })
     .catch(err => {
-      // REDIRECT IMPLEMENTATION 
-    });
+      const status = get(err, 'response.status', null);
+
+      if (status === 401) {
+        throw new Error('Invalid credentials');
+      }
+    })
   }
 
   loggedIn() {
-    const token = getToken();
+    const token = AuthData.getToken();
     
     if(!token) {
       return false;
     }
     
-    setToken(token);
+    AuthData.setToken(token);
     return true;
   }
 
@@ -59,10 +75,10 @@ class AuthService {
   }
 
   logout() {
-    setToken(null);
+    AuthData.setToken(null);
     UsersStore.deleteUser();
     localStorage.removeItem(this.tokenName);
   }
 }
 
-export default AuthService;
+export default new AuthService();
