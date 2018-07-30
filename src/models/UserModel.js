@@ -10,8 +10,6 @@ export default class UserModel {
       @observable login;
       @observable officeId;
       @observable isAdmin;
-      @observable deviceId;
-      @observable device;
 
       @observable devices = [];      
       @observable places = [];
