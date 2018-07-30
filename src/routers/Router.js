@@ -1,6 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
-import App from '../App';
+import { Route, Switch } from 'react-router-dom';
 import AuthRouter from './auth.router';
 import UserRouter from './user.router';
 import DevicesRouter from './devices.router';
