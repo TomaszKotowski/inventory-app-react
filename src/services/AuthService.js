@@ -1,4 +1,5 @@
 import { observable } from "mobx";
+import { get } from 'lodash';
 import client from './AxiosClientService';
 import AuthData from './AuthorizationData';
 
@@ -18,7 +19,7 @@ class AuthService {
       password: password
     });
 
-    client.post('/api/auth', 
+    return client.post('/api/auth', 
     data, 
     {
       headers: {
@@ -26,13 +27,18 @@ class AuthService {
       },
     })
     .then(response => {
+      console.log(response);
       if (response.data.token) {
         AuthData.setToken(response.data.token);
       }
     })
     .catch(err => {
-      // REDIRECT IMPLEMENTATION 
-    });
+      const status = get(err, 'response.status', null);
+
+      if (status === 401) {
+        throw new Error('Invalid credentials');
+      }
+    })
   }
 
   loggedIn() {

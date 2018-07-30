@@ -37,12 +37,15 @@ class Login extends React.Component {
   
   @Bind()
   async send() {
-
-    if(!this.login || !this.password) {
-      this.errorMsg = true;  
-    }else {
-      await AuthService.login(this.login, this.password);
-      await AuthService.getProfile();
+    if (!this.login || !this.password) {
+      this.errorMsg = 'Field cannot be empty';  
+    } else {
+      try {
+        const result = await AuthService.login(this.login, this.password);
+        await AuthService.getProfile();
+      } catch(error) {
+        this.errorMsg = error.message;
+      }
     }
     
   }
@@ -55,7 +58,7 @@ class Login extends React.Component {
         <Flex.Item align="center" className = "logo-item">
         <img src={require('../../assets/images/logo.png')} align="center"/>
         </Flex.Item>
-            {this.errorMsg  && <NoticeBar icon={null}>Wrong Login/Password. Please try again.</NoticeBar>}
+            {this.errorMsg  && <NoticeBar icon={null}>{this.errorMsg}</NoticeBar>}
           <List renderHeader={() => 'Login: '}>
             <InputItem
               clear

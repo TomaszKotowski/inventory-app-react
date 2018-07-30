@@ -10,6 +10,8 @@ export default class UserModel {
       @observable login;
       @observable officeId;
       @observable isAdmin;
+      @observable deviceId;
+      @observable device;
 
       @observable devices = [];      
       @observable places = [];
@@ -25,14 +27,14 @@ export default class UserModel {
           this.isAdmin = data.isAdmin;
       }
 
-      // addDevice(deviceId) {
-      //   devices.push(device)
-      // }
+      addDevice(device) {
+        this.devices.push(device)
+      }
       
-      // removeDevice(deviceId) {
-      //   //skasowac dany element z danym ID z tablicy
-      //   remove(devices, item => item.id === deviceId);
-      // }
+      removeDevice(deviceId) {
+        //skasowac dany element z danym ID z tablicy
+        remove(this.devices, item => item.id === deviceId);
+      }
 
       // constructor({ id, avatar, firstName, lastName, email, login, officeId, isAdmin}) {
       //     this.id = id;
