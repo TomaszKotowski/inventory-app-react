@@ -2,22 +2,15 @@
 class AuthData {
 
   token;
+  tokenName = 'zoniToken';
 
   /**
    * Return token value
    * @returns {string} token;
    */
   getToken() {
-    if(this.token) {
-      return this.token;
-    }
-
-    const tokenFromStorage = this.getTokenFromLocalStorage();
-    if(tokenFromStorage) {
-      return tokenFromStorage;
-    }
-
-    return '';
+    if (!this.token) this.token = this.getTokenFromLocalStorage();
+    return this.token;
   }
 
   /**
