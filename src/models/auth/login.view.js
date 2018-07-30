@@ -15,17 +15,15 @@ const PlaceHolder = ({ className = '', text, ...restProps }) => (
   <div className={`${className} placeholder`} {...restProps}>{text}</div>
 );
 
-
-
-
-
-
-
 const style3 = {
   padding: "10px"
 }
 const style4 = {
   height: "100vh"
+}
+const imgStyle = {
+  
+  display: "block"
 }
 
 
@@ -34,9 +32,6 @@ class Login extends React.Component {
   @observable login;
   @observable password;
   @observable errorMsg;
-
-  
-
 
   @Bind()
   onChangeLogin(value) {
@@ -55,18 +50,24 @@ class Login extends React.Component {
       this.errorMsg = true;  
     }else {
       await AuthService.login(this.login, this.password);
-      await console.log(AuthData.getToken());
+      await AuthService.getProfile();
     }
     
   }
  //dorobic notice bar
  
   render() {
-    console.log(this.dupa)
     return(
       <Flex direction="column" align="stretch" style={style4}>
         <Flex.Item flex={1}>
-            {this.errorMsg && <NoticeBar icon={null}>Zle dane</NoticeBar>}
+        <WhiteSpace size="xl" />
+        <WhiteSpace size="lg" />
+        <Flex.Item align="center">
+        <img src={require('../../assets/images/logo.png')} align="center"/>
+        </Flex.Item>
+        <WhiteSpace size="xl" />
+        <WhiteSpace size="xl" />
+            {this.errorMsg  && <NoticeBar icon={null}>Wrong Login/Password. Please try again.</NoticeBar>}
           <List renderHeader={() => 'Login: '}>
             <InputItem
               clear
@@ -74,11 +75,13 @@ class Login extends React.Component {
               onChange={this.onChangeLogin}
             />
           </List>
+          <WhiteSpace size="lg" />
           <List renderHeader={() => 'Password: '}>
             <InputItem
               clear
               placeholder="Your Password"
               onChange={this.onChangePassword}
+              type = "password"
             />
           </List>
         </Flex.Item>
@@ -96,5 +99,3 @@ class Login extends React.Component {
 }
 
 export default Login;
-
-

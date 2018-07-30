@@ -26,7 +26,6 @@ class AuthService {
       },
     })
     .then(response => {
-      console.log(response);
       if (response.data.token) {
         AuthData.setToken(response.data.token);
       }
