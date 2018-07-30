@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
-import {observer} from "mobx-react";
 import logo from './logo.svg';
 import './App.css';
 import Login from './models/auth/login.view';
 
 
+import { Provider } from 'mobx-react';
+import stores from './stores/index';
 
 
 class App extends Component {
-  
-
   render() {
     return (
-      
-      <Login />
-      
+      <div className="App">
+        <Provider {...stores}> 
+          <Login />
+        </Provider>
+      </div>
     );
   }
 }
