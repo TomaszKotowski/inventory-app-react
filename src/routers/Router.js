@@ -8,22 +8,19 @@ import EmployeesRouter from './employees.router';
 import IdentifyRouter from './identify.router';
 import PlacesRouter from './places.router';
 import NoMatch from '../NoMatch';
+import NavigationView from '../models/navigation/navigation.view';
 
 const AppRouter = () => (
-  <Router>
-    <div>
-      <Switch>
-        <Route exact path="/" component={App}></Route>
-        <Route path="/login" component={AuthRouter} />
-        <Route path="/user" component={UserRouter} />
-        <Route path="/devices" component={DevicesRouter} />
-        <Route path="/employees" component={EmployeesRouter} />
-        <Route path="/identify" component={IdentifyRouter} />
-        <Route path="/places" component={PlacesRouter} />
-        <Route component={NoMatch} />
-      </Switch>
-    </div>
-  </Router>
+  <Switch>
+    <Route exact path="/" render={() => <div>Home page by now</div>} />
+    <Route path="/login" component={AuthRouter} />
+    <Route path="/user" component={UserRouter} />
+    <Route path="/devices" component={DevicesRouter} />
+    <Route path="/employees" component={EmployeesRouter} />
+    <Route path="/identify" component={IdentifyRouter} />
+    <Route path="/places" component={PlacesRouter} />
+    <Route component={NoMatch} />
+  </Switch>
 );
 
 export default AppRouter;

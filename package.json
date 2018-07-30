@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "antd": "^3.7.2",
+    "antd-mobile": "^2.2.2",
     "axios": "^0.18.0",
     "babel-plugin-styled-components": "^1.5.1",
     "lodash": "^4.17.10",
