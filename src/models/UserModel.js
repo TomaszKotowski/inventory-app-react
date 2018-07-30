@@ -25,14 +25,14 @@ export default class UserModel {
           this.isAdmin = data.isAdmin;
       }
 
-      addDevice(deviceId) {
-        devices.push(device)
-      }
+      // addDevice(deviceId) {
+      //   devices.push(device)
+      // }
       
-      removeDevice(deviceId) {
-        //skasowac dany element z danym ID z tablicy
-        remove(devices, item => item.id === deviceId);
-      }
+      // removeDevice(deviceId) {
+      //   //skasowac dany element z danym ID z tablicy
+      //   remove(devices, item => item.id === deviceId);
+      // }
 
       // constructor({ id, avatar, firstName, lastName, email, login, officeId, isAdmin}) {
       //     this.id = id;

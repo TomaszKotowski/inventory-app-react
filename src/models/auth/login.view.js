@@ -8,6 +8,8 @@ import { Button, WingBlank } from 'antd-mobile';
 import { List, InputItem,} from 'antd-mobile';
 import { Bind } from 'lodash-decorators';
 import { NoticeBar, Icon } from 'antd-mobile';
+import AuthService from '../../services/AuthService';
+import AuthData from '../../services/AuthorizationData';
 
 const PlaceHolder = ({ className = '', text, ...restProps }) => (
   <div className={`${className} placeholder`} {...restProps}>{text}</div>
@@ -31,7 +33,7 @@ const style4 = {
 class Login extends React.Component {
   @observable login;
   @observable password;
-  @observable dupa;
+  @observable errorMsg;
 
   
 
@@ -47,12 +49,13 @@ class Login extends React.Component {
   }
   
   @Bind()
-  send() {
+  async send() {
 
     if(!this.login || !this.password) {
-      this.dupa = true;  
+      this.errorMsg = true;  
     }else {
-      //przekierowanie
+      await AuthService.login(this.login, this.password);
+      await console.log(AuthData.getToken());
     }
     
   }
@@ -63,7 +66,7 @@ class Login extends React.Component {
     return(
       <Flex direction="column" align="stretch" style={style4}>
         <Flex.Item flex={1}>
-            {this.dupa && <NoticeBar icon={null}>Zle dane</NoticeBar>}
+            {this.errorMsg && <NoticeBar icon={null}>Zle dane</NoticeBar>}
           <List renderHeader={() => 'Login: '}>
             <InputItem
               clear
