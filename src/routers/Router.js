@@ -8,6 +8,7 @@ import IdentifyRouter from './identify.router';
 import PlacesRouter from './places.router';
 import NoMatch from '../NoMatch';
 import NavigationView from '../models/navigation/navigation.view';
+import ProfileRouter from './profile.router';
 
 const AppRouter = () => (
   <Switch>
@@ -18,6 +19,7 @@ const AppRouter = () => (
     <Route path="/employees" component={EmployeesRouter} />
     <Route path="/identify" component={IdentifyRouter} />
     <Route path="/places" component={PlacesRouter} />
+    <Route path="/profile" component={ProfileRouter} />
     <Route component={NoMatch} />
   </Switch>
 );

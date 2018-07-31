@@ -2,16 +2,18 @@ import React, { Component } from 'react';
 import mobx from 'mobx';
 import { Flex, WhiteSpace } from 'antd-mobile';
 import UsersStore from '../../stores/UsersStore';
-import OfficesStore from '../../stores/OfficesStore';
+import { inject, observer } from 'mobx-react';
+import './profileImage.css';
 
-
+@inject('userStore')
+@observer
 class ProfileImage extends Component {
   render() {
     return(
       <div>
-        <WhiteSpace size="lg"/>
+        <WhiteSpace size="xl"/>
         <Flex justify='center'>
-          <img className='avatar' src={UsersStore.getPictureAvatar} alt="User avatar"/>
+          <img className='avatar' src={this.props.userStore.getPictureAvatarLink} alt="User avatar"/>
         </Flex>
         <WhiteSpace size="lg"/>
       </div>
@@ -19,4 +21,4 @@ class ProfileImage extends Component {
   }
 }
 
-export default new ProfileImage();
+export default ProfileImage;

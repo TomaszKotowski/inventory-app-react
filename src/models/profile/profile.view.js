@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
-import QrCode from './QrCode';
+import ReactDOM from 'react-dom';
+// import QrCode from './QrCode';
 import Description from './Description';
 import ProfileImage from './ProfileImage';
-import AuthService from '../../services/AuthService';
+// import AuthService from '../../services/AuthService';
 
-class ProfileView extends Component {
+export default class ProfileView extends React.Component {
   render() {
     return(
-      <ProfileImage/>
-      <Description/>
-      <QrCode/>
+      <div>
+        <ProfileImage/>
+        <Description/>
+        
+      </div>
     );
   }
 }
-
-export default new ProfileView();

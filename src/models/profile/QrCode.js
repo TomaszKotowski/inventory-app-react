@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import mobx from 'mobx';
 import { Flex, WhiteSpace } from 'antd-mobile';
-import default from '../../stores/index';
 
 class QrCode extends Component {
   render() {
@@ -13,4 +12,4 @@ class QrCode extends Component {
   }
 }
 
-export default new QrCode();
+export default QrCode;

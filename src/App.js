@@ -15,9 +15,8 @@ class App extends Component {
       <Provider {...stores}>
         <BrowserRouter>
           <div className="App">
-            <NavigationView />
-            <AppRouter />
-            <Login />
+            <NavigationView/>
+              <AppRouter />
           </div>
         </BrowserRouter>
       </Provider>

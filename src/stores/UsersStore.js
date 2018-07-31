@@ -1,11 +1,8 @@
-import { observable } from 'mobx';
+import { observable, computed } from 'mobx';
 
 class UserStore {
-  @observable currentUser;
-
-  constructor() {
-    this.currentUser = {};
-  }
+  @observable currentUser = {};
+  @observable usersList = [];
 
   /**
    * Set user data to current user store
@@ -19,8 +16,20 @@ class UserStore {
     this.currentUser = {};
   }
 
-  getPictureaAvatar() {
+  @computed get getPictureAvatarLink() {
     return this.currentUser.avatar;
+  }
+
+  setToUsersList(data){
+    this.usersList.push(data);
+  }
+
+  deleteUsersList() {
+    this.usersList = [];
+  }
+
+  @computed get getFullName() {
+    return `${this.currentUser.firstName} ${this.currentUser.lastName}`;
   }
 }
 
