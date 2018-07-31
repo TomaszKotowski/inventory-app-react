@@ -25,13 +25,13 @@ export default class UserModel {
           this.isAdmin = data.isAdmin;
       }
 
-      addDevice(deviceId) {
-        devices.push(device)
+      addDevice(device) {
+        this.devices.push(device)
       }
       
       removeDevice(deviceId) {
         //skasowac dany element z danym ID z tablicy
-        remove(devices, item => item.id === deviceId);
+        remove(this.devices, item => item.id === deviceId);
       }
 
       // constructor({ id, avatar, firstName, lastName, email, login, officeId, isAdmin}) {
