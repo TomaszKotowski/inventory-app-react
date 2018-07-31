@@ -1,13 +1,17 @@
 import { observable } from 'mobx';
 import { find } from 'lodash';
 
+
 class DevicesStore {
+
+  
   @observable devicesList;
 
   constructor() {
     this.devicesList = [];
   }
-
+  
+ 
   /**
    * Reset devices list. 
    * BE CAREFUL!!! It delete all of them!
@@ -59,5 +63,6 @@ class DevicesStore {
     return (result === null) ? null : result;
   }
 }
-
+var abc = new DevicesStore;
+console.log(abc);
 export default new DevicesStore();

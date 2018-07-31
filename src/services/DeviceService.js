@@ -11,7 +11,7 @@ class DeviceService {
     client.get('/api/devices')
       .then(result => {
         result.data.forEach(element => {
-          const device = new Device(result.data);
+          const device = new DeviceModel(result.data);
           DevicesStore.addNewDevice(device);
         });
       })

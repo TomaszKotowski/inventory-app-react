@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Login from './models/auth/login.view';
-
+import MyDevices from './models/myDevices/myDevices.view';
+import MyDevicesTransfer from  './models/myDevicesTransfer/myDevicesTransfer.view'
+import MyDevicesTarget from  './models/myDevicesTarget/myDevicesTarget.view'
 
 import { BrowserRouter } from 'react-router-dom';
 import AppRouter from './routers/Router';
@@ -15,9 +17,12 @@ class App extends Component {
       <Provider {...stores}>
         <BrowserRouter>
           <div className="App">
-            <NavigationView />
-            <AppRouter />
-            <Login />
+            {/* <NavigationView /> */}
+            {/* <AppRouter /> */}
+            {/* <Login /> */}
+            <MyDevices />
+            {/* <MyDevicesTransfer/> */}
+            {/* <MyDevicesTarget/> */}
           </div>
         </BrowserRouter>
       </Provider>

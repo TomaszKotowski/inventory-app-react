@@ -8,6 +8,11 @@ export default class DeviceModel {
   @observable imageUrl;
   @observable description;
 
+
+
+
+
+
   constructor(data) {
     this.id = data.id;
     this.name = data.name;
@@ -16,3 +21,4 @@ export default class DeviceModel {
     this.description = data.description;
   }
 }
+
