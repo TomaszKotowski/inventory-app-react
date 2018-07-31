@@ -5,7 +5,6 @@ import NavigationView from './models/navigation/navigation.view'
 import { Provider, observer } from 'mobx-react';
 import stores from './stores/index';
 import './App.css';
-import TestComponent from './models/navigation/TestComponent'
 
 @observer
 class App extends Component {
@@ -14,7 +13,7 @@ class App extends Component {
       <Provider {...stores}>
         <BrowserRouter>
           <div className="App">
-            <NavigationView title="Title">
+            <NavigationView>
               <AppRouter />
             </NavigationView>
           </div>
