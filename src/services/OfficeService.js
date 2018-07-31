@@ -6,6 +6,7 @@ class Office {
   getAllOffices() {
     client.get('/api/offices')
       .then(result => {
+        console.log(result.data);
         result.data.forEach(element => {
           const office = new OfficeModel(element);
           OfficesStore.addOffice(office);
@@ -16,3 +17,5 @@ class Office {
       });
   }
 }
+
+export default new Office();
