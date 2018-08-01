@@ -12,21 +12,6 @@ import index from '../../stores';
 const Item = List.Item;
 const Brief = Item.Brief;
 
-let abc = () => {
-  return (this.props.devicesStore.devicesList.map(e =>{
-    return(
-      <Flex.Item key={e.id}>
-        <Item arrow="horizontal" multipleLine onClick={() => {}}>
-          {e.name}
-          <Brief>{e.id}</Brief>
-        </Item>
-      </Flex.Item>
-    )
-  
-  })
-)
-}
-
 
 @inject('devicesStore')
 @observer
@@ -55,24 +40,6 @@ class MyDevices extends React.Component {
       );
     }
 }
-  
-// return (
-   
-//        <Flex direction="column" align="stretch">
-//               <Flex.Item>
-//               <NavBar
-//                   rightContent={<Icon type="ellipsis"/>}className="devices-navbar">
-//                   My Devices
-//               </NavBar>
-//               </Flex.Item>
-//               {allDevice}
-//       </Flex>
-
-    
-  // )
-  
-
-//niektore rzeczy sa wykomentowane na potrzebe testow XD
 
 export default  MyDevices;
 

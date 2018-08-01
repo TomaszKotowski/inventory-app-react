@@ -11,7 +11,7 @@ export default class UserModel {
       @observable officeId;
       @observable isAdmin;
 
-      @observable devices = ["aaaaa"];      
+      @observable devices = [];      
       @observable places = [];
 
       constructor(data) {
