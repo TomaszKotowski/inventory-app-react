@@ -36,10 +36,15 @@ class AddPlace extends Component {
         officeId: this.selectedPlaceId
       }
       PlaceService.postNewPlace(data);
-      console.log('okon');
+      this.errorMsg = 'New place added';
     } else {
       this.errorMsg = 'All fields must be filed in. Please check your input data';
     }
+  }
+
+  @Bind
+  resetErrMessage() {
+    this.errorMsg = '';
   }
 
   render() {
@@ -48,7 +53,7 @@ class AddPlace extends Component {
         <WhiteSpace size='xl'/>
         <Flex>
           <Flex.Item>
-            {this.errorMsg && <NoticeBar mode='closable'>{this.errorMsg}</NoticeBar>}
+            {this.errorMsg && <NoticeBar mode='closable' onClick={this.resetErrMessage}>{this.errorMsg}</NoticeBar>}
           </Flex.Item>
         </Flex>
         <Flex>
