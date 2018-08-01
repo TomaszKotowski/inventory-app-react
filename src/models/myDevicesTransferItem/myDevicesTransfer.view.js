@@ -4,14 +4,14 @@ import { observable } from 'mobx';
 import { observer, inject } from 'mobx-react';
 import 'antd-mobile/dist/antd-mobile.css';
 import { Toast, NavBar, Icon, Flex, Button, WhiteSpace, List } from 'antd-mobile';
-import styles from './myDevicesTargetStyle.css';
+import styles from './myDevicesTransferStyle.css';
 
 
 const Item = List.Item;
 const Brief = Item.Brief;
 
 
-class MyDevicesTarget extends React.Component {
+class MyDevicesTransfer extends React.Component {
   render() {
     return (
 
@@ -38,4 +38,4 @@ class MyDevicesTarget extends React.Component {
     );
   }
 }
-export default MyDevicesTarget;
+export default MyDevicesTransfer;

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Login from './models/auth/login.view';
 import MyDevices from './models/myDevices/myDevices.view';
-import MyDevicesTransfer from  './models/myDevicesTransfer/myDevicesTransfer.view'
-import MyDevicesTarget from  './models/myDevicesTarget/myDevicesTarget.view'
+import MyDevicesMain from  './models/myDevicesMainView/myDevicesMain'
+import MyDevicesTransfer from  './models/myDevicesTransferItem/myDevicesTransfer.view'
 
 import { BrowserRouter } from 'react-router-dom';
 import AppRouter from './routers/Router';
@@ -20,9 +20,9 @@ class App extends Component {
             {/* <NavigationView /> */}
             {/* <AppRouter /> */}
             {/* <Login /> */}
-            <MyDevices />
+            {/* <MyDevices /> */}
+            {/* <MyDevicesMain/> */}
             {/* <MyDevicesTransfer/> */}
-            {/* <MyDevicesTarget/> */}
           </div>
         </BrowserRouter>
       </Provider>

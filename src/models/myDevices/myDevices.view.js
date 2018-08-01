@@ -7,47 +7,55 @@ import UserModel from '../../models/UserModel';
 import DeviceModel from '../../models/DeviceModel';
 import DevicesStore from '../../stores/DevicesStore';
 import { NavBar, Icon, Flex, Button, WhiteSpace, List } from 'antd-mobile';
-import styles from './myDevicesStyle.css';
-import DeviceService from '../../services/DeviceService';
 import index from '../../stores';
 
 const Item = List.Item;
 const Brief = Item.Brief;
 
+let abc = () => {
+  return (this.props.devicesStore.devicesList.map(e =>{
+    return(
+      <Flex.Item key={e.id}>
+        <Item arrow="horizontal" multipleLine onClick={() => {}}>
+          {e.name}
+          <Brief>{e.id}</Brief>
+        </Item>
+      </Flex.Item>
+    )
+  
+  })
+)
+}
+
+
 @inject('devicesStore')
 @observer
 class MyDevices extends React.Component {
-
-  
-  componentDidMount() {
-    DeviceService.getAllDevices();
-    
-    const { devicesStore } = this.props;
-    const abc = reaction(
-      () => devicesStore.devicesList.map(e => e.id),
-      ids=> console.log(ids));      // próba numer 2000
-  
-      
-
-  }
-
-  render() {
-    const { devicesStore } = this.props;
-    // console.log('render', devicesStore.devicesList)
-    // return null;
-    return devicesStore.devicesList.map(e => {
-      // console.log(e.name);
+    render() {
+      const { devicesStore } = this.props;
       return (
         <div>
-        {e.name}
-        </div>
-        // <Flex.Item key={e.id}>
-        //   <Item arrow="horizontal" multipleLine onClick={() => {}}>
-        //       a{e.name}
-        //       <Brief>{e.id}</Brief>
-        //   </Item>
-        // </Flex.Item>
-      )})
+          <Flex.Item>
+               <NavBar
+                   rightContent={<Icon type="ellipsis"/>}className="devices-navbar">
+                   My Devices
+               </NavBar>
+          </Flex.Item>
+            {devicesStore.devicesList.map(e =>{
+          return (
+          <Flex.Item key={e.id}>
+            <Item arrow="horizontal" multipleLine onClick={() => {}}>
+                {e.name}
+                <Brief>{e.id}</Brief>
+              </Item>
+          </Flex.Item>
+          )
+        })}
+          </div>
+      );
+    }
+}
+  
 // return (
    
 //        <Flex direction="column" align="stretch">
@@ -62,8 +70,11 @@ class MyDevices extends React.Component {
 
     
   // )
-  }
-}
+  
+
 //niektore rzeczy sa wykomentowane na potrzebe testow XD
 
 export default  MyDevices;
+
+
+

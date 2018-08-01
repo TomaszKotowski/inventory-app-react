@@ -1,5 +1,6 @@
 import { observable } from 'mobx';
 import { find } from 'lodash';
+import DeviceService from '../services/DeviceService';
 
 
 class DevicesStore {
@@ -9,6 +10,7 @@ class DevicesStore {
 
   constructor() {
     this.devicesList = [];
+    DeviceService.getAllDevices().then(response => this.setDevices(response));
   }
   
  
@@ -18,6 +20,10 @@ class DevicesStore {
    */
   clearList() {
     this.devicesList = [];
+  }
+
+  setDevices(devicesList) {
+    this.devicesList = devicesList;
   }
 
   /**
@@ -63,6 +69,5 @@ class DevicesStore {
     return (result === null) ? null : result;
   }
 }
-var abc = new DevicesStore;
-console.log(abc);
+
 export default new DevicesStore();
