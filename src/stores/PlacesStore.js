@@ -1,12 +1,15 @@
 import { observable } from 'mobx';
 import { find } from 'lodash';
+import PlaceService from '../services/PlaceService';
 
 class PlacesStore {
 
-  @observable placesList;
+  @observable placesList = [];
 
   constructor() {
-    this.placesList = [];
+    PlaceService.getAllPlaces().then((list) => {
+      this.addPlaceList(list);
+    })
   }
 
   /**
@@ -15,6 +18,10 @@ class PlacesStore {
    */
   addPlace(data) {
     this.placesList.push(data);
+  }
+
+  addPlaceList(placeList) {
+    this.placesList = placeList;
   }
 
   /**
