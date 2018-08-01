@@ -8,10 +8,8 @@ class DeviceService {
   */
   getAllDevices() {
     return client.get('/api/devices')
-      .then(result => result.data.map(item => new DeviceModel(item)))
-      .catch(err => {
-        console.log(err);
-      });
+      .then(result => result.data.map(element => new DeviceModel(element)))
+      .catch(err => console.log(err) );
   }
 }
 

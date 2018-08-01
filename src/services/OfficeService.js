@@ -2,17 +2,12 @@ import client from './AxiosClientService';
 import OfficeModel from '../models/OfficeModel';
 import OfficesStore from '../stores/OfficesStore';
 
-class Office {
+class OfficeService {
   getAllOffices() {
-    client.get('/api/offices')
-      .then(result => {
-        result.data.forEach(element => {
-          const office = new OfficeModel(element);
-          OfficesStore.addOffice(office);
-        });
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    return client.get('/api/offices')
+      .then(result => result.data.map(element => new OfficeModel(element)))
+      .catch(err => console.log(err) );
   }
 }
+
+export default new OfficeService();
