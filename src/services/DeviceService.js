@@ -19,6 +19,8 @@ class DeviceService {
         console.log(err);
       });
   }
+
+  send
 }
 
 export default new DeviceService();
