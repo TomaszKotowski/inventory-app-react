@@ -5,6 +5,7 @@ import { Select } from 'antd';
 import { NavBar, Icon, Flex, Brief, WhiteSpace, List } from 'antd-mobile';
 import 'antd/dist/antd.css';
 import { bind } from 'lodash-decorators';
+import { Link } from 'react-router-dom';
 import OfficesStore from '../../stores/OfficesStore';
 import PlacesStore from '../../stores/PlacesStore';
 import NavBarView from '../navigation/navigation.view';
@@ -21,14 +22,11 @@ export default class PlacesView extends Component {
   @bind
   handlePlacesFilter = (value) => {
     this.filterValue = value;
-    this.office = this.props.officesStore.officesList.find((office) => {
-      return office.id == value;
-    })
+    this.office = this.props.officesStore.officesList.find((office) => office.id == value);
   }
 
   componentDidMount() {
     console.log("componentDidMount");
-    // console.log(this.props.officesStore.officesList)
     reaction(
       () => this.props.placesStore.placesList.map((place) => place.name),
       (placeOfficeId) => { console.log(placeOfficeId) }
@@ -54,9 +52,14 @@ export default class PlacesView extends Component {
           Places
         </NavBar>
         <WhiteSpace />
-        <div>
-          Officies
-        </div>
+        <Flex justify="center" className="title-container">
+          <Flex.Item>
+            Officies
+          </Flex.Item>
+          <Link to="/places/add_device">
+            <Icon type="cross" className="cross" />
+          </Link>
+        </Flex>
         <div>
           <WhiteSpace />
           <Select
@@ -83,7 +86,8 @@ export default class PlacesView extends Component {
                       <List.Item
                         key={place.id}
                         arrow="horizontal"
-                        multipleLine onClick={() => { }}
+                        multipleLine
+                        onClick={() => { }}
                       >{place.name}
                         <List.Item.Brief key={place.id} >
                           {this.office.name}
