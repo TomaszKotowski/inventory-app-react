@@ -6,9 +6,7 @@ class OfficesStore {
   @observable officesList = [];
 
   constructor() {
-    OfficeService.getAllOffices().then((list) => {
-      this.addOfficesList(list);
-    })
+    OfficeService.getAllOffices().then((list) => this.addOfficesList(list));
   }
 
   /**

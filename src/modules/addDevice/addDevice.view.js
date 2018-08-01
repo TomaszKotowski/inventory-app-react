@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
-import { Flex, InputItem, List, Button, WhiteSpace, WingBlank, TextareaItem } from 'antd-mobile';
+import { Flex, InputItem, List, Button, WhiteSpace, WingBlank, TextareaItem, NoticeBar } from 'antd-mobile';
 import { observable, reaction, observe } from 'mobx';
 import { inject, observer } from 'mobx-react';
 import { Bind } from 'lodash-decorators';
+import DeviceService from '../../services/DeviceService';
 
 @inject('userStore')
 @observer
 class AddDevice extends Component {
-  @observable name;
-  @observable belongsTo;
-  @observable imageUrl;
-  @observable description;
+  @observable name = '';
+  @observable belongsTo = '';
+  @observable imageUrl = '';
+  @observable description = '';
+
+  @observable errorMsg;
 
   componentDidMount() {
     reaction(
@@ -38,12 +41,30 @@ class AddDevice extends Component {
 
   @Bind
   sendToDatabase() {
-    console.log(`${this.belongsTo} ${this.name} ${this.imageUrl}`);
+    if(this.name.length != 0 &&
+        this.imageUrl.length != 0 &&
+        this.description.length != 0 &&
+        this.props.userStore.currentUser.id) {
+        const data = {
+          name: this.name,
+          belongsToId: this.belongsTo,
+          imageUrl: this.imageUrl,
+          description: this.description
+        }
+        DeviceService.postNewDevice(data);
+      } else {
+        this.errorMsg = 'All fields must be filed in. Please check your input data';
+      }
   }
 
   render() {
     return(
       <div>
+        <Flex>
+          <Flex.Item>
+            {this.errorMsg && <NoticeBar mode='closable'>{this.errorMsg}</NoticeBar>}
+          </Flex.Item>
+        </Flex>
         <Flex>
           <Flex.Item>
             <List renderHeader={() => 'Device name'}>

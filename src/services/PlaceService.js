@@ -1,6 +1,5 @@
 import client from './AxiosClientService';
 import PlaceModel from '../models/PlaceModel';
-import PlacesStore from '../stores/PlacesStore';
 
 class PlaceService {
   getAllPlaces() {
@@ -9,7 +8,7 @@ class PlaceService {
       .catch(err => console.log(err) );
   }
 
-  postNewOffice(placeData) {
+  postNewPlace(placeData) {
     const stringifyData = JSON.stringify(placeData);
 
     client.post('/api/places',

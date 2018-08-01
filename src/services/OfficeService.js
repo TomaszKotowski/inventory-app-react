@@ -1,6 +1,5 @@
 import client from './AxiosClientService';
 import OfficeModel from '../models/OfficeModel';
-import OfficesStore from '../stores/OfficesStore';
 
 class OfficeService {
   getAllOffices() {

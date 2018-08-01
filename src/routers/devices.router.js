@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import AddDevice from '../models/addDevice/addDevice.view';
+import AddDevice from '../modules/addDevice/addDevice.view';
 
 const DevicesRouter = ({ match }) => (
   <Switch>

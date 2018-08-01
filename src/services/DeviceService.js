@@ -1,7 +1,6 @@
 import client from './AxiosClientService';
 
 import DeviceModel from '../models/DeviceModel';
-import DevicesStore from '../stores/DevicesStore';
 
 class DeviceService {
   /**
