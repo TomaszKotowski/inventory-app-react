@@ -4,7 +4,7 @@ import PlaceService from '../services/PlaceService';
 
 class PlacesStore {
 
-  @observable placesList;
+  @observable placesList = [];
 
   constructor() {
     PlaceService.getAllPlaces().then((list) => {
@@ -19,6 +19,10 @@ class PlacesStore {
   addPlace(data) {
     this.placesList.push(data);
   }
+  addPlaceList(placeList) {
+    this.placesList = placeList;
+  }
+
   addPlaceList(placeList) {
     this.placesList = placeList;
   }

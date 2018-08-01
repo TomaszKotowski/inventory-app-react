@@ -1,15 +1,14 @@
 import { find } from 'lodash';
 import { observable } from 'mobx';
-import Office from '../services/OfficeService';
-// import Office2 from './OfficeService';
-
+import OfficeService from '../services/OfficeService';
 
 class OfficesStore {
-  @observable officesList;
+  @observable officesList = [];
 
   constructor() {
-    this.officesList = [];
-    Office.getAllOffices().then(response => this.setOffices(response));
+    OfficeService.getAllOffices().then((list) => {
+      this.addOfficesList(list);
+    })
   }
 
   setOffices(officesList) {
@@ -21,6 +20,10 @@ class OfficesStore {
    */
   addOffice(data) {
     this.officesList.push(data);
+  }
+
+  addOfficesList(officesList) {
+    this.officesList = officesList;
   }
 
   /**

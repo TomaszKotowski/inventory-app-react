@@ -11,7 +11,7 @@ class AuthService {
   tokenName = 'zoniToken';
 
   constructor() {
-    this.getProfile();  
+    this.getProfile();
   }
 
   login(login, password) {
