@@ -8,16 +8,9 @@ class DeviceService {
    * Download all devices list
   */
   getAllDevices() {
-    client.get('/api/devices')
-      .then(result => {
-        result.data.forEach(element => {
-          const device = new Device(result.data);
-          DevicesStore.addNewDevice(device);
-        });
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    return client.get('/api/devices')
+      .then(result => result.data.map(element => new DeviceModel(element)))
+      .catch(err => console.log(err) );
   }
 }
 

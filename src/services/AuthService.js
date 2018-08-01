@@ -9,8 +9,10 @@ import UserModel from '../models/UserModel';
 
 class AuthService {
 
+  tokenName = 'zoniToken';
+
   constructor() {
-    this.tokenName = 'zoniToken';
+    this.getProfile();
   }
 
   login(login, password) {
@@ -41,10 +43,10 @@ class AuthService {
     })
   }
 
-  loggedIn() {
+  isLoggedIn() {
     const token = AuthData.getToken();
-    
-    if(!token) {
+
+    if(token === 'null' || token == null) {
       return false;
     }
     
@@ -53,7 +55,7 @@ class AuthService {
   }
 
   getProfile() {
-    if (this.loggedIn()) {
+    if (this.isLoggedIn()) {
       client.get('/api/users/current')
       .then(result => {
         const currentUser = new UserModel(result.data);
