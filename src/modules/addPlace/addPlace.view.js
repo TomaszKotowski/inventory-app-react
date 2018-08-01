@@ -63,7 +63,6 @@ class AddPlace extends Component {
                 showSearch
                 style={{ width: '100%' }}
                 onChange={this.onChangeOffice}>
-                {/* <Select.Option key='test' value='test'>test</Select.Option> */}
                 {
                   this.props.officesStore.officesList.map(element => {
                     return( <Select.Option key={element.name} value={element.id}>{element.name}</Select.Option>)

@@ -1,35 +1,26 @@
 import React, { Component } from 'react';
-import mobx, { observable, reaction } from 'mobx';
+import { observable, reaction } from 'mobx';
 import { Flex, WhiteSpace } from 'antd-mobile';
 import { inject, observer } from 'mobx-react';
-import OfficesStore from '../../stores/OfficesStore';
-import AuthService from '../../services/AuthService';
-import OfficeService from '../../services/OfficeService';
 
 @inject('userStore', 'officesStore')
 @observer
 class Description extends Component {
   @observable officeName;
   
-  constructor() {
-    OfficeService.getAllOffices();
-    super();
-  }
-  
   componentDidMount() {
-    // console.log(this.props.officesStore.officesList.length);
     reaction(
       () => this.props.officesStore.officesList,
       () => {
-        console.log('hi');
+        const officeArr = this.props.officesStore.officesList.forEach(item => {
+          if(item.id == this.props.userStore.currentUser.officeId) {
+            this.officeName = item.name;
+          }
+        });
       }
     );
   }
 
-  findCity() {
-    this.officeName = OfficesStore.findOfficeById(this.props.userStore.currentUser.officeId);
-  }
-  
   render() {
     const { userStore } = this.props;
 
@@ -41,7 +32,7 @@ class Description extends Component {
             <span className='userData'>{userStore.getFullName}</span>
           </Row-Flex>
         </Flex>
-        <Flex>
+        <Flex justify='center'>
           <Row-Flex>
             <span className='userCity'>{this.officeName}</span>
           </Row-Flex>
