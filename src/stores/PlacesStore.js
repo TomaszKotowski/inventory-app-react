@@ -1,12 +1,15 @@
 import { observable } from 'mobx';
 import { find } from 'lodash';
+import PlaceService from '../services/PlaceService';
 
 class PlacesStore {
 
   @observable placesList;
 
   constructor() {
-    this.placesList = [];
+    PlaceService.getAllPlaces().then((list) => {
+      this.addPlaceList(list);
+    })
   }
 
   /**
@@ -16,20 +19,23 @@ class PlacesStore {
   addPlace(data) {
     this.placesList.push(data);
   }
+  addPlaceList(placeList) {
+    this.placesList = placeList;
+  }
 
   /**
    * Find place by it's id. Return place object or empty string
    * @param {string} placeId 
    */
-  findById(placeId){
+  findById(placeId) {
     const result = find(this.placesList, el => {
       el.id === placeId
     });
-    
+
     return (result === null) ? '' : result;
   }
-  
-  
+
+
   /**
    * Find place by it's name. Return place object or empty string
    * @param {string} placeName 

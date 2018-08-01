@@ -37,6 +37,7 @@ export default class NavigationView extends React.Component {
         sidebar={sidebar}
         docked={this.props.layoutStore.drawerDocked}
         position='right'
+        enableDragHandle={false}
       >
         {this.props.children}
       </Drawer>

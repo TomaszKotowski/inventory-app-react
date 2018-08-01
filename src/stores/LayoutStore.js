@@ -20,4 +20,4 @@ class LayoutStore {
 
 };
 
-export default new LayoutStore;
+export default new LayoutStore();
