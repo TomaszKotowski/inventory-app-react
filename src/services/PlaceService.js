@@ -15,4 +15,26 @@ class Place {
         console.log(err);
       });
   }
+
+  postNewOffice(placeData) {
+    const stringifyData = JSON.stringify(placeData);
+
+    client.post('/api/places',
+      stringifyData,
+      {
+        headers: {
+          'ContentType': 'application/json'
+        },
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
+
+  deleteOffice(placeId) {
+    client.delete(`/api/offices/${placeId}`)
+      .catch((err) => {
+        console.log(err);
+      })
+  }
 }

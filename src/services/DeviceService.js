@@ -20,7 +20,27 @@ class DeviceService {
       });
   }
 
-  send
+  postNewDevice(deviceData) {
+    const stringifyData = JSON.stringify(deviceData);
+
+    client.post('/api/devices', 
+    stringifyData,
+    {
+      headers: {
+        'ContentType': 'application/json'
+      },
+    })
+    .catch((err) => {
+      console.log(err);  
+    })
+  }
+
+  deleteDevice(deviceId) {
+    client.delete(`/api/devices/${deviceId}`)
+    .catch((err) => {
+      console.log(err);
+    })
+  }
 }
 
 export default new DeviceService();

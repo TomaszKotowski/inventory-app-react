@@ -16,6 +16,28 @@ class Office {
         console.log(err);
       });
   }
+
+  postNewOffice(officeData) {
+    const stringifyData = JSON.stringify(officeData);
+
+    client.post('/api/offices',
+      stringifyData,
+      {
+        headers: {
+          'ContentType': 'application/json'
+        },
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
+
+  deleteOffice(officeId) {
+    client.delete(`/api/offices/${officeId}`)
+      .catch((err) => {
+        console.log(err);
+      })
+  }
 }
 
 export default new Office();
