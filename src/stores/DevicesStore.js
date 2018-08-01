@@ -1,11 +1,12 @@
 import { observable } from 'mobx';
 import { find } from 'lodash';
+import DeviceService from '../services/DeviceService';
 
 class DevicesStore {
-  @observable devicesList;
+  @observable devicesList = [];
 
   constructor() {
-    this.devicesList = [];
+    DeviceService.getAllDevices().then((list) => this.addDeviceList(list));
   }
 
   /**
@@ -22,6 +23,14 @@ class DevicesStore {
    */
   addNewDevice(deviceData) {
     this.devicesList.push(deviceData);
+  }
+
+  /**
+   * Add all device list
+   * @param {Array} deviceList 
+   */
+  addDeviceList(deviceList) {
+    this.devicesList = deviceList;
   }
 
   /**
