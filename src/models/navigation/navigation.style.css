@@ -1,6 +1,6 @@
 .my-drawer {
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
 }
 
