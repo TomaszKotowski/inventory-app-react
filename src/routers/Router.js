@@ -7,7 +7,6 @@ import EmployeesRouter from './employees.router';
 import IdentifyRouter from './identify.router';
 import PlacesRouter from './places.router';
 import NoMatch from '../NoMatch';
-import NavigationView from '../models/navigation/navigation.view';
 import ProfileRouter from './profile.router';
 
 const AppRouter = () => (

@@ -19,6 +19,9 @@ class PlacesStore {
   addPlace(data) {
     this.placesList.push(data);
   }
+  addPlaceList(placeList) {
+    this.placesList = placeList;
+  }
 
   addPlaceList(placeList) {
     this.placesList = placeList;
@@ -28,15 +31,13 @@ class PlacesStore {
    * Find place by it's id. Return place object or empty string
    * @param {string} placeId 
    */
-  findById(placeId){
-    const result = find(this.placesList, el => {
-      el.id === placeId
-    });
-    
+  findById(placeId) {
+    const result = find(this.placesList, el => el.id === placeId);
+
     return (result === null) ? '' : result;
   }
-  
-  
+
+
   /**
    * Find place by it's name. Return place object or empty string
    * @param {string} placeName 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Profile from '../models/profile/profile.view';
+import Profile from '../modules/profile/profile.view';
 
 const ProfileRouter = () => (
   <Switch>

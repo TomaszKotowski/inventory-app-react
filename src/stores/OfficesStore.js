@@ -9,6 +9,9 @@ class OfficesStore {
     OfficeService.getAllOffices().then((list) => this.addOfficesList(list));
   }
 
+  setOffices(officesList) {
+    this.officesList = officesList;
+  }
   /**
    * Add office to list of the stores 
    * @param {Object} data 
@@ -27,9 +30,7 @@ class OfficesStore {
    * @param {string} officeId 
    */
   findOfficeById(officeId) {
-    const office = find(this.officesList, element => {
-      element.id === officeId
-    });
+    const office = find(this.officesList, element => element.id === officeId);
 
     return (office === null) ? 'Office not found' : office;
   }
@@ -41,7 +42,7 @@ class OfficesStore {
    */
   findOfficeByCityName(cityName) {
     const office = find(this.officesList, element => {
-      element.name === cityName 
+      element.name === cityName
     });
 
     return (office === null) ? 'Office not found' : office;

@@ -33,6 +33,13 @@ class DeviceService {
       console.log(err);
     })
   }
+
+  findDevicesAllocatedToUser(userId) {
+    return client.get(`/api/devices?belongsToId=${userId}`)
+    .catch((err) => {
+      console.log(err);
+    }) 
+  }
 }
 
 export default new DeviceService();
