@@ -10,7 +10,7 @@ import { NavBar, Icon, Flex, Button, WhiteSpace, List, Tabs } from 'antd-mobile'
 import index from '../../stores';
 import ScrollContainer from '../scrollContainer/ScrollContainer';
 import styles from'./myDevicesStyle.css'
-
+import { Link } from 'react-router-dom';
 
 const Item = List.Item;
 const Brief = Item.Brief;
@@ -19,11 +19,11 @@ const Brief = Item.Brief;
 @inject('devicesStore','layoutStore')
 @observer
 class MyDevices extends React.Component {
-
+  
   
   
        render(){
-      
+        
         const { devicesStore } = this.props;
         
       return (
@@ -37,17 +37,14 @@ class MyDevices extends React.Component {
           <Flex.Item className="item-under-sticky">   
               {devicesStore.devicesList.map(e =>{
                 return (
-                  <Flex.Item>
-                    <Item  arrow="horizontal" multipleLine onClick={(event) => {
-                      console.log(event.target);
-                    }}>
-                    
-                      {e.name}
-                      <Brief>{e.id}</Brief>
-                    
-                    </Item>
-                  </Flex.Item>
-                
+                  <Link to={`/devices/${e.id}`} key={e.id}>
+                    <Flex.Item> 
+                      <Item  arrow="horizontal" multipleLine >
+                        {e.name}
+                        <Brief>{e.id}</Brief>
+                      </Item>
+                    </Flex.Item>
+                  </Link>  
                 )          
               })}
           </Flex.Item>

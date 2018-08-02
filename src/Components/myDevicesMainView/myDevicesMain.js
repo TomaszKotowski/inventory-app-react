@@ -5,6 +5,10 @@ import { observer, inject } from 'mobx-react';
 import 'antd-mobile/dist/antd-mobile.css';
 import { Toast, NavBar, Icon, Flex, Button, WhiteSpace, List } from 'antd-mobile';
 import styles from './myDevicesMainStyle.css';
+import MyDevices from '../myDevices/myDevices.view';
+import DevicesStore from '../../stores/DevicesStore';
+import { Link } from 'react-router-dom';
+
 
 
 const Item = List.Item;
@@ -16,7 +20,24 @@ const Brief = Item.Brief;
 @inject('devicesStore','layoutStore')
 @observer
 class MyDevicesMain extends React.Component {
+
+  @observable device = {};
+
+  componentDidMount() {   
+    reaction(
+      () => this.props.devicesStore.devicesList,
+      () => {
+              let  id = this.props.match.params.id;
+              this.device = this.props.devicesStore.findDeviceById(id);
+            }
+    );
+}
+
+
+    
   render() {
+  
+    
     return (
 
       <Flex direction="column" align="stretch" className="container-flex">
@@ -27,21 +48,26 @@ class MyDevicesMain extends React.Component {
             My Devices
           </NavBar>
       </Flex.Item>
+      <Link to="/devices">
           <Item arrow="horizontal" multipleLine onClick={() => {}}>
-              Current Device Here.
+              {this.device.name}
           </Item>
+      </Link>
       </Flex.Item>
-      <Flex.Item>
-            <div>Curren Item</div>
-            <div>ID: 87282GDNM</div>
+      <Flex.Item align="center">
+            <div>Serial ID: </div>
+            <div>{this.device.id}</div>
         </Flex.Item>
         <Flex.Item align="center">
-            <div>QRCODEHERE</div>
+            <div>QR CODE HERE</div>
         </Flex.Item>
       <Flex>
         <Flex.Item>
-          <Button type="primary">Login</Button>
+        <Link to={`/devices/${this.device.id}/transfer`}>
+          <Button type="primary">Transfer</Button>
+          </Link>
         </Flex.Item>
+        
       </Flex>
     </Flex> 
 

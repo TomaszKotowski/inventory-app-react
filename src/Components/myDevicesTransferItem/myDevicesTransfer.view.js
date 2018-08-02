@@ -1,19 +1,35 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { observable } from 'mobx';
+import { observable, reaction } from 'mobx';
 import { observer, inject } from 'mobx-react';
 import 'antd-mobile/dist/antd-mobile.css';
 import { Toast, NavBar, Icon, Flex, Button, WhiteSpace, List } from 'antd-mobile';
 import styles from './myDevicesTransferStyle.css';
-
+import { Link } from 'react-router-dom';
+import MyDevicesMain from '../myDevicesMainView/myDevicesMain';
 
 const Item = List.Item;
 const Brief = Item.Brief;
 
+
+
 @inject('devicesStore','layoutStore')
 @observer
 class MyDevicesTransfer extends React.Component {
+  @observable device = {};
+
+  componentDidMount() {   
+    reaction(
+      () => this.props.devicesStore.devicesList,
+      () => {
+              let  id = this.props.match.params.id;
+              this.device = this.props.devicesStore.findDeviceById(id);
+              
+            }
+    );
+}
   render() {
+    
     return (
 
       <Flex direction="column" align="stretch">
@@ -24,9 +40,11 @@ class MyDevicesTransfer extends React.Component {
             My Devices
           </NavBar>
       </Flex.Item>
+      <Link to="/devices">
           <Item arrow="horizontal" multipleLine onClick={() => {}}>
-              Current Device Here.
+            {this.device.name}
           </Item>
+      </Link>
       </Flex.Item>
       <Flex.Item align="center" className="device-targed-box1">
             <div>CHOOSE TARGET</div>
