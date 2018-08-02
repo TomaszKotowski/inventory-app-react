@@ -15,11 +15,3 @@
   width: 300px;
   padding: 0;
 }
-.Navbar-sticky {
-  position: fixed;
-  overflow: hidden;
-  z-index: 10000;
-  width:100%;
-  color:red;
-
-}
