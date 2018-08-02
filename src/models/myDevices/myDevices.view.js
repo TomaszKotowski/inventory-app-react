@@ -13,16 +13,19 @@ const Item = List.Item;
 const Brief = Item.Brief;
 
 
-@inject('devicesStore')
+@inject('devicesStore', 'layoutStore')
 @observer
 class MyDevices extends React.Component {
+
+
+  
     render() {
       const { devicesStore } = this.props;
       return (
         <div>
           <Flex.Item>
                <NavBar
-                   rightContent={<Icon type="ellipsis"/>}className="devices-navbar">
+                   rightContent={<Icon type="ellipsis" onClick={this.props.layoutStore.handleDrawerDocker}/>}className="devices-navbar">
                    My Devices
                </NavBar>
           </Flex.Item>

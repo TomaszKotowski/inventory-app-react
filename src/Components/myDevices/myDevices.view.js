@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { observable, reaction } from 'mobx';
-import { observer, inject } from 'mobx-react';
+import { observer, inject, Observer } from 'mobx-react';
 import 'antd-mobile/dist/antd-mobile.css';
 import UserModel from '../../models/UserModel';
 import DeviceModel from '../../models/DeviceModel';
@@ -18,8 +18,13 @@ const Brief = Item.Brief;
 @inject('devicesStore','layoutStore')
 @observer
 class MyDevices extends React.Component {
-    render() {
-      const { devicesStore } = this.props;
+
+  
+  
+       render(){
+      
+        const { devicesStore } = this.props;
+        
       return (
         <div>
           <Flex.Item>
@@ -31,8 +36,10 @@ class MyDevices extends React.Component {
             {devicesStore.devicesList.map(e =>{
           return (
             <ScrollContainer>
-            <Flex.Item key={e.id}>
-              <Item arrow="horizontal" multipleLine onClick={() => {}}>
+            <Flex.Item >
+              <Item arrow="horizontal" multipleLine onClick={(event) => {
+                console.log(event.target);
+              }}>
                 {e.name}
                 <Brief>{e.id}</Brief>
               </Item>
