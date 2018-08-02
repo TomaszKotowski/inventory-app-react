@@ -8,13 +8,18 @@ class DevicesStore {
   constructor() {
     DeviceService.getAllDevices().then((list) => this.addDeviceList(list));
   }
-
+  
+ 
   /**
    * Reset devices list. 
    * BE CAREFUL!!! It delete all of them!
    */
   clearList() {
     this.devicesList = [];
+  }
+
+  setDevices(devicesList) {
+    this.devicesList = devicesList;
   }
 
   /**
