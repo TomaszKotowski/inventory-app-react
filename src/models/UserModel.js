@@ -1,4 +1,4 @@
-import { observable, action, computed } from "mobx";
+import { observable } from "mobx";
 import { remove } from 'lodash';
 
 export default class UserModel {
