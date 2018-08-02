@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { observer, inject } from 'mobx-react';
 import { Drawer, NavBar, Icon, Flex } from 'antd-mobile';
 import 'antd-mobile/dist/antd-mobile.css';
-import './navigation.style.css'
+import  './navigation.style.css';
 
 @inject('layoutStore')
 @observer
@@ -12,7 +12,8 @@ export default class NavigationView extends React.Component {
   render() {
     const sidebar = (
       <div>
-        <NavBar
+        <NavBar 
+        className="Navbar-sticky"
           rightContent={
             <Icon type="ellipsis"
               onClick={this.props.layoutStore.handleDrawerDocker}

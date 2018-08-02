@@ -9,6 +9,7 @@ import DevicesStore from '../../stores/DevicesStore';
 import { NavBar, Icon, Flex, Button, WhiteSpace, List, Tabs } from 'antd-mobile';
 import index from '../../stores';
 import ScrollContainer from '../scrollContainer/ScrollContainer';
+import styles from'./myDevicesStyle.css'
 
 
 const Item = List.Item;
@@ -27,27 +28,30 @@ class MyDevices extends React.Component {
         
       return (
         <div>
-          <Flex.Item>
-               <NavBar
-                   rightContent={<Icon type="ellipsis"  onClick={this.props.layoutStore.handleDrawerDocker} />}className="devices-navbar">
-                   My Devices
-               </NavBar>
+          <Flex.Item className="navbar-sticky">
+            <NavBar
+                rightContent={<Icon type="ellipsis"  onClick={this.props.layoutStore.handleDrawerDocker} />}className="devices-navbar">
+                My Devices
+            </NavBar>
           </Flex.Item>
-            {devicesStore.devicesList.map(e =>{
-          return (
-            <ScrollContainer>
-            <Flex.Item >
-              <Item arrow="horizontal" multipleLine onClick={(event) => {
-                console.log(event.target);
-              }}>
-                {e.name}
-                <Brief>{e.id}</Brief>
-              </Item>
-            </Flex.Item>
-          </ScrollContainer>
-          )
-        })}
-          </div>
+          <Flex.Item className="item-under-sticky">   
+              {devicesStore.devicesList.map(e =>{
+                return (
+                  <Flex.Item>
+                    <Item  arrow="horizontal" multipleLine onClick={(event) => {
+                      console.log(event.target);
+                    }}>
+                    
+                      {e.name}
+                      <Brief>{e.id}</Brief>
+                    
+                    </Item>
+                  </Flex.Item>
+                
+                )          
+              })}
+          </Flex.Item>
+        </div>
       );
     }
 }
