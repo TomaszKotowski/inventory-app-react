@@ -27,10 +27,6 @@ class UserStore {
   deleteUsersList() {
     this.usersList = [];
   }
-
-  @computed get getFullName() {
-    return `${this.currentUser.firstName} ${this.currentUser.lastName}`;
-  }
 }
 
 export default new UserStore();

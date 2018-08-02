@@ -3,11 +3,11 @@ import { Flex, InputItem, List, Button, WhiteSpace, WingBlank, TextareaItem, Not
 import { observable, reaction, observe } from 'mobx';
 import { inject, observer } from 'mobx-react';
 import { Bind } from 'lodash-decorators';
-import DeviceService from '../../services/DeviceService';
 import { Select } from 'antd';
 import 'antd/dist/antd.css';
-import OfficeService from '../../services/OfficeService';
 import PlaceService from '../../services/PlaceService';
+import DeviceService from '../../services/DeviceService';
+import OfficeService from '../../services/OfficeService';
 
 @inject('officesStore')
 @observer
@@ -15,7 +15,7 @@ class AddPlace extends Component {
   @observable name = '';
   @observable selectedPlaceId = '';
 
-  @observable errorMsg;
+  @observable notificationMsg;
 
   @Bind
   onChangeName(value) {
@@ -36,15 +36,15 @@ class AddPlace extends Component {
         officeId: this.selectedPlaceId
       }
       PlaceService.postNewPlace(data);
-      this.errorMsg = 'New place added';
+      this.notificationMsg = 'New place added';
     } else {
-      this.errorMsg = 'All fields must be filed in. Please check your input data';
+      this.notificationMsg = 'All fields must be filed in. Please check your input data';
     }
   }
 
   @Bind
-  resetErrMessage() {
-    this.errorMsg = '';
+  resetNotificationMessage() {
+    this.notificationMsg = '';
   }
 
   render() {
@@ -53,7 +53,7 @@ class AddPlace extends Component {
         <WhiteSpace size='xl'/>
         <Flex>
           <Flex.Item>
-            {this.errorMsg && <NoticeBar mode='closable' onClick={this.resetErrMessage}>{this.errorMsg}</NoticeBar>}
+            {this.notificationMsg && <NoticeBar mode='closable' onClick={this.resetErrMessage}>{this.notificationMsg}</NoticeBar>}
           </Flex.Item>
         </Flex>
         <Flex>

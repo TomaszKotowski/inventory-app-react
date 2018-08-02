@@ -25,7 +25,7 @@ export default class UserModel {
           this.isAdmin = data.isAdmin;
       }
 
-      @computed get getFullName(){
+      @computed get fullName(){
         return `${this.firstName} ${this.lastName}`;
       }
 

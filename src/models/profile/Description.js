@@ -29,7 +29,7 @@ class Description extends Component {
         <WhiteSpace size="lg" />
         <Flex justify='center'>
           <Row-Flex>
-            <span className='userData'>{userStore.getFullName}</span>
+            <span className='userData'>{userStore.currentUser.fullName}</span>
           </Row-Flex>
         </Flex>
         <Flex justify='center'>

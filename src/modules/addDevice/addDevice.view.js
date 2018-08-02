@@ -13,7 +13,7 @@ class AddDevice extends Component {
   @observable imageUrl = '';
   @observable description = '';
 
-  @observable errorMsg;
+  @observable notificationMsg;
 
   componentDidMount() {
     reaction(
@@ -52,9 +52,15 @@ class AddDevice extends Component {
           description: this.description
         }
         DeviceService.postNewDevice(data);
+        this.notificationMsg = 'New device added'
       } else {
-        this.errorMsg = 'All fields must be filed in. Please check your input data';
+        this.notificationMsg = 'All fields must be filed in. Please check your input data';
       }
+  }
+
+  @Bind
+  resetNotificationMessage() {
+    this.notificationMsg = '';
   }
 
   render() {
@@ -62,7 +68,7 @@ class AddDevice extends Component {
       <div>
         <Flex>
           <Flex.Item>
-            {this.errorMsg && <NoticeBar mode='closable'>{this.errorMsg}</NoticeBar>}
+            {this.notificationMsg && <NoticeBar mode='closable' onClick={this.resetNotificationMessage}>{this.notificationMsg}</NoticeBar>}
           </Flex.Item>
         </Flex>
         <Flex>
