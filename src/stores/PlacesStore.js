@@ -32,9 +32,7 @@ class PlacesStore {
    * @param {string} placeId 
    */
   findById(placeId) {
-    const result = find(this.placesList, el => {
-      el.id === placeId
-    });
+    const result = find(this.placesList, el => el.id === placeId);
 
     return (result === null) ? '' : result;
   }

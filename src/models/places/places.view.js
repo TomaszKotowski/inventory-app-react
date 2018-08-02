@@ -23,24 +23,7 @@ export default class PlacesView extends Component {
     this.filterOfficeId = optionValue;
     this.office = this.props.officesStore.officesList.find((office) => office.id === optionValue);
   }
-
-  //  remove later
-  componentDidMount() {
-    console.log("componentDidMount");
-
-    reaction(
-      () => this.props.placesStore.placesList.map((place) => place.name),
-      (placeOfficeId) => { console.log(placeOfficeId) }
-    )
-
-    const officesNames = reaction(
-      () => this.props.officesStore.officesList.map((office) => office.id),
-      officeName => {
-        console.log(officeName)
-      }
-    )
-  }
-
+  
   render() {
     return (
       <div>

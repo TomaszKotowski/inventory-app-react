@@ -32,9 +32,7 @@ class OfficesStore {
    * @param {string} officeId 
    */
   findOfficeById(officeId) {
-    const office = find(this.officesList, element => {
-      element.id === officeId
-    });
+    const office = find(this.officesList, element => element.id === officeId);
 
     return (office === null) ? 'Office not found' : office;
   }
