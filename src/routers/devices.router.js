@@ -7,7 +7,7 @@ const DevicesRouter = ({ match }) => (
     <Route exact path='/devices' component={MyDevices} />
     <Route path="/devices/add_device" render={() => <div>devices add device</div>} />
     <Route exact path="/devices/:id" render={({ match }) => <div>devices: {match.params.id}</div>} />
-    <Route exact path="/devices}/:id/transfer" render={({ match }) => <div>devices: {match.params.url}</div>} />
+    <Route exact path="/devices/:id/transfer" render={({ match }) => <div>devices: {match.params.url}</div>} />
   </Switch>
 );
 
