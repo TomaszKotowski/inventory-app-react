@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { observable, reaction } from 'mobx';
-import { observer, inject } from 'mobx-react';
+import { observable } from 'mobx';
+import { observer } from 'mobx-react';
 import 'antd-mobile/dist/antd-mobile.css';
 import { Flex, WhiteSpace } from 'antd-mobile';
 import { Button, WingBlank } from 'antd-mobile';
@@ -11,7 +11,6 @@ import { NoticeBar, Icon } from 'antd-mobile';
 import AuthService from '../../services/AuthService';
 import AuthData from '../../services/AuthorizationData';
 import styles from './loginStyle.css';
-import DevicesStore from '../../stores/DevicesStore';
 
 const PlaceHolder = ({ className = '', text, ...restProps }) => (
   <div className={`${className} placeholder`} {...restProps}>{text}</div>
@@ -19,7 +18,7 @@ const PlaceHolder = ({ className = '', text, ...restProps }) => (
 
 
 
-@inject('devicesStore', 'layoutStore', 'userStore')
+
 @observer
 class Login extends React.Component {
   @observable login;
@@ -45,13 +44,13 @@ class Login extends React.Component {
         const result = await AuthService.login(this.login, this.password);
         await AuthService.getProfile();
       } catch(error) {
-        console.log(error.message);
         this.errorMsg = error.message;
       }
     }
+    
   }
-  //dorobic notice bar
-  
+ //dorobic notice bar
+ 
   render() {
     return(
       <Flex direction="column" align="stretch" className="container-flex-logo">
