@@ -9,7 +9,7 @@ class DevicesStore {
     DeviceService.getAllDevices().then((list) => this.addDeviceList(list));
   }
   
- 
+
   /**
    * Reset devices list. 
    * BE CAREFUL!!! It delete all of them!
