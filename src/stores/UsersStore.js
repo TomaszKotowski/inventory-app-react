@@ -1,11 +1,8 @@
-import { observable } from 'mobx';
+import { observable, computed } from 'mobx';
 
 class UserStore {
-  @observable currentUser;
-
-  constructor() {
-    this.currentUser = {};
-  }
+  @observable currentUser = {};
+  @observable usersList = [];
 
   /**
    * Set user data to current user store
@@ -17,6 +14,18 @@ class UserStore {
 
   deleteUser() {
     this.currentUser = {};
+  }
+
+  @computed get getPictureAvatarLink() {
+    return this.currentUser.avatar;
+  }
+
+  setToUsersList(data){
+    this.usersList.push(data);
+  }
+
+  deleteUsersList() {
+    this.usersList = [];
   }
 }
 

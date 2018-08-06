@@ -13,6 +13,7 @@
     "mobx-react": "^5.2.3",
     "react": "^16.4.1",
     "react-app-rewire-mobx": "^1.0.8",
+    "react-app-rewire-scss": "^1.0.2",
     "react-app-rewired": "^1.5.2",
     "react-dom": "^16.4.1",
     "react-router": "^4.3.1",

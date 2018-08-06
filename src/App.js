@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import AppRouter from './routers/Router';
-import NavigationView from './models/navigation/navigation.view'
+import NavigationView from './Components/navigation/navigation.view';
 import { Provider, observer } from 'mobx-react';
 import stores from './stores/index';
 import './App.css';
