@@ -1,19 +1,23 @@
 import React, { Component } from 'react';
-import QrCode from 'QrCode';
+import qrCode from 'qrcode';
+import { observable, reaction } from 'mobx';
+import { inject, observer } from 'mobx-react';
 
-class QrGenerator extends Comment {
-
-  qrCodePane;
+@inject('userStore', 'devicesStore')
+@observer
+class QrGenerator extends Component {
 
   componentDidMount() {
-    this.qrCodePane = document.getElementById('show-qr');  
-    QrCode.toCanvas(this.qrCodePane, 'sample text', (err) => {
-      if(err) {
-        console.error(err);
+    reaction(
+      () => this.props.userStore.currentUser.id,
+      () => {
+        qrCode.toCanvas(document.getElementById('show-qr'), this.props.userStore.currentUser.id, (err) => {
+          if(err) {
+            console.error(err);
+          }
+        });
       }
-
-      console.log('QrCode generated');
-    });
+    );
   }
 
   render() {
