@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { inject, observer } from '../../../node_modules/mobx-react';
-import { NavBar, Icon } from '../../../node_modules/antd-mobile';
+import { inject, observer } from 'mobx-react';
+import { NavBar, Icon } from 'antd-mobile';
 
 @inject('layoutStore')
 @observer
