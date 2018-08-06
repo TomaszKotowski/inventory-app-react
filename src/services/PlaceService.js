@@ -1,9 +1,9 @@
-import client from './AxiosClientService';
+import ApiClient from './AxiosClientService';
 import PlaceModel from '../models/PlaceModel';
 
 class PlaceService {
   getAllPlaces() {
-    return client.get('/api/places')
+    return ApiClient.getInstance().get('/api/places')
       .then(result => result.data.map(element => new PlaceModel(element)))
       .catch(err => console.log(err) );
   }
@@ -11,7 +11,7 @@ class PlaceService {
   postNewPlace(placeData) {
     const stringifyData = JSON.stringify(placeData);
 
-    client.post('/api/places',
+    ApiClient.getInstance().post('/api/places',
       stringifyData,
       {
         headers: {
@@ -24,7 +24,7 @@ class PlaceService {
   }
 
   deleteOffice(placeId) {
-    client.delete(`/api/offices/${placeId}`)
+    ApiClient.getInstance().delete(`/api/offices/${placeId}`)
       .catch((err) => {
         console.log(err);
       })

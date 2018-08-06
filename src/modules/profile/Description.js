@@ -2,12 +2,18 @@ import React, { Component } from 'react';
 import { observable, reaction } from 'mobx';
 import { Flex, WhiteSpace } from 'antd-mobile';
 import { inject, observer } from 'mobx-react';
+import AuthService from '../../services/AuthService';
 
 @inject('userStore', 'officesStore')
 @observer
 class Description extends Component {
   @observable officeName;
   
+  constructor() {
+    super();
+    AuthService.getProfile();
+  }
+
   componentDidMount() {
     reaction(
       () => this.props.officesStore.officesList,

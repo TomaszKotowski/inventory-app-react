@@ -23,13 +23,16 @@ export default class NavigationView extends React.Component {
         <Flex direction="column" justify="start" align="start">
         <List>
         <List.Item key='profile'>
-          <Link to='/user' onClick={this.props.layoutStore.handleDrawerDocker}>PROFILE</Link>
+          <Link to='/profile' onClick={this.props.layoutStore.handleDrawerDocker}>PROFILE</Link>
         </List.Item>
         <List.Item key='myDevices'>
-          <Link to='/user/:id/devices' onClick={this.props.layoutStore.handleDrawerDocker}>MY DEVICES</Link>
+          <Link to='/devices' onClick={this.props.layoutStore.handleDrawerDocker}>MY DEVICES</Link>
         </List.Item>
         <List.Item key='allDevices'>
-          <Link to='/devices' onClick={this.props.layoutStore.handleDrawerDocker}>ALL DEVICES</Link>
+          <Link to='/devices/all' onClick={this.props.layoutStore.handleDrawerDocker}>ALL DEVICES</Link>
+        </List.Item>
+        <List.Item key='addDevices'>
+          <Link to='/devices/add' onClick={this.props.layoutStore.handleDrawerDocker}>ADD DEVICES</Link>
         </List.Item>
         <List.Item key='employees'>
           <Link to='/employees' onClick={this.props.layoutStore.handleDrawerDocker}>EMPLOYEES</Link>

@@ -1,4 +1,4 @@
-import client from './AxiosClientService';
+import ApiClient from './AxiosClientService';
 
 class User {
 
@@ -6,7 +6,7 @@ class User {
    * @returns All users 
    */
   getAllUsers() {
-    client.get('/api/users')
+    ApiClient.getInstance().get('/api/users')
       .then(result => {
         return result;
       })
@@ -20,7 +20,7 @@ class User {
    * @param {string} userId 
    */
   getUserById(userId) {
-    client.get('/api/users/' + userId)
+    ApiClient.getInstance().get('/api/users/' + userId)
     .then(result => {
         console.log(result);
         return result;

@@ -1,19 +1,17 @@
 import React, { Component } from 'react';
-import { observable, reaction, action, autorun } from 'mobx';
+import { observable } from 'mobx';
 import { observer, inject } from 'mobx-react';
 import { Select } from 'antd';
-import { NavBar, Icon, Flex, Brief, WhiteSpace, List } from 'antd-mobile';
+import { Icon, Flex, WhiteSpace, List } from 'antd-mobile';
 import 'antd/dist/antd.css';
 import { bind } from 'lodash-decorators';
-import { Link, Redirect } from 'react-router-dom';
-import OfficesStore from '../../stores/OfficesStore';
-import PlacesStore from '../../stores/PlacesStore';
+import { Link, withRouter } from 'react-router-dom';
 import './places.style.css';
-
+import NavBarView from '../../components/navigation/navBar.view'
 
 @inject('layoutStore', 'placesStore', 'officesStore')
 @observer
-export default class PlacesView extends Component {
+class PlacesView extends Component {
 
   @observable filterOfficeId;
   @observable office;
@@ -28,20 +26,13 @@ export default class PlacesView extends Component {
     return (
       <div>
         <div className='top-content'>
-          <NavBar
-            rightContent={
-              <Icon type="ellipsis"
-                onClick={this.props.layoutStore.handleDrawerDocker}
-              />
-            }>
-            Places
-        </NavBar>
+          <NavBarView title="Places" />
           <WhiteSpace />
           <Flex justify="center" className="title-container">
             <Flex.Item>
               Offices
           </Flex.Item>
-            <Link to="/places/add_device">
+            <Link to="/places/add" key='addPlaces'>
               <Icon type="cross" className="cross" />
             </Link>
           </Flex>
@@ -89,3 +80,5 @@ export default class PlacesView extends Component {
     )
   }
 };
+
+export default withRouter(PlacesView);

@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import { Flex, InputItem, List, Button, WhiteSpace, WingBlank, TextareaItem, NoticeBar } from 'antd-mobile';
+import { Flex, InputItem, List, Button, WhiteSpace, NoticeBar } from 'antd-mobile';
 import { observable, reaction, observe } from 'mobx';
 import { inject, observer } from 'mobx-react';
 import { Bind } from 'lodash-decorators';
 import { Select } from 'antd';
 import 'antd/dist/antd.css';
 import PlaceService from '../../services/PlaceService';
-import DeviceService from '../../services/DeviceService';
-import OfficeService from '../../services/OfficeService';
+import NavBarView from '../../components/navigation/navBar.view';
 
 @inject('officesStore')
 @observer
@@ -50,6 +49,7 @@ class AddPlace extends Component {
   render() {
     return (
       <div>
+        <NavBarView title="Add place" />
         <WhiteSpace size='xl'/>
         <Flex>
           <Flex.Item>

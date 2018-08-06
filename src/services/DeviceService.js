@@ -1,5 +1,4 @@
-import client from './AxiosClientService';
-
+import ApiClient from './AxiosClientService';
 import DeviceModel from '../models/DeviceModel';
 
 class DeviceService {
@@ -7,7 +6,7 @@ class DeviceService {
    * Download all devices list
   */
   getAllDevices() {
-    return client.get('/api/devices')
+    return ApiClient.getInstance().get('/api/devices')
       .then(result => result.data.map(element => new DeviceModel(element)))
       .catch(err => console.log(err) );
   }
@@ -15,7 +14,7 @@ class DeviceService {
   postNewDevice(deviceData) {
     const stringifyData = JSON.stringify(deviceData);
 
-    client.post('/api/devices', 
+    ApiClient.getInstance().post('/api/devices', 
     stringifyData,
     {
       headers: {
@@ -28,14 +27,14 @@ class DeviceService {
   }
 
   deleteDevice(deviceId) {
-    client.delete(`/api/devices/${deviceId}`)
+    ApiClient.getInstance().delete(`/api/devices/${deviceId}`)
     .catch((err) => {
       console.log(err);
     })
   }
 
   findDevicesAllocatedToUser(userId) {
-    return client.get(`/api/devices?belongsToId=${userId}`)
+    return ApiClient.getInstance().get(`/api/devices?belongsToId=${userId}`)
     .catch((err) => {
       console.log(err);
     }) 

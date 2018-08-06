@@ -42,7 +42,6 @@ class Login extends React.Component {
     } else {
       try {
         const result = await AuthService.login(this.login, this.password);
-        await AuthService.getProfile();
       } catch(error) {
         this.errorMsg = error.message;
       }
