@@ -9,7 +9,6 @@ const PlacesRouter = ({ match }) => (
     <Route exact path="/places" component={PlacesView} />
     <Route exact path="/places/:id" component={PlaceDevices} />
     <Route path="/places/add" component={AddPlace} />
-    <Route path="/places/:id" render={({ match }) => <div>places: {match.params.id}</div>} />
   </Switch>
 );
 

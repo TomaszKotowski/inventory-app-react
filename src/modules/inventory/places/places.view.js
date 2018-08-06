@@ -9,7 +9,7 @@ import { Link, Redirect } from 'react-router-dom';
 import OfficesStore from '../../../stores/OfficesStore';
 import PlacesStore from '../../../stores/PlacesStore';
 import './places.style.css';
-import NavBarView from '../../../Components/navigation/navBar.view';
+import NavBarView from '../../../components/navigation/navBar.view';
 
 
 

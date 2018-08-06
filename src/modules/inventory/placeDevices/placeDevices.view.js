@@ -7,7 +7,7 @@ import { List } from 'antd';
 import { bind } from 'lodash-decorators';
 import PlacesStore from '../../../stores/PlacesStore';
 import DevicesStore from '../../../stores/DevicesStore';
-import NavBarView from '../../../Components/navigation/navBar.view';
+import NavBarView from '../../../components/navigation/navBar.view';
 import './placeDevices.style.css'
 
 @inject('placesStore', 'devicesStore')
