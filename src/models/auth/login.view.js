@@ -45,15 +45,13 @@ class Login extends React.Component {
         const result = await AuthService.login(this.login, this.password);
         await AuthService.getProfile();
       } catch(error) {
+        console.log(error.message);
         this.errorMsg = error.message;
       }
     }
-    
   }
- //dorobic notice bar
- 
-
-
+  //dorobic notice bar
+  
   render() {
     return(
       <Flex direction="column" align="stretch" className="container-flex-logo">

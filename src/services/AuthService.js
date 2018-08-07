@@ -1,4 +1,3 @@
-import { observable } from "mobx";
 import { get } from 'lodash';
 import client from './AxiosClientService';
 import AuthData from './AuthorizationData';
@@ -68,7 +67,6 @@ class AuthService {
       // Redirect to login screen 
     }
   }
-
   logout() {
     AuthData.setToken(null);
     UsersStore.deleteUser();
