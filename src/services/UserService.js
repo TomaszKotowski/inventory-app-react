@@ -1,18 +1,15 @@
 import ApiClient from './AxiosClientService';
+import UserModel from '../models/UserModel';
 
-class User {
+class UserService {
 
   /**
    * @returns All users 
    */
   getAllUsers() {
-    ApiClient.getInstance().get('/api/users')
-      .then(result => {
-        return result;
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    return ApiClient.getInstance().get('/api/users')
+      .then(result => result.data.map(element => new UserModel(element)))
+      .catch(err => console.log(err));
   }
 
   /**
@@ -21,7 +18,7 @@ class User {
    */
   getUserById(userId) {
     ApiClient.getInstance().get('/api/users/' + userId)
-    .then(result => {
+      .then(result => {
         console.log(result);
         return result;
       })
@@ -31,4 +28,4 @@ class User {
   }
 }
 
-export default new User();
+export default new UserService();
