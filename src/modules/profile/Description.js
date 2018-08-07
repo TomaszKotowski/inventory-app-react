@@ -9,10 +9,10 @@ import AuthService from '../../services/AuthService';
 class Description extends Component {
   @observable officeName;
   
-  constructor() {
-    super();
-    AuthService.getProfile();
-  }
+  // constructor() {
+    // super();
+    // AuthService.getProfile();
+  // }
 
   componentDidMount() {
     reaction(

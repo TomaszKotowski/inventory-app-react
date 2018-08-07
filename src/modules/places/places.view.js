@@ -32,8 +32,8 @@ class PlacesView extends Component {
             <Flex.Item>
               Offices
           </Flex.Item>
-            <Link to="/places/add" key='addPlaces'>
-              <Icon type="cross" className="cross" />
+            <Link to="/places/add">
+              <Icon type="cross" className="cross"/>
             </Link>
           </Flex>
           <div>

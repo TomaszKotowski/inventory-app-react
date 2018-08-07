@@ -16,10 +16,10 @@ const Brief = Item.Brief;
 class MyDevices extends React.Component {
   @observable myDevicesList = [];
   
-  constructor() {
-    super();
-    AuthService.getProfile();
-  }
+  // constructor() {
+    // super();
+    // AuthService.getProfile();
+  // }
 
   componentDidMount() {
     reaction(

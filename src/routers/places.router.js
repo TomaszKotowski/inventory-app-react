@@ -1,14 +1,18 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, withRouter } from 'react-router-dom';
 import AddPlace from '../modules/addPlace/addPlace.view';
 import PlacesView from '../modules/places/places.view';
+import { PropTypes } from 'mobx-react';
 
-const PlacesRouter = ({ match }) => (
-  <Switch>
-    <Route exact path="/places" component={PlacesView} />
-    <Route path="/places/add" component={AddPlace} />
-    <Route path="/places/:id" render={({ match }) => <div>places: {match.params.id}</div>} />
-  </Switch>
-);
+class PlacesRouter extends React.Component {
 
-export default PlacesRouter;
+  render() {
+    const { match, location, history } = this.props
+    return <Switch>
+      <Route exact path="/places" component={PlacesView} />
+      <Route path="/places/add" component={AddPlace} />
+      {/* <Route path="/places/:id" render={({ match }) => <div>places: {match.params.id}</div>} /> */}
+    </Switch>
+  }
+};
+export default withRouter(PlacesRouter);

@@ -10,6 +10,10 @@ class AuthService {
 
   tokenName = 'zoniToken';
 
+  constructor() {
+    this.getProfile();
+  }
+
   login(login, password) {
     const data = JSON.stringify({
       login: login,
@@ -63,6 +67,7 @@ class AuthService {
       // Redirect to login screen 
     }
   }
+
   logout() {
     AuthData.setToken(null);
     UsersStore.deleteUser();

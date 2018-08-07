@@ -6,7 +6,7 @@ class ApiClient {
   client;
 
   constructor() {
-    this.client = this.client = axios.create({
+    this.client = axios.create({
       baseURL: 'http://185.238.72.22:3400',
       headers: {
         'Authorization': 'Bearer ' + AuthData.getToken()

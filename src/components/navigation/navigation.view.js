@@ -43,6 +43,9 @@ export default class NavigationView extends React.Component {
         <List.Item key='places'>
           <Link to='/places' onClick={this.props.layoutStore.handleDrawerDocker}>PLACES</Link>
         </List.Item>
+        <List.Item key='addPlaces'>
+          <Link to='/places/add' onClick={this.props.layoutStore.handleDrawerDocker}>ADD PLACES</Link>
+        </List.Item>
       </List>
         </Flex>
       </div>
