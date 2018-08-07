@@ -5,8 +5,6 @@ import 'antd/dist/antd.css';
 import { Flex } from 'antd-mobile';
 import { List } from 'antd';
 import { bind } from 'lodash-decorators';
-import PlacesStore from '../../../stores/PlacesStore';
-import DevicesStore from '../../../stores/DevicesStore';
 import NavBarView from '../../../components/navigation/navBar.view';
 import './placeDevices.style.css'
 
@@ -17,10 +15,6 @@ export default class PlaceDevices extends Component {
   @observable id = `4cb4d5f6-1477-40b9-b855-bac9a2192b3c`
   @observable place
   @observable deviceList
-
-  componentDidMount() {
-    console.log('Did mount');
-  }
 
   render() {
     return (

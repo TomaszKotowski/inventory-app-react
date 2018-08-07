@@ -6,8 +6,6 @@ import { NavBar, Icon, Flex, Brief, WhiteSpace, List } from 'antd-mobile';
 import 'antd/dist/antd.css';
 import { bind } from 'lodash-decorators';
 import { Link, Redirect } from 'react-router-dom';
-import OfficesStore from '../../../stores/OfficesStore';
-import PlacesStore from '../../../stores/PlacesStore';
 import './places.style.css';
 import NavBarView from '../../../components/navigation/navBar.view';
 
