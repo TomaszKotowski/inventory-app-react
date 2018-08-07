@@ -14,16 +14,6 @@ import NavBarView from '../../components/navigation/navBar.view';
 @observer
 class EmployeesView extends Component {
 
-  componentDidMount() {
-    console.log(this.props)
-
-    reaction(
-      () => this.props.userStore.usersList.map((user) => user.id),
-      (user) => console.log(user.id)
-    );
-
-  }
-
   render() {
     return (
       <div>
@@ -38,12 +28,13 @@ class EmployeesView extends Component {
                 this.props.userStore.usersList
                   .map((user) => {
                     return (
-                      <List.Item
-                        key={user.id}
-                        arrow="horizontal"
-                        multipleLine
-                      >{user.fullName}
-                      </List.Item>
+                      <Link key={user.id + 1} to={`/employees/${user.id}`}>
+                        <List.Item
+                          key={user.id}
+                          arrow="horizontal"
+                        >  {user.fullName}
+                        </List.Item>
+                      </Link>
                     )
                   })
               }

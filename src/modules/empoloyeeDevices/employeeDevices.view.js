@@ -12,12 +12,9 @@ import './employeeDevices.style.css'
 @observer
 export default class EmployeeDevices extends Component {
 
-  @observable id = `4cb4d5f6-1477-40b9-b855-bac9a2192b3c`
-  @observable tempId
-  
-  componentDidUpdate(){
-    this.tempId = this.props.match.params.id  
-    console.log("upa  ")
+  componentDidUpdate() {
+    console.log("emp devie did update", this.props)
+    this.id = this.props.match.params.id;
   }
 
   render() {
@@ -40,13 +37,13 @@ export default class EmployeeDevices extends Component {
               <List className='list' >
                 {
                   this.props.devicesStore.devicesList
-                    .filter((device) => device.belongsToId == this.id)
+                    .filter((device) => device.belongsToId == this.props.match.params.id)
                     .map((device) => {
                       return (
                         <List.Item
                           key={device.id}
                           arrow="horizontal"
-                        >{device.name} 
+                        >{device.name}
                         </List.Item>
                       )
                     })
