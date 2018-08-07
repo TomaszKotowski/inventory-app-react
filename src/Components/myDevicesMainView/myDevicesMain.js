@@ -7,13 +7,13 @@ import { Toast, NavBar, Icon, Flex, Button, WhiteSpace, List } from 'antd-mobile
 import styles from './myDevicesMainStyle.css';
 import MyDevices from '../myDevices/myDevices.view';
 import DevicesStore from '../../stores/DevicesStore';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+import { Bind } from 'lodash-decorators';
 
 
 
 const Item = List.Item;
 const Brief = Item.Brief;
-
 
 
 
@@ -32,11 +32,17 @@ class MyDevicesMain extends React.Component {
             }
     );
 }
+  @Bind()
+  abc(){
+    this.props.history.push(`/devices/${this.device.id}/transfer`);
+  }
+
 
 
     
   render() {
-  
+
+    
     
     return (
 
@@ -63,9 +69,9 @@ class MyDevicesMain extends React.Component {
         </Flex.Item>
       <Flex>
         <Flex.Item>
-        <Link to={`/devices/${this.device.id}/transfer`}>
-          <Button type="primary">Transfer</Button>
-          </Link>
+          {/* <Link to={`/devices/${this.device.id}/transfer`}> */}
+          <Button type="primary" onClick = {this.abc}>Transfer</Button>
+        
         </Flex.Item>
         
       </Flex>
