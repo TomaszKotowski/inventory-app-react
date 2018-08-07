@@ -36,7 +36,7 @@ class UserStore {
   }
 
   addUserList(userList){
-    this.userList = userList
+    this.usersList = userList
    }
 }
 
