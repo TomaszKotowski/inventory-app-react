@@ -1,14 +1,33 @@
 import * as axios from 'axios';
 import AuthData from './AuthorizationData';
 
-const client = axios.create({
-  baseURL: 'http://185.238.72.22:3400',
-  headers: {
-    'Authorization': 'Bearer ' + AuthData.getToken()
-  }
-});
+class ApiClient {
 
-export default client;
+  client;
+
+  constructor() {
+    this.client = axios.create({
+      baseURL: 'http://185.238.72.22:3400',
+      headers: {
+        'Authorization': 'Bearer ' + AuthData.getToken()
+      }
+    });
+  }
+
+  getInstance() {
+      return this.client;
+  }
+
+  updateToken() {
+    this.client = axios.create({
+      headers: {
+        'Authorization': 'Bearer ' + AuthData.getToken()
+      }
+    });
+  }
+}
+
+export default new ApiClient();
 
 
 

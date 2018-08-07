@@ -4,6 +4,7 @@ import { Bind } from 'lodash-decorators';
 class LayoutStore {
 
   @observable drawerDocked = false;
+  @observable helper = false;
 
   /**
    * Function that toogles the navigation drawer from the right.

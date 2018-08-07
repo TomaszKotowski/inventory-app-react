@@ -1,10 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { observable, reaction, action, flow } from 'mobx';
+import { observable, reaction } from 'mobx';
 import { observer, inject } from 'mobx-react';
 import 'antd-mobile/dist/antd-mobile.css';
 import { NavBar, Icon, Flex, List } from 'antd-mobile';
 import DeviceService from '../../services/DeviceService';
+import NavBarView from '../../components/navigation/navBar.view';
+import AuthService from '../../services/AuthService'
 
 const Item = List.Item;
 const Brief = Item.Brief;
@@ -13,6 +15,11 @@ const Brief = Item.Brief;
 @observer
 class MyDevices extends React.Component {
   @observable myDevicesList = [];
+  
+  // constructor() {
+    // super();
+    // AuthService.getProfile();
+  // }
 
   componentDidMount() {
     reaction(
@@ -26,30 +33,25 @@ class MyDevices extends React.Component {
       }
     );
   }
-
-    render() {
-      const { devicesStore } = this.props;
-      return (
-        <div>
-          <Flex.Item>
-              <NavBar
-                  rightContent={<Icon type="ellipsis" onClick={this.props.layoutStore.handleDrawerDocker}/>}className="devices-navbar">
-                  My Devices
-              </NavBar>
-          </Flex.Item>
-            {this.myDevicesList.map(e =>{
-              return (
-                <Flex.Item key={`flexItem-${e.id}`}>
-                  <Item key={`item-${e.id}`} arrow="horizontal" multipleLine>
-                    {e.name}
-                    <Brief>{e.id}</Brief>
-                  </Item>
-              </Flex.Item>
-              )
-            })}
-        </div>
-      );
-    }
+  
+  render() {
+    const { devicesStore } = this.props;
+    return (
+      <div>
+        <NavBarView title="My devices" />
+          {this.myDevicesList.map(e =>{
+            return (
+              <Flex.Item key={`flexItem-${e.id}`}>
+                <Item key={`item-${e.id}`} arrow="horizontal" multipleLine>
+                  {e.name}
+                  <Brief>{e.id}</Brief>
+                </Item>
+            </Flex.Item>
+            )
+          })}
+      </div>
+    );
+  }
 }
 
 export default  MyDevices;

@@ -1,9 +1,9 @@
-import client from './AxiosClientService';
+import ApiClient from './AxiosClientService';
 
 class IdentifyService {
 
   findById(id) {
-    return client.get(`/api/identify/${id}`)
+    return ApiClient.getInstance().get(`/api/identify/${id}`)
     .catch((err) => {
       console.log(err);  
     })

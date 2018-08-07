@@ -1,5 +1,5 @@
 import { get } from 'lodash';
-import client from './AxiosClientService';
+import ApiClient from './AxiosClientService';
 import AuthData from './AuthorizationData';
 
 import UsersStore from "../stores/UsersStore";
@@ -20,7 +20,7 @@ class AuthService {
       password: password
     });
 
-    return client.post('/api/auth', 
+    return ApiClient.getInstance().post('/api/auth', 
     data, 
     {
       headers: {
@@ -28,9 +28,9 @@ class AuthService {
       },
     })
     .then(response => {
-      console.log(response);
       if (response.data.token) {
         AuthData.setToken(response.data.token);
+        ApiClient.updateToken();
       }
     })
     .catch(err => {
@@ -55,7 +55,7 @@ class AuthService {
 
   getProfile() {
     if (this.isLoggedIn()) {
-      client.get('/api/users/current')
+      ApiClient.getInstance().get('/api/users/current')
       .then(result => {
         const currentUser = new UserModel(result.data);
         UsersStore.setUser(currentUser);
@@ -67,6 +67,7 @@ class AuthService {
       // Redirect to login screen 
     }
   }
+
   logout() {
     AuthData.setToken(null);
     UsersStore.deleteUser();

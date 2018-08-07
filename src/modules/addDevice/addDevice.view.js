@@ -4,7 +4,7 @@ import { observable, reaction, observe } from 'mobx';
 import { inject, observer } from 'mobx-react';
 import { Bind } from 'lodash-decorators';
 import DeviceService from '../../services/DeviceService';
-
+import NavBarView from '../../components/navigation/navBar.view';
 @inject('userStore')
 @observer
 class AddDevice extends Component {
@@ -12,9 +12,9 @@ class AddDevice extends Component {
   @observable belongsTo = '';
   @observable imageUrl = '';
   @observable description = '';
-
+  
   @observable notificationMsg;
-
+  
   componentDidMount() {
     reaction(
       () => this.props.userStore.currentUser.id,
@@ -28,23 +28,23 @@ class AddDevice extends Component {
   onChangeName(value) {
     this.name = value;
   }
-
+  
   @Bind
   onChangeImageUrl(value) {
     this.imageUrl = value;
   }
-
+  
   @Bind
   onChangeDescription(value) {
     this.description = value;
   }
-
+  
   @Bind
   sendToDatabase() {
     if(this.name.length != 0 &&
-        this.imageUrl.length != 0 &&
-        this.description.length != 0 &&
-        this.props.userStore.currentUser.id) {
+      this.imageUrl.length != 0 &&
+      this.description.length != 0 &&
+      this.props.userStore.currentUser.id) {
         const data = {
           name: this.name,
           belongsToId: this.belongsTo,
@@ -56,16 +56,17 @@ class AddDevice extends Component {
       } else {
         this.notificationMsg = 'All fields must be filed in. Please check your input data';
       }
-  }
-
-  @Bind
-  resetNotificationMessage() {
-    this.notificationMsg = '';
-  }
-
-  render() {
-    return(
-      <div>
+    }
+    
+    @Bind
+    resetNotificationMessage() {
+      this.notificationMsg = '';
+    }
+    
+    render() {
+      return(
+        <div>
+        <NavBarView title="Add device" />
         <Flex>
           <Flex.Item>
             {this.notificationMsg && <NoticeBar mode='closable' onClick={this.resetNotificationMessage}>{this.notificationMsg}</NoticeBar>}
