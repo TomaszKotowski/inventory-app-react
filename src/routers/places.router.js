@@ -8,7 +8,8 @@ const PlacesRouter = ({ match }) => (
   <Switch>
     <Route exact path="/places" component={PlacesView} />
     <Route path="/places/add" component={AddPlace} />
-    <Route exact path="/places/:id" component={PlaceDevices} />  </Switch>
+    <Route exact path="/places/:id" component={PlaceDevices} />  
+  </Switch>
 );
 
 export default PlacesRouter;

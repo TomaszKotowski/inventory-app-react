@@ -8,11 +8,6 @@ import AuthService from '../../services/AuthService';
 @observer
 class Description extends Component {
   @observable officeName;
-  
-  // constructor() {
-    // super();
-    // AuthService.getProfile();
-  // }
 
   componentDidMount() {
     reaction(
