@@ -34,7 +34,7 @@ export default class PlacesView extends Component {
             <Flex.Item>
               Offices
           </Flex.Item>
-            <Link to='places/add'>
+            <Link to='/places/add'>
               <Icon type="cross" className="cross" />
             </Link>
           </Flex>
