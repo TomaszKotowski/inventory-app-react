@@ -16,10 +16,10 @@
   padding: 0;
 }
 
-.Navbar-sticky {
+.navbar-sticky {
   position: fixed;
   overflow: hidden;
   z-index: 10000;
   width:100%;
-  color:red;
+  
 }

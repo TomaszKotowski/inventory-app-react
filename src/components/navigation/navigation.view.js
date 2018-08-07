@@ -13,6 +13,7 @@ export default class NavigationView extends React.Component {
     const sidebar = (
       <div>
         <NavBar
+        className="navbar-sticky"
           rightContent={
             <Icon type="ellipsis"
               onClick={this.props.layoutStore.handleDrawerDocker}

@@ -3,6 +3,7 @@ import { observer, inject, Observer } from 'mobx-react';
 import 'antd-mobile/dist/antd-mobile.css';
 import { NavBar, Icon, Flex, Button, WhiteSpace, List, Tabs } from 'antd-mobile';
 import { Link } from 'react-router-dom';
+import './allDevicesStyle.css';
 
 const Item = List.Item;
 const Brief = Item.Brief;
