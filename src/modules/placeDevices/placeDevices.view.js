@@ -5,7 +5,7 @@ import 'antd/dist/antd.css';
 import { Flex } from 'antd-mobile';
 import { List } from 'antd';
 import { bind } from 'lodash-decorators';
-import NavBarView from '../../../components/navigation/navBar.view';
+import NavBarView from '../../components/navigation/navBar.view';
 import './placeDevices.style.css'
 
 @inject('placesStore', 'devicesStore')
