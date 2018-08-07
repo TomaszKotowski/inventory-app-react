@@ -6,9 +6,9 @@ import { NavBar, Icon, Flex, Brief, WhiteSpace, List } from 'antd-mobile';
 import 'antd/dist/antd.css';
 import { bind } from 'lodash-decorators';
 import { Link, Redirect } from 'react-router-dom';
-import OfficesStore from '../../stores/OfficesStore';
-import PlacesStore from '../../stores/PlacesStore';
 import './places.style.css';
+import NavBarView from '../../components/navigation/navBar.view';
+
 
 
 @inject('layoutStore', 'placesStore', 'officesStore')
@@ -28,14 +28,7 @@ export default class PlacesView extends Component {
     return (
       <div>
         <div className='top-content'>
-          <NavBar
-            rightContent={
-              <Icon type="ellipsis"
-                onClick={this.props.layoutStore.handleDrawerDocker}
-              />
-            }>
-            Places
-        </NavBar>
+          <NavBarView title="Places"/>
           <WhiteSpace />
           <Flex justify="center" className="title-container">
             <Flex.Item>
@@ -61,7 +54,7 @@ export default class PlacesView extends Component {
             </Select>
           </div>
         </div>
-        <div className="App">
+        <div>
           <Flex>
             <List className="places-list">
               {
