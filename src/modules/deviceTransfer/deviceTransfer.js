@@ -4,6 +4,7 @@ import { observer, inject } from 'mobx-react';
 import 'antd-mobile/dist/antd-mobile.css';
 import { NavBar, Icon, Flex, List } from 'antd-mobile';
 import { Link } from 'react-router-dom';
+import QrReader from "../../components/qrCode/reader/qrReader";
 
 const Item = List.Item;
 const Brief = Item.Brief;
@@ -43,7 +44,9 @@ class DeviceTransfer extends React.Component {
             <div>CHOOSE TARGET</div>
         </Flex.Item>
         <Flex.Item align="center" className="device-targed-box2" justify="center;">
-            <div>QR CODE</div>
+            {/* <div>QR CODE</div> */}
+          <QrReader />
+          <h1>DUPA</h1>
         </Flex.Item>
     </Flex> 
     );
