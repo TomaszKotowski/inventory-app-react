@@ -10,7 +10,6 @@ import { inject, observer } from 'mobx-react';
 @observer
 export default class ProfileView extends React.Component {
   render() {
-    console.log(this.props.userStore.currentUser.id)
     return(
       <div>
         <NavBarView title="My profile" />

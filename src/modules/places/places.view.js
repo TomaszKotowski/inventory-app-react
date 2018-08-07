@@ -5,7 +5,7 @@ import { Select } from 'antd';
 import { Icon, Flex, WhiteSpace, List } from 'antd-mobile';
 import 'antd/dist/antd.css';
 import { bind } from 'lodash-decorators';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './places.style.css';
 import NavBarView from '../../components/navigation/navBar.view';
 
@@ -83,4 +83,4 @@ class PlacesView extends Component {
   }
 };
 
-export default withRouter(PlacesView);
+export default PlacesView;
