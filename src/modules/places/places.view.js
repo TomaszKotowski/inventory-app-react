@@ -23,7 +23,7 @@ export default class PlacesView extends Component {
     this.filterOfficeId = optionValue;
     this.office = this.props.officesStore.officesList.find((office) => office.id === optionValue);
   }
-  
+
   render() {
     return (
       <div>
@@ -41,7 +41,7 @@ export default class PlacesView extends Component {
             <Flex.Item>
               Offices
           </Flex.Item>
-            <Link to="/places/add_device">
+            <Link to='places/add'>
               <Icon type="cross" className="cross" />
             </Link>
           </Flex>
