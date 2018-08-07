@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import AppRouter from './routers/Router';
 import NavigationView from './components/navigation/navigation.view';
 import { Provider, observer } from 'mobx-react';
@@ -13,9 +13,13 @@ class App extends Component {
       <Provider {...stores}>
         <BrowserRouter>
           <div className="App">
-            <NavigationView>
-              <AppRouter />
-            </NavigationView>
+            <Route render={(location) => {
+              return (
+                <NavigationView location={location}>
+                  <AppRouter />
+                </NavigationView>
+              )
+            }} />
           </div>
         </BrowserRouter>
       </Provider>
