@@ -21,26 +21,26 @@ export default class NavigationView extends React.Component {
           Zonifero
         </NavBar>
         <Flex direction="column" justify="start" align="start">
-        <List>
-        <List.Item key='profile'>
-          <Link to='/user' onClick={this.props.layoutStore.handleDrawerDocker}>PROFILE</Link>
-        </List.Item>
-        <List.Item key='myDevices'>
-          <Link to='/user/:id/devices' onClick={this.props.layoutStore.handleDrawerDocker}>MY DEVICES</Link>
-        </List.Item>
-        <List.Item key='allDevices'>
-          <Link to='/devices' onClick={this.props.layoutStore.handleDrawerDocker}>ALL DEVICES</Link>
-        </List.Item>
-        <List.Item key='employees'>
-          <Link to='/employees' onClick={this.props.layoutStore.handleDrawerDocker}>EMPLOYEES</Link>
-        </List.Item>
-        <List.Item key='identify'>
-          <Link to='/identify' onClick={this.props.layoutStore.handleDrawerDocker}>IDENTIFY</Link>
-        </List.Item>
-        <List.Item key='places'>
-          <Link to='/places' onClick={this.props.layoutStore.handleDrawerDocker}>PLACES</Link>
-        </List.Item>
-      </List>
+          <List>
+            <List.Item key='profile'>
+              <Link to='/user' onClick={this.props.layoutStore.handleDrawerDocker}>PROFILE</Link>
+            </List.Item>
+            <List.Item key='myDevices'>
+              <Link to='/user/:id/devices' onClick={this.props.layoutStore.handleDrawerDocker}>MY DEVICES</Link>
+            </List.Item>
+            <List.Item key='allDevices'>
+              <Link to='/devices' onClick={this.props.layoutStore.handleDrawerDocker}>ALL DEVICES</Link>
+            </List.Item>
+            <List.Item key='employees'>
+              <Link to='/employees' onClick={this.props.layoutStore.handleDrawerDocker}>EMPLOYEES</Link>
+            </List.Item>
+            <List.Item key='identify'>
+              <Link to='/identify' onClick={this.props.layoutStore.handleDrawerDocker}>IDENTIFY</Link>
+            </List.Item>
+            <List.Item key='places'>
+              <Link to='/places' onClick={this.props.layoutStore.handleDrawerDocker}>PLACES</Link>
+            </List.Item>
+          </List>
         </Flex>
       </div>
     );
