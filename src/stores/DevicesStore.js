@@ -3,13 +3,14 @@ import { find } from 'lodash';
 import DeviceService from '../services/DeviceService';
 
 class DevicesStore {
+  
   @observable devicesList = [];
 
   constructor() {
     DeviceService.getAllDevices().then((list) => this.addDeviceList(list));
   }
-  
- 
+
+
   /**
    * Reset devices list. 
    * BE CAREFUL!!! It delete all of them!
@@ -43,7 +44,7 @@ class DevicesStore {
    * @param {number} index 
    * @returns {Object} selectedDevice
    */
-  getDevice(index){
+  getDevice(index) {
     return this.devicesList[index];
   }
 
@@ -53,9 +54,9 @@ class DevicesStore {
    * @returns {Object}
    */
   findDeviceById(deviceId) {
-    const result = find(this.devicesList, el => {
-      el.id === deviceId
-    });
+    const result = find(this.devicesList, el => el.id === deviceId);
+
+   
 
     return (result === null) ? null : result;
   }

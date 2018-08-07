@@ -5,9 +5,11 @@ import { Select } from 'antd';
 import { Icon, Flex, WhiteSpace, List } from 'antd-mobile';
 import 'antd/dist/antd.css';
 import { bind } from 'lodash-decorators';
-import { Link, withRouter } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import './places.style.css';
-import NavBarView from '../../components/navigation/navBar.view'
+import NavBarView from '../../components/navigation/navBar.view';
+
+
 
 @inject('layoutStore', 'placesStore', 'officesStore')
 @observer
@@ -21,19 +23,19 @@ class PlacesView extends Component {
     this.filterOfficeId = optionValue;
     this.office = this.props.officesStore.officesList.find((office) => office.id === optionValue);
   }
-  
+
   render() {
     return (
       <div>
         <div className='top-content'>
-          <NavBarView title="Places" />
+          <NavBarView title="Places"/>
           <WhiteSpace />
           <Flex justify="center" className="title-container">
             <Flex.Item>
               Offices
           </Flex.Item>
-            <Link to="/places/add">
-              <Icon type="cross" className="cross"/>
+            <Link to='/places/add'>
+              <Icon type="cross" className="cross" />
             </Link>
           </Flex>
           <div>
@@ -52,7 +54,7 @@ class PlacesView extends Component {
             </Select>
           </div>
         </div>
-        <div className="App">
+        <div>
           <Flex>
             <List className="places-list">
               {
