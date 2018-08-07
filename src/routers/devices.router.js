@@ -5,6 +5,7 @@ import MyDevices from '../modules/myDevices/myDevices.view';
 import AllDevices from '../modules/allDevices/allDevices.view';
 import DeviceView from '../modules/deviceView/deviceView';
 import DeviceTransfer from '../modules/deviceTransfer/deviceTransfer';
+import DeviceTransferStatus from '../modules/deviceTransferStatus/deviceTransferStatus.view'
 
 const DevicesRouter = ({ match }) => (
   <Switch>
@@ -13,6 +14,7 @@ const DevicesRouter = ({ match }) => (
     <Route path="/devices/all" component={AllDevices} />
     <Route exact path="/devices/:id" component={DeviceView} />
     <Route exact path="/devices/:id/transfer" component={DeviceTransfer} />
+    <Route exact path="/devices/:id/transfer/status" component={DeviceTransferStatus} />
   </Switch>
 );
 
