@@ -3,6 +3,7 @@ import { find } from 'lodash';
 import DeviceService from '../services/DeviceService';
 
 class DevicesStore {
+  
   @observable devicesList = [];
 
   constructor() {
@@ -53,9 +54,9 @@ class DevicesStore {
    * @returns {Object}
    */
   findDeviceById(deviceId) {
-    const result = find(this.devicesList, el => {
-      el.id === deviceId
-    });
+    const result = find(this.devicesList, el => el.id === deviceId);
+
+   
 
     return (result === null) ? null : result;
   }
