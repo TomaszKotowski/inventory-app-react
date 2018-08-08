@@ -11,16 +11,20 @@ import NavBarView from '../../components/navigation/navBar.view';
 
 
 
-@inject('layoutStore', 'placesStore', 'officesStore')
+@inject('placesStore', 'officesStore')
 @observer
 class PlacesView extends Component {
 
   @observable filterOfficeId;
   @observable office;
   @observable placeList = [];
+  @observable officeList = [];
 
   async componentDidMount() {
+    this.officeList = await this.props.officesStore.getAllOffices();
     this.placeList = await this.props.placesStore.getAllPlaces();
+    console.log(this.officeList)
+    console.log(this.placeList)
   }
 
   @bind
@@ -50,7 +54,7 @@ class PlacesView extends Component {
               style={{ width: `100%` }}
               onChange={this.handlePlacesFilter}>
               {
-                this.props.officesStore.officesList.map(office => {
+                this.officeList.map(office => {
                   return (
                     <Select.Option key={office.id} value={office.id}>{office.name}</Select.Option>
                   )

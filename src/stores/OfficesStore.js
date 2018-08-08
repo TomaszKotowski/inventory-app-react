@@ -1,13 +1,14 @@
 import { find } from 'lodash';
-import { observable } from 'mobx';
+import { observable, action } from 'mobx';
 import OfficeService from '../services/OfficeService';
 
 class OfficesStore {
   @observable officesList = [];
 
-  constructor() {
-    OfficeService.getAllOffices().then((list) => this.addOfficesList(list));
-  }
+  // constructor() {
+  //   OfficeService.getAllOffices().then(
+  //     (list) => this.addOfficesList(list));
+  // }
 
   setOffices(officesList) {
     this.officesList = officesList;
@@ -19,6 +20,39 @@ class OfficesStore {
   addOffice(data) {
     this.officesList.push(data);
   }
+
+  async getAllOffices() {
+    if (this.officesList.length < 2) {
+      const officeList = await OfficeService.getAllOffices();
+      this.addOfficesList(officeList);
+    }
+
+    return this.officesList;
+  }
+
+  @action
+  async getUserById(id) {
+    const office = find(this.officesList, item => item.id === id);
+
+    if (!office) {
+      const newOffice = await OfficeService.getUserById(id);
+      this.setToUsersList(newOffice);
+      return newOffice;
+    }
+
+    return office;
+  }
+
+  // async getOfficeById(id) {
+  //   const office = find(this.officesList, item => item.id === id);
+
+  //   if (!office) {
+  //     const newOffice = await OfficeService.getOfficeById(id);
+  //     return newOffice;
+  //   }
+
+  //   return office;
+  // }
 
   addOfficesList(officesList) {
     this.officesList = officesList;
