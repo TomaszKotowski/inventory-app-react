@@ -5,6 +5,7 @@ import 'antd-mobile/dist/antd-mobile.css';
 import { NavBar, Icon, Flex, List, Button } from 'antd-mobile';
 import { Link } from 'react-router-dom';
 import './deviceTransferStatusStyle.css';
+import { Bind } from 'lodash-decorators';
 
 const Item = List.Item;
 const Brief = Item.Brief;
@@ -24,6 +25,10 @@ class DeviceTransferStatus extends React.Component {
       }
     );
   }
+  @Bind()
+  backToDevices(){
+    this.props.history.push(`/devices/all`);
+  }
   render() {
       return (
 
@@ -35,18 +40,18 @@ class DeviceTransferStatus extends React.Component {
         <Flex.Item align="center">
               <div>MESSAGE HERE(SUCCESSFUL)</div>
           </Flex.Item>
-          <Flex.Item align="center" className="bold-text" flex={2}>
+          <Flex.Item align="center" className="bold-text">
               <div>{this.device.name}</div>
           </Flex.Item>
           <Flex.Item align="left">
               <div>TO: </div>
           </Flex.Item>
-          <Flex.Item align="center" className="bold-text" flex={2}>
+          <Flex.Item align="center" className="bold-text">
               <div>PERSON NAME</div>
           </Flex.Item>
           <Flex>
         <Flex.Item>
-          <Button type="primary" to="/devices">Back to Devices</Button>      
+          <Button type="primary" onClick={this.backToDevices}>Back to Devices</Button>      
         </Flex.Item>
       </Flex>
     </Flex> 

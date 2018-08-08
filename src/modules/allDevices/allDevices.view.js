@@ -1,9 +1,11 @@
 import React from 'react';
 import { observer, inject, Observer } from 'mobx-react';
 import 'antd-mobile/dist/antd-mobile.css';
-import { NavBar, Icon, Flex, Button, WhiteSpace, List, Tabs } from 'antd-mobile';
+import { NavBar, Icon, Flex, Button, WhiteSpace, Tabs, List, InputItem } from 'antd-mobile';
 import { Link } from 'react-router-dom';
 import './allDevicesStyle.css';
+import { Bind } from 'lodash-decorators';
+import { observable } from 'mobx';
 
 const Item = List.Item;
 const Brief = Item.Brief;
@@ -13,8 +15,27 @@ const Brief = Item.Brief;
 @observer
 class MyDevices extends React.Component {
 
+
+
+  @observable search;
+
+  componentDidMount() {
+    this.devicesList = this.props.devicesStore.devicesList;
+  }
+
+  @Bind()
+  onChangeSearch(value) {
+    this.search = value.toLowerCase();
+  }
+  
+
   render() {
     const { devicesStore } = this.props;
+
+    let devicesList = devicesStore.devicesList;
+    if (this.search) {
+      devicesList = devicesStore.devicesList.filter(e => e.name.toLowerCase().indexOf(this.search) > -1)
+    }
 
     return (
       <div>
@@ -24,8 +45,17 @@ class MyDevices extends React.Component {
             My Devices
             </NavBar>
         </Flex.Item>
-        <Flex.Item className="item-under-sticky">
-          {devicesStore.devicesList.map(e => {
+        { /* WSTAWIC FLEX ITEM? */}
+          <List renderHeader={() => 'Search Item : '} className="item-under-sticky">
+            <InputItem
+              clear
+              placeholder="Item name"
+              onChange={this.onChangeSearch}
+            />
+          </List>
+        
+        <Flex.Item>
+          {devicesList.map(e => {
             return (
               <Link to={`/devices/${e.id}`} key={e.id}>
                 <Flex.Item>

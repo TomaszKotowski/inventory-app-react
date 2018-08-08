@@ -27,7 +27,7 @@ class DeviceView extends React.Component {
   }
 
   @Bind()
-  abc(){
+  toTransfer(){
     this.props.history.push(`/devices/${this.device.id}/transfer`);
   }
 
@@ -58,7 +58,7 @@ class DeviceView extends React.Component {
       <Flex>
         <Flex.Item>
           {/* <Link to={`/devices/${this.device.id}/transfer`}> */}
-          <Button type="primary" onClick = {this.abc}>Transfer</Button>
+          <Button type="primary" onClick = {this.toTransfer}>Transfer</Button>
         
         </Flex.Item>
         

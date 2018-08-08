@@ -49,7 +49,7 @@ class Login extends React.Component {
       }
     }
   }
-  //dorobic notice bar
+  
   
   render() {
     return(
