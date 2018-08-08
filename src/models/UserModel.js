@@ -14,7 +14,7 @@ export default class UserModel {
       @observable devices = [];      
       @observable places = [];
 
-      constructor(data) {
+      constructor(data = {}) {
           this.id = data.id;
           this.avatar = data.avatar;
           this.firstName = data.firstName;
