@@ -23,8 +23,6 @@ class PlacesView extends Component {
   async componentDidMount() {
     this.officeList = await this.props.officesStore.getAllOffices();
     this.placeList = await this.props.placesStore.getAllPlaces();
-    console.log(this.officeList)
-    console.log(this.placeList)
   }
 
   @bind
