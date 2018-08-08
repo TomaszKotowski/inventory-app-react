@@ -108,8 +108,8 @@ class AddDevice extends Component {
         <WhiteSpace size='xl'/>
         <Flex justify='center' align='end'>
           <Flex.Item>
-              <Button onClick={this.sendToDatabase}>
-                  Send
+              <Button onClick={this.sendToDatabase} type="primary">
+                  ADD
               </Button>
           </Flex.Item>
         </Flex>

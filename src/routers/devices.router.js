@@ -6,6 +6,7 @@ import AllDevices from '../modules/allDevices/allDevices.view';
 import DeviceView from '../modules/deviceView/deviceView';
 import DeviceTransfer from '../modules/deviceTransfer/deviceTransfer';
 import DeviceTransferStatus from '../modules/deviceTransferStatus/deviceTransferStatus.view'
+import { getAdministration } from 'mobx';
 
 const DevicesRouter = ({ match }) => (
   <Switch>

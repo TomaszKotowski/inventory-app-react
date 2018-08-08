@@ -16,14 +16,14 @@ const Brief = Item.Brief;
 class AllDevices extends React.Component {
   @observable search;
 
-  // constructor(props) {
-  //   super(props);
+  constructor(props) {
+    super(props);
 
-  //   const { userStore, history } = this.props;
-  //   if (!userStore.currentUser.isAdmin) {
-  //     history.push('/');
-  //   }
-  // }
+    const { userStore, history } = this.props;
+    if (!userStore.currentUser.isAdmin) {
+      history.push('/');
+    }
+  }
 
   componentDidMount() {
     this.devicesList = this.props.devicesStore.devicesList;
@@ -61,7 +61,7 @@ class AllDevices extends React.Component {
               onChange={this.onChangeSearch}
             />
           </List>
-          <Link to=''>
+          <Link to='/devices/add'>
               <Icon type="cross" className="cross" />
             </Link>
           </Flex.Item>
@@ -69,6 +69,35 @@ class AllDevices extends React.Component {
       
         
         <Flex.Item>
+          {devicesList.map(e => {
+            return (
+              
+                <Flex.Item>
+                  <Item arrow="horizontal" multipleLine >
+                    {e.name}
+                    <Brief>{e.id}</Brief>
+                  </Item> 
+                </Flex.Item>
+              
+            )
+          })}
+        </Flex.Item>
+      </div>
+    );
+  }
+}
+
+export default AllDevices;
+
+
+
+
+
+
+
+
+
+{/* <Flex.Item>
           {devicesList.map(e => {
             return (
               <Link to={`/devices/${e.id}`} key={e.id}>
@@ -81,10 +110,4 @@ class AllDevices extends React.Component {
               </Link>
             )
           })}
-        </Flex.Item>
-      </div>
-    );
-  }
-}
-
-export default AllDevices;
+        </Flex.Item> */}

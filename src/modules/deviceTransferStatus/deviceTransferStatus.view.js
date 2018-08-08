@@ -26,8 +26,8 @@ class DeviceTransferStatus extends React.Component {
     );
   }
   @Bind()
-  backToDevices(){
-    this.props.history.push(`/devices/all`);
+  backToMyDevices(){
+    this.props.history.push(`/devices`);
   }
   render() {
       return (
@@ -51,7 +51,7 @@ class DeviceTransferStatus extends React.Component {
           </Flex.Item>
           <Flex>
         <Flex.Item>
-          <Button type="primary" onClick={this.backToDevices}>Back to Devices</Button>      
+          <Button type="primary" onClick={this.backToMyDevices}>Back to Devices</Button>      
         </Flex.Item>
       </Flex>
     </Flex> 
