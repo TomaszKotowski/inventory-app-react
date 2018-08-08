@@ -3,6 +3,7 @@ import { observer, inject, Observer } from 'mobx-react';
 import 'antd-mobile/dist/antd-mobile.css';
 import { NavBar, Icon, Flex, Button, WhiteSpace, List, Tabs } from 'antd-mobile';
 import { Link } from 'react-router-dom';
+import NavBarView from '../../components/navigation/navBar.view'
 
 const Item = List.Item;
 const Brief = Item.Brief;
@@ -18,10 +19,8 @@ class MyDevices extends React.Component {
     return (
       <div>
         <Flex.Item className="navbar-sticky">
-          <NavBar
-            rightContent={<Icon type="ellipsis" onClick={this.props.layoutStore.handleDrawerDocker} />} className="devices-navbar">
-            My Devices
-            </NavBar>
+        <NavBarView title='My Devices' />
+
         </Flex.Item>
         <Flex.Item className="item-under-sticky">
           {devicesStore.devicesList.map(e => {

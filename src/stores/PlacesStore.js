@@ -1,16 +1,10 @@
-import { observable } from 'mobx';
+import { observable, action } from 'mobx';
 import { find } from 'lodash';
 import PlaceService from '../services/PlaceService';
 
 class PlacesStore {
 
   @observable placesList = [];
-
-  constructor() {
-    PlaceService.getAllPlaces().then((list) => {
-      this.addPlaceList(list);
-    })
-  }
 
   /**
    * Add place to place list
@@ -19,12 +13,38 @@ class PlacesStore {
   addPlace(data) {
     this.placesList.push(data);
   }
-  addPlaceList(placeList) {
-    this.placesList = placeList;
+
+  @action
+  async getAllPlaces() {
+    if (this.placesList.length < 2) {
+      const placeList = await PlaceService.getAllPlaces();
+      this.addPlaceList(placeList);
+    }
+    return this.placesList
+  }
+
+  @action
+  async getPlaceById(id) {
+    const place = find(this.placesList, item => item.id === id)
+
+    if (!place) {
+      const newPlace = await PlaceService.getPlaceById(id);
+      this.setToUsersList(newPlace);
+      return newPlace;
+    }
+
+    return place;
   }
 
   addPlaceList(placeList) {
     this.placesList = placeList;
+  }
+
+  setToUsersList(data) {
+    const place = find(this.placesList, item => item.id === data.id);
+    if (!place) {
+      this.placesList.push(data);
+    }
   }
 
   /**

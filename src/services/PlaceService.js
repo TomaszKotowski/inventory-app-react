@@ -29,6 +29,14 @@ class PlaceService {
         console.log(err);
       })
   }
+  
+  getPlaceById(placeId){
+    return ApiClient.getInstance().get('/api/places/' + placeId)
+      .then(result => new PlaceModel(result.data))
+      .catch(err => {
+        console.log(err);
+      })
+  }
 }
 
 export default new PlaceService();
