@@ -12,18 +12,23 @@ import './placeDevices.style.css'
 @observer
 export default class PlaceDevices extends Component {
 
-  @observable id = `4cb4d5f6-1477-40b9-b855-bac9a2192b3c`
   @observable place
   @observable deviceList
 
+  async componentDidMount() {
+    const { placesStore, match } = this.props;
+    this.place = await placesStore.getPlaceById(match.params.id);
+    console.log(this.place)
+  }
+
   render() {
-    return (
+    return this.place ? (
       <div>
         <div className='top-content'>
           <NavBarView title="Place's Devices" />
           <Flex direction="column" align="center" justify="center" >
             <Flex.Item>
-              Place name
+              {this.place.name}
             </Flex.Item>
             <Flex.Item>
               Devices:
@@ -36,14 +41,12 @@ export default class PlaceDevices extends Component {
               <List className='list' >
                 {
                   this.props.devicesStore.devicesList
-                    .filter((device) => device.belongsToId == this.id)
+                    .filter((device) => device.belongsToId == this.props.match.params.id)
                     .map((device) => {
                       return (
                         <List.Item
                           key={device.id}
                           arrow="horizontal"
-                          multipleLine
-                          onClick={() => { }}
                         >{device.name}
                         </List.Item>
                       )
@@ -54,7 +57,7 @@ export default class PlaceDevices extends Component {
           </Flex>
         </div>
       </div>
-    )
+    ) : null
   }
 };
 

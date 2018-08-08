@@ -13,8 +13,12 @@ import NavBarView from '../../components/navigation/navBar.view';
 class AddPlace extends Component {
   @observable name = '';
   @observable selectedPlaceId = '';
-
+  @observable officeList = [];
   @observable notificationMsg;
+
+  async componentDidMount() {
+    this.officeList = await this.props.officesStore.getAllOffices();
+  }
 
   @Bind
   onChangeName(value) {
@@ -50,7 +54,7 @@ class AddPlace extends Component {
     return (
       <div>
         <NavBarView title="Add place" />
-        <WhiteSpace size='xl'/>
+        <WhiteSpace size='xl' />
         <Flex>
           <Flex.Item>
             {this.notificationMsg && <NoticeBar mode='closable' onClick={this.resetErrMessage}>{this.notificationMsg}</NoticeBar>}
@@ -64,8 +68,13 @@ class AddPlace extends Component {
                 style={{ width: '100%' }}
                 onChange={this.onChangeOffice}>
                 {
-                  this.props.officesStore.officesList.map(element => {
-                    return( <Select.Option key={element.name} value={element.id}>{element.name}</Select.Option>)
+                  this.officeList.map(element => {
+                    return (
+                      <Select.Option
+                        key={element.name}
+                        value={element.id}>
+                        {element.name}
+                      </Select.Option>)
                   })
                 }
               </Select>

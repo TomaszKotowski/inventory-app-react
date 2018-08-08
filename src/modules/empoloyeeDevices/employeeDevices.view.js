@@ -19,46 +19,11 @@ export default class EmployeeDevices extends Component {
   @observable employee;
 
   async componentDidMount() {
-    console.log('-- Did Mount -- ', this.props)
     const { userStore, match } = this.props;
-
     this.employee = await userStore.getUserById(match.params.id);
-    console.log(this.employee)
-    // reaction(
-    //   () => this.props.userStore.usersList.find(user => user.id == this.props.match.params.id),
-    //   (user) => {
-    //     this.employee = user;
-    //   }
-    // )
   }
-
-  // componentDidUpdate() {
-  //   console.log('-- Did Upadate -- ')
-  //   const {
-  //     userStore: {
-  //       usersList
-  //     },
-  //     match
-  //   } = this.props;
-  //   console.log('usersList - Map', usersList.map((user) => user.id));
-  //   console.log('usersList - Filter', this.name = usersList.filter((user) => user.id === match.params.id));
-  //   console.log('usersList - Filter', this.name[0].firstName);
-  //   console.log(match.params.id);
-  // }
-
+  
   render() {
-
-    // console.log('-- Render -- ')
-    // const {
-    //   userStore: {
-    //     usersList
-    //   },
-    //   match
-    // } = this.props;
-    // console.log('usersList - Map', usersList.map((user) => user.id));
-    // console.log('usersList - Filter', this.name = usersList.filter((user) => user.id === match.params.id));
-    // console.log('usersList - Filter', this.name[0].firsName);
-    // console.log(match.params.id);
     return this.employee ? (
       <div>
         <div className='top-content'>
