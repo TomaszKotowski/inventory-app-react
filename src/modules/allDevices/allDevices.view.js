@@ -71,14 +71,14 @@ class AllDevices extends React.Component {
         <Flex.Item>
           {devicesList.map(e => {
             return (
-              
+              <Link to={`/devices/${e.id}`} key={e.id}>
                 <Flex.Item>
                   <Item arrow="horizontal" multipleLine >
                     {e.name}
                     <Brief>{e.id}</Brief>
                   </Item> 
                 </Flex.Item>
-              
+              </Link>
             )
           })}
         </Flex.Item>
