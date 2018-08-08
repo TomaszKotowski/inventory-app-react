@@ -17,11 +17,8 @@ class UserService {
    * @param {string} userId 
    */
   getUserById(userId) {
-    ApiClient.getInstance().get('/api/users/' + userId)
-      .then(result => {
-        console.log(result);
-        return result;
-      })
+    return ApiClient.getInstance().get('/api/users/' + userId)
+      .then(result => new UserModel(result.data))
       .catch(err => {
         console.log(err);
       })

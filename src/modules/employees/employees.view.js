@@ -13,6 +13,11 @@ import NavBarView from '../../components/navigation/navBar.view';
 @inject('userStore')
 @observer
 class EmployeesView extends Component {
+  @observable usersList = [];
+
+  async componentDidMount() {
+    this.usersList = await this.props.userStore.getAllUsers();
+  }
 
   render() {
     return (
@@ -25,7 +30,7 @@ class EmployeesView extends Component {
           <Flex>
             <List className="employees-list">
               {
-                this.props.userStore.usersList
+                this.usersList
                   .map((user) => {
                     return (
                       <Link key={user.id + 1} to={`/employees/${user.id}`}>
