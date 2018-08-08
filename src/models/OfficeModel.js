@@ -4,7 +4,7 @@ export default class OfficeModel {
   @observable id;
   @observable name;
 
-  constructor(data) {
+  constructor(data = {}) {
     this.id = data.id;
     this.name = data.name;
   }

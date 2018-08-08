@@ -67,16 +67,16 @@ class PlacesView extends Component {
                   .filter((place) => place.officeId === this.filterOfficeId)
                   .map((place) => {
                     return (
-                      <List.Item
-                        key={place.id}
-                        arrow="horizontal"
-                        multipleLine
-                        onClick={() => { }}
-                      >{place.name}
-                        <List.Item.Brief key={place.id} >
-                          {this.office.name}
-                        </List.Item.Brief>
-                      </List.Item>
+                      <Link key={place.id + 1} to={`/places/${place.id}`}>
+                        <List.Item
+                          key={place.id}
+                          arrow="horizontal"
+                        >{place.name}
+                          <List.Item.Brief key={place.id} >
+                            {this.office.name}
+                          </List.Item.Brief>
+                        </List.Item>
+                      </Link>
                     )
                   })
               }
