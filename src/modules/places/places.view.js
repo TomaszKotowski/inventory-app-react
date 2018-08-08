@@ -54,7 +54,11 @@ class PlacesView extends Component {
               {
                 this.officeList.map(office => {
                   return (
-                    <Select.Option key={office.id} value={office.id}>{office.name}</Select.Option>
+                    <Select.Option
+                      key={office.id}
+                      value={office.id}>
+                      {office.name}
+                    </Select.Option>
                   )
                 })
               }
