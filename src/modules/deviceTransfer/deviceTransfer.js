@@ -14,7 +14,7 @@ const Brief = Item.Brief;
 class DeviceTransfer extends React.Component {
   @observable device = {};
 
-  componentDidMount() {   
+  componentDidMount() {
     reaction(
       () => this.props.devicesStore.devicesList,
       () => {
@@ -44,9 +44,7 @@ class DeviceTransfer extends React.Component {
             <div>CHOOSE TARGET</div>
         </Flex.Item>
         <Flex.Item align="center" className="device-targed-box2" justify="center;">
-            {/* <div>QR CODE</div> */}
           <QrReader />
-          <h1>DUPA</h1>
         </Flex.Item>
     </Flex> 
     );

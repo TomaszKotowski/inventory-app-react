@@ -33,10 +33,10 @@ class DevicesStore {
 
   /**
    * Add all device list
-   * @param {Array} deviceList 
+   * @param {Array} devicesList
    */
-  addDeviceList(deviceList) {
-    this.devicesList = deviceList;
+  addDeviceList(devicesList) {
+    this.devicesList = [...devicesList];
   }
 
   /**
@@ -55,8 +55,6 @@ class DevicesStore {
    */
   findDeviceById(deviceId) {
     const result = find(this.devicesList, el => el.id === deviceId);
-
-   
 
     return (result === null) ? null : result;
   }
