@@ -1,4 +1,5 @@
 import React from 'react';
+import { observable } from 'mobx';
 import { observer, inject, Observer } from 'mobx-react';
 import 'antd-mobile/dist/antd-mobile.css';
 import { NavBar, Icon, Flex, Button, WhiteSpace, List, Tabs } from 'antd-mobile';
@@ -9,21 +10,26 @@ const Item = List.Item;
 const Brief = Item.Brief;
 
 
-@inject('devicesStore', 'layoutStore')
+@inject('devicesStore')
 @observer
 class MyDevices extends React.Component {
 
-  render() {
-    const { devicesStore } = this.props;
+  @observable deviceList = [];
 
+  async componentDidMount() {
+    const { devicesStore } = this.props;
+    this.deviceList = await devicesStore.getAllDevices();
+
+  }
+
+  render() {
     return (
       <div>
         <Flex.Item className="navbar-sticky">
-        <NavBarView title='My Devices' />
-
+          <NavBarView title='All Devices' />
         </Flex.Item>
         <Flex.Item className="item-under-sticky">
-          {devicesStore.devicesList.map(e => {
+          {this.deviceList.map(e => {
             return (
               <Link to={`/devices/${e.id}`} key={e.id}>
                 <Flex.Item>

@@ -21,8 +21,9 @@ class PlacesView extends Component {
   @observable officeList = [];
 
   async componentDidMount() {
-    this.officeList = await this.props.officesStore.getAllOffices();
-    this.placeList = await this.props.placesStore.getAllPlaces();
+    const { officesStore, placesStore } = this.props;
+    this.officeList = await officesStore.getAllOffices();
+    this.placeList = await placesStore.getAllPlaces();
   }
 
   @bind
