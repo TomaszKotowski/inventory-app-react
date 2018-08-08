@@ -6,11 +6,11 @@ class PlacesStore {
 
   @observable placesList = [];
 
-  constructor() {
-    PlaceService.getAllPlaces().then((list) => {
-      this.addPlaceList(list);
-    })
-  }
+  // constructor() {
+  //   PlaceService.getAllPlaces().then((list) => {
+  //     this.addPlaceList(list);
+  //   })
+  // }
 
   /**
    * Add place to place list
@@ -19,12 +19,34 @@ class PlacesStore {
   addPlace(data) {
     this.placesList.push(data);
   }
-  addPlaceList(placeList) {
-    this.placesList = placeList;
+
+  async getAllPlaces() {
+    if (!this.placesList.length) {
+      const placeList = await PlaceService.getAllPlaces();
+      this.addPlaceList(placeList);
+    }
+    return this.placesList
+  }
+
+  async getPlaceById(id) {
+    const place = find(this.placesList, item => item.id === id)
+
+    if (!place) {
+      const newPlace = await PlaceService.getPlaceById(id);
+      this.setToUsersList(newPlace);
+      return newPlace;
+    }
   }
 
   addPlaceList(placeList) {
     this.placesList = placeList;
+  }
+
+  setToUsersList(data) {
+    const place = find(this.placesList, item => item.id === data.id);
+    if (!place) {
+      this.placesList.push(data);
+    }
   }
 
   /**

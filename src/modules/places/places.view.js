@@ -17,6 +17,11 @@ class PlacesView extends Component {
 
   @observable filterOfficeId;
   @observable office;
+  @observable placeList = [];
+
+  async componentDidMount() {
+    this.placeList = await this.props.placesStore.getAllPlaces();
+  }
 
   @bind
   handlePlacesFilter = (optionValue) => {
@@ -28,7 +33,7 @@ class PlacesView extends Component {
     return (
       <div>
         <div className='top-content'>
-          <NavBarView title="Places"/>
+          <NavBarView title="Places" />
           <WhiteSpace />
           <Flex justify="center" className="title-container">
             <Flex.Item>
@@ -58,7 +63,7 @@ class PlacesView extends Component {
           <Flex>
             <List className="places-list">
               {
-                this.props.placesStore.placesList
+                this.placeList
                   .filter((place) => place.officeId === this.filterOfficeId)
                   .map((place) => {
                     return (

@@ -6,7 +6,7 @@ export default class PlaceModel {
   @observable name;
   @observable officeId;
 
-  constructor(data) {
+  constructor(data = {}) {
     this.id = data.id;
     this.name = data.name;
     this.officeId = data.officeId;
