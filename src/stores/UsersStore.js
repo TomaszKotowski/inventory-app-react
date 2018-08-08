@@ -20,7 +20,7 @@ class UserStore {
   }
 
   async getAllUsers() {
-    if (!this.usersList.length) {
+    if (this.usersList.length < 2) {
       const userList = await UserService.getAllUsers();
       this.addUserList(userList);
     }
@@ -29,7 +29,7 @@ class UserStore {
   }
 
   @action
-  async getUserById(id) { 
+  async getUserById(id) {
     const user = find(this.usersList, item => item.id === id);
 
     if (!user) {
@@ -56,9 +56,9 @@ class UserStore {
     this.usersList = [];
   }
 
-  addUserList(userList){
+  addUserList(userList) {
     this.usersList = userList
-   }
+  }
 }
 
 export default new UserStore();
