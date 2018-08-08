@@ -14,6 +14,8 @@ class QrReader extends Component {
 
   constructor() {
     super();
+    this.idFromQr = '';
+    this.showPopup = false;
     this.video = createRef();
     this.canvas = document.createElement('canvas');
   }
@@ -36,7 +38,6 @@ class QrReader extends Component {
     
     navigator.mediaDevices.getUserMedia(constraints)
     .then((stream) => {
-      console.log('jestem');
       window.stream = stream;
       this.video.current.srcObject = stream;
       this.video.current.play();
@@ -54,21 +55,24 @@ class QrReader extends Component {
 
   @Bind
   makePic() {
-    console.log('zaczynam');
-    this.videoWidth = this.video.current.videoWidth;
-    this.videoHeight = this.video.current.videoHeight;
-    this.canvas.width = this.videoWidth;
-    this.canvas.height = this.videoHeight;
     if (this.video.current.readyState === this.video.current.HAVE_ENOUGH_DATA) {
+      this.videoWidth = this.video.current.videoWidth;
+      this.videoHeight = this.video.current.videoHeight;
+      this.canvas.width = this.videoWidth;
+      this.canvas.height = this.videoHeight;
       this.canvas.getContext('2d').drawImage(this.video.current, 0, 0, this.videoWidth, this.videoHeight);
       let imageData = this.canvas.getContext('2d').getImageData(0, 0, this.videoWidth, this.videoHeight);
       const code = jsQR(imageData.data, this.videoWidth, this.videoHeight);
       if (code) {
-        console.log('i\'m in');
-        console.log(code);
+        this.idFromQr = code.data;
       }
     }
-    requestAnimationFrame(this.picBind);
+    if (!this.idFromQr) {
+      requestAnimationFrame(this.picBind);
+    } else {
+      //show popup
+      console.log(this.idFromQr);
+    }
   }
 
   render() {
@@ -77,8 +81,6 @@ class QrReader extends Component {
     return (
       <div>
         <video id='ok' ref={this.video} style={style}></video>
-        <button onClick={this.makePic}>ZDJĘCIE!</button>
-        {/* <canvas ref={this.canvas}></canvas> */}
       </div>
     );
   }
