@@ -4,31 +4,33 @@ import { observer, inject } from 'mobx-react';
 import 'antd/dist/antd.css';
 import { Flex } from 'antd-mobile';
 import { List } from 'antd';
-import { bind } from 'lodash-decorators';
+import { Bind } from 'lodash-decorators';
+import { find } from 'lodash';
+import User from '../../models/UserModel';
 import NavBarView from '../../components/navigation/navBar.view';
-import './placeDevices.style.css'
+import './employeeDevices.style.css';
+import UserService from '../../services/UserService';
 
-@inject('placesStore', 'devicesStore')
+@inject('userStore', 'devicesStore')
 @observer
-export default class PlaceDevices extends Component {
+export default class EmployeeDevices extends Component {
 
-  @observable place
-  @observable deviceList
+  @observable empoloyeeName;
+  @observable employee;
 
   async componentDidMount() {
-    const { placesStore, match } = this.props;
-    this.place = await placesStore.getPlaceById(match.params.id);
-    console.log(this.place)
+    const { userStore, match } = this.props;
+    this.employee = await userStore.getUserById(match.params.id);
   }
-
+  
   render() {
-    return this.place ? (
+    return this.employee ? (
       <div>
         <div className='top-content'>
-          <NavBarView title="Place's Devices" />
+          <NavBarView title="Employee's Devices" />
           <Flex direction="column" align="center" justify="center" >
             <Flex.Item>
-              {this.place.name}
+              {this.employee.fullName}
             </Flex.Item>
             <Flex.Item>
               Devices:
@@ -57,7 +59,7 @@ export default class PlaceDevices extends Component {
           </Flex>
         </div>
       </div>
-    ) : null
+    ) : null;
   }
 };
 

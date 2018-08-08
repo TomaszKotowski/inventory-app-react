@@ -1,4 +1,7 @@
-import { observable, computed } from 'mobx';
+import { observable, computed, action } from 'mobx';
+import { find } from 'lodash';
+import UserService from '../services/UserService';
+import UserModel from '../models/UserModel';
 
 class UserStore {
   @observable currentUser = {};
@@ -16,16 +19,45 @@ class UserStore {
     this.currentUser = {};
   }
 
+  async getAllUsers() {
+    if (this.usersList.length < 2) {
+      const userList = await UserService.getAllUsers();
+      this.addUserList(userList);
+    }
+
+    return this.usersList;
+  }
+
+  @action
+  async getUserById(id) {
+    const user = find(this.usersList, item => item.id === id);
+
+    if (!user) {
+      const newUser = await UserService.getUserById(id);
+      this.setToUsersList(newUser);
+      return newUser;
+    }
+
+    return user;
+  }
+
   @computed get getPictureAvatarLink() {
     return this.currentUser.avatar;
   }
 
-  setToUsersList(data){
-    this.usersList.push(data);
+  setToUsersList(data) {
+    const user = find(this.usersList, item => item.id === data.id);
+    if (!user) {
+      this.usersList.push(data);
+    }
   }
 
   deleteUsersList() {
     this.usersList = [];
+  }
+
+  addUserList(userList) {
+    this.usersList = userList
   }
 }
 
