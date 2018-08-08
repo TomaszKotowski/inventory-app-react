@@ -33,7 +33,7 @@ class DeviceTransfer extends React.Component {
             My Devices
           </NavBar>
       </Flex.Item>
-      <Link to="/devices">
+      <Link to="/devices/all">
           <Item arrow="horizontal" multipleLine onClick={() => {}}>
             {this.device.name}
           </Item>

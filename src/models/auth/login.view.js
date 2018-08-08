@@ -12,6 +12,7 @@ import AuthService from '../../services/AuthService';
 import AuthData from '../../services/AuthorizationData';
 import styles from './loginStyle.css';
 import DevicesStore from '../../stores/DevicesStore';
+import UserModel from '../../models/UserModel';
 
 const PlaceHolder = ({ className = '', text, ...restProps }) => (
   <div className={`${className} placeholder`} {...restProps}>{text}</div>
@@ -42,7 +43,9 @@ class Login extends React.Component {
       this.errorMsg = 'Field cannot be empty';  
     } else {
       try {
+
         const result = await AuthService.login(this.login, this.password);
+        
       } catch(error) {
         console.log(error.message);
         this.errorMsg = error.message;

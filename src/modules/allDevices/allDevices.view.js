@@ -11,13 +11,19 @@ const Item = List.Item;
 const Brief = Item.Brief;
 
 
-@inject('devicesStore', 'layoutStore')
+@inject('userStore', 'devicesStore', 'layoutStore')
 @observer
-class MyDevices extends React.Component {
-
-
-
+class AllDevices extends React.Component {
   @observable search;
+
+  // constructor(props) {
+  //   super(props);
+
+  //   const { userStore, history } = this.props;
+  //   if (!userStore.currentUser.isAdmin) {
+  //     history.push('/');
+  //   }
+  // }
 
   componentDidMount() {
     this.devicesList = this.props.devicesStore.devicesList;
@@ -46,13 +52,21 @@ class MyDevices extends React.Component {
             </NavBar>
         </Flex.Item>
         { /* WSTAWIC FLEX ITEM? */}
-          <List renderHeader={() => 'Search Item : '} className="item-under-sticky">
+        
+          <Flex.Item class="input-item" direction="row">
+          <List  className="item-under-sticky">
             <InputItem
               clear
               placeholder="Item name"
               onChange={this.onChangeSearch}
             />
           </List>
+          <Link to=''>
+              <Icon type="cross" className="cross" />
+            </Link>
+          </Flex.Item>
+          
+      
         
         <Flex.Item>
           {devicesList.map(e => {
@@ -73,4 +87,4 @@ class MyDevices extends React.Component {
   }
 }
 
-export default MyDevices;
+export default AllDevices;

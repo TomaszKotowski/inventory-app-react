@@ -4,10 +4,13 @@ import { Flex, WhiteSpace } from 'antd-mobile';
 import UsersStore from '../../stores/UsersStore';
 import { inject, observer } from 'mobx-react';
 import './profileImage.css';
+import UserModel from '../../models/UserModel';
+
 
 @inject('userStore')
 @observer
 class ProfileImage extends Component {
+  
   render() {
     return(
       <div>
