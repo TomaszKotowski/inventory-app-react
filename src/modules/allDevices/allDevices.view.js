@@ -8,12 +8,15 @@ import { NavBar, Icon, Flex, Button, WhiteSpace, Tabs, List, InputItem } from 'a
 import 'antd-mobile/dist/antd-mobile.css';
 import './allDevicesStyle.css';
 
+
 const Item = List.Item;
 const Brief = Item.Brief;
+
 
 @inject('userStore', 'devicesStore', 'layoutStore')
 @observer
 class AllDevices extends React.Component {
+  
   @observable search;
 
   constructor(props) {
@@ -27,6 +30,7 @@ class AllDevices extends React.Component {
 
   componentDidMount() {
     this.devicesList = this.props.devicesStore.devicesList;
+    
   }
 
   @Bind()
@@ -46,7 +50,8 @@ class AllDevices extends React.Component {
         <Flex.Item className="navbar-sticky">
         <NavBarView title='My Devices' />
         </Flex.Item>
-          <Flex.Item class="input-item" direction="row">
+          <Flex.Item className="input-item" direction="row">
+         
           <List  className="item-under-sticky">
             <InputItem
               clear
@@ -54,9 +59,11 @@ class AllDevices extends React.Component {
               onChange={this.onChangeSearch}
             />
           </List>
+          <WhiteSpace size='sm'/>
           <Link to='/devices/add'>
               <Icon type="cross" className="cross" />
             </Link>
+            <WhiteSpace size='sm'/>
           </Flex.Item>
         <Flex.Item>
           {devicesList.map(e => {

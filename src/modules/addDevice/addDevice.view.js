@@ -5,6 +5,7 @@ import { inject, observer } from 'mobx-react';
 import { Bind } from 'lodash-decorators';
 import DeviceService from '../../services/DeviceService';
 import NavBarView from '../../components/navigation/navBar.view';
+import './addDeviceStyle.css';
 @inject('userStore')
 @observer
 class AddDevice extends Component {
@@ -27,6 +28,7 @@ class AddDevice extends Component {
   @Bind
   onChangeName(value) {
     this.name = value;
+    
   }
   
   @Bind
