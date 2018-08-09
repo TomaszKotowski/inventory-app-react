@@ -8,32 +8,33 @@ import { Link } from 'react-router-dom';
 const Item = List.Item;
 const Brief = Item.Brief;
 
-@inject('devicesStore','layoutStore')
+@inject('devicesStore', 'layoutStore')
 @observer
 class DeviceTransfer extends React.Component {
   @observable device = {};
 
-  componentDidMount() {   
+  componentDidMount() {
     reaction(
       () => this.props.devicesStore.devicesList,
       () => {
-        let  id = this.props.match.params.id;
-        this.device = this.props.devicesStore.findDeviceById(id);       
+        let id = this.props.match.params.id;
+        this.device = this.props.devicesStore.findDeviceById(id);
       }
     );
   }
 
   render() {
+    const { match } = this.props
     return (
       <Flex direction="column" align="stretch">
-      <Flex.Item>    
-      <Flex.Item align="center">
-          <NavBar
-            rightContent={<Icon type="ellipsis" onClick={this.props.layoutStore.handleDrawerDocker} />}>
-            My Devices
+        <Flex.Item>
+          <Flex.Item align="center">
+            <NavBar
+              rightContent={<Icon type="ellipsis" onClick={this.props.layoutStore.handleDrawerDocker} />}>
+              My Devices
           </NavBar>
-      </Flex.Item>
-      <Link to="/devices">
+          </Flex.Item>
+          <Link to={match.path}>
           <Item arrow="horizontal" multipleLine onClick={() => {}}>
             {this.device.name}
           </Item>

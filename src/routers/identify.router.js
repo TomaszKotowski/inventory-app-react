@@ -3,8 +3,8 @@ import { Switch, Route } from 'react-router-dom';
 
 const IdentifyRouter = ({ match }) => (
   <Switch>
-    <Route exact path="/identify" render={() => <div> Identify </div>} />
-    <Route path="/identify/:id" render={({ match }) => <div> Identify:{match.params.id} </div>} />
+    <Route exact path={match.path} render={() => <div> Identify </div>} />
+    <Route path={`${match.path}/:id`} render={({ match }) => <div> Identify:{match.params.id} </div>} />
   </Switch>
 );
 

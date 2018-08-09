@@ -4,7 +4,7 @@ import Login from '../modules/auth/login.view';
 
 const AuthRouter = () => (
   <Switch>
-    <Route exact path='/login' component={Login} />
+    <Route path='/login' component={Login} />
   </Switch>
 );
 

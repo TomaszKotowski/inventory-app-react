@@ -19,10 +19,10 @@ class MyDevices extends React.Component {
   async componentDidMount() {
     const { devicesStore } = this.props;
     this.deviceList = await devicesStore.getAllDevices();
-
   }
 
   render() {
+    const { match } = this.props
     return (
       <div>
         <Flex.Item className="navbar-sticky">
@@ -31,7 +31,7 @@ class MyDevices extends React.Component {
         <Flex.Item className="item-under-sticky">
           {this.deviceList.map(e => {
             return (
-              <Link to={`/devices/${e.id}`} key={e.id}>
+              <Link to={`${match.path}/${e.id}`} key={e.id}>
                 <Flex.Item>
                   <Item arrow="horizontal" multipleLine >
                     {e.name}
