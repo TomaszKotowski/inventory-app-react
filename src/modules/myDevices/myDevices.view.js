@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { observable, reaction } from 'mobx';
 import { observer, inject } from 'mobx-react';
+import { Link } from 'react-router-dom';
 import 'antd-mobile/dist/antd-mobile.css';
 import { NavBar, Icon, Flex, List } from 'antd-mobile';
 import DeviceService from '../../services/DeviceService';
@@ -41,12 +42,14 @@ class MyDevices extends React.Component {
         <NavBarView title="My devices" />
           {this.myDevicesList.map(e =>{
             return (
+            <Link to={`/devices/${e.id}`} key={e.id}>
               <Flex.Item key={`flexItem-${e.id}`}>
                 <Item key={`item-${e.id}`} arrow="horizontal" multipleLine>
                   {e.name}
                   <Brief>{e.id}</Brief>
                 </Item>
-            </Flex.Item>
+              </Flex.Item>
+            </Link> 
             )
           })}
       </div>

@@ -6,6 +6,7 @@ import { NavBar, Icon, Flex, Button, List } from 'antd-mobile';
 import { Link, Redirect } from 'react-router-dom';
 import { Bind } from 'lodash-decorators';
 import QrGenerator from '../../components/qrCode/generator/qrGenerator';
+import './deviceViewStyle.css'
 
 const Item = List.Item;
 const Brief = Item.Brief;
@@ -27,14 +28,14 @@ class DeviceView extends React.Component {
   }
 
   @Bind()
-  abc(){
+  toTransfer(){
     this.props.history.push(`/devices/${this.device.id}/transfer`);
   }
 
   render() {
     return (
 
-      <Flex direction="column" align="stretch" className="container-flex">
+      <Flex direction="column"  align="stretch" className="container-flex">
       <Flex.Item>    
       <Flex.Item align="center">
           <NavBar
@@ -42,7 +43,7 @@ class DeviceView extends React.Component {
             My Devices
           </NavBar>
       </Flex.Item>
-      <Link to="/devices">
+      <Link to="/devices/all">
           <Item arrow="horizontal" multipleLine onClick={() => {}}>
               {this.device.name}
           </Item>
@@ -58,7 +59,7 @@ class DeviceView extends React.Component {
       <Flex>
         <Flex.Item>
           {/* <Link to={`/devices/${this.device.id}/transfer`}> */}
-          <Button type="primary" onClick = {this.abc}>Transfer</Button>
+          <Button type="primary" onClick = {this.toTransfer}>Transfer</Button>
         
         </Flex.Item>
         

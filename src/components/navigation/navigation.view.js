@@ -4,15 +4,22 @@ import { observer, inject } from 'mobx-react';
 import { Drawer, NavBar, Icon, Flex, List } from 'antd-mobile';
 import 'antd-mobile/dist/antd-mobile.css';
 import './navigation.style.css';
+import UserModel from "../../models/UserModel";
+import AdminOnly from '../../modules/adminLogin/adminOnly';
+
+
 
 @inject('layoutStore')
 @observer
 export default class NavigationView extends React.Component {
 
+
+
   render() {
     const sidebar = (
       <div>
         <NavBar
+        className="navbar-sticky"
           rightContent={
             <Icon type="ellipsis"
               onClick={this.props.layoutStore.handleDrawerDocker}
@@ -28,9 +35,11 @@ export default class NavigationView extends React.Component {
             <List.Item key='myDevices'>
               <Link to='/devices' onClick={this.props.layoutStore.handleDrawerDocker}>MY DEVICES</Link>
             </List.Item>
-            <List.Item key='allDevices'>
-              <Link to='/devices/all' onClick={this.props.layoutStore.handleDrawerDocker}>ALL DEVICES</Link>
-            </List.Item>
+            <AdminOnly>
+              <List.Item key='allDevices'>
+                <Link to='/devices/all' onClick={this.props.layoutStore.handleDrawerDocker}>ALL DEVICES</Link>
+              </List.Item>
+            </AdminOnly>
             <List.Item key='employees'>
               <Link to='/employees' onClick={this.props.layoutStore.handleDrawerDocker}>EMPLOYEES</Link>
             </List.Item>
