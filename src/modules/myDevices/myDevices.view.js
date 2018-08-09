@@ -38,13 +38,13 @@ class MyDevices extends React.Component {
   }
   
   render() {
-    const { devicesStore } = this.props;
+    const { devicesStore, match } = this.props;
     return (
       <div>
         <NavBarView title="My devices" />
           {this.myDevicesList.map(e =>{
             return (
-            <Link to={`/devices/${e.id}`} key={e.id}>
+              <Link to={`${match.path}/${e.id}`} key={e.id}>
               <Flex.Item key={`flexItem-${e.id}`}>
                 <Item key={`item-${e.id}`} arrow="horizontal" multipleLine>
                   {e.name}

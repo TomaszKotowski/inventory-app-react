@@ -17,9 +17,6 @@ class AppRouter extends React.Component {
     const { match } = this.props
     return (
       <Switch>
-        {
-          console.log('App Router', this.props)
-        }
         <Route exact path={match.path} component={NoMatch} />
         <Route path={`${match.path}/user`} component={UserRouter} />
         <Route path={`${match.path}/devices`} component={DevicesRouter} />

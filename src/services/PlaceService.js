@@ -31,7 +31,7 @@ class PlaceService {
   }
   
   getPlaceById(placeId){
-    return ApiClient.getInstance().get('/api/places/' + placeId)
+    return ApiClient.getInstance().get(`/api/places?id=${placeId}`)
       .then(result => new PlaceModel(result.data))
       .catch(err => {
         console.log(err);

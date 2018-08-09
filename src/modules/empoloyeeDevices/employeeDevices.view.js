@@ -19,7 +19,6 @@ export default class EmployeeDevices extends Component {
   @observable deviceList = [];
 
   async componentDidMount() {
-    console.log(this.props)
     const { userStore, devicesStore, match } = this.props;
     this.employee = await userStore.getUserById(match.params.id);
     this.deviceList = await devicesStore.getAllDevices();

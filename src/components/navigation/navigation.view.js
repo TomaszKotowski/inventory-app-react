@@ -16,7 +16,6 @@ export default class NavigationView extends React.Component {
   constructor(props) {
     super(props);
     const { location } = this.props
-    console.log('NavigatioView', location);
     if (!AuthService.isLoggedIn()) {
 
       location.history.push('/');
@@ -27,7 +26,7 @@ export default class NavigationView extends React.Component {
     const sidebar = (
       <div>
         <NavBar
-          className="navbar-sticky"
+          // className="navbar-sticky"
           rightContent={
             <Icon type="ellipsis"
               onClick={layoutStore.handleDrawerDocker}
