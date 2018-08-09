@@ -27,7 +27,7 @@ class Identify extends React.Component {
       <WhiteSpace size="xl" />
       <WhiteSpace size="xl" />
         <Flex.Item align="center" className="device-targed-box2" justify="center;">
-            <div>Camera Here</div>
+            <div>Camera Hereeeeeeeeeeeeeee</div>
         </Flex.Item>
     </Flex> 
     );
