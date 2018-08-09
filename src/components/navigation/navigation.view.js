@@ -21,8 +21,14 @@ export default class NavigationView extends React.Component {
       location.history.push('/');
     }
   }
+
+  handleLogOut() {
+    AuthService.logout();
+  }
+
   render() {
     const { match, layoutStore } = this.props;
+    console.log(this.props)
     const sidebar = (
       <div>
         <NavBar
@@ -66,6 +72,11 @@ export default class NavigationView extends React.Component {
             <Link to={`${match.path}/places`} onClick={layoutStore.handleDrawerDocker}>
               <List.Item key='places'>
                 PLACES
+            </List.Item>
+            </Link>
+            <Link to="/" onClick={this.handleLogOut}>
+              <List.Item key='places'  >
+                LOG OUT
             </List.Item>
             </Link>
           </List>

@@ -6,6 +6,7 @@ import { Flex } from 'antd-mobile';
 import { List } from 'antd';
 import { Bind } from 'lodash-decorators';
 import { find } from 'lodash';
+import { Link } from 'react-router-dom';
 import User from '../../models/UserModel';
 import NavBarView from '../../components/navigation/navBar.view';
 import './employeeDevices.style.css';
@@ -48,11 +49,13 @@ export default class EmployeeDevices extends Component {
                     .filter((device) => device.belongsToId == this.props.match.params.id)
                     .map((device) => {
                       return (
-                        <List.Item
-                          key={device.id}
-                          arrow="horizontal"
-                        >{device.name}
-                        </List.Item>
+                        <Link key={device.id + 1} to={`/app/identify/${`id`}`} >
+                          <List.Item
+                            key={device.id}
+                            arrow="horizontal"
+                          >{device.name}
+                          </List.Item>
+                        </Link>
                       )
                     })
                 }
