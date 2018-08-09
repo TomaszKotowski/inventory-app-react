@@ -2,7 +2,7 @@ import React from 'react';
 import { observable, reaction } from 'mobx';
 import { observer, inject } from 'mobx-react';
 import 'antd-mobile/dist/antd-mobile.css';
-import { NavBar, Icon, Flex, Button, List } from 'antd-mobile';
+import { NavBar, Icon, Flex, Button, List, WhiteSpace } from 'antd-mobile';
 import { Link, Redirect } from 'react-router-dom';
 import { Bind } from 'lodash-decorators';
 import QrGenerator from '../../components/qrCode/generator/qrGenerator';
@@ -33,10 +33,13 @@ class DeviceView extends React.Component {
   }
 
   render() {
+    var style = {
+      height: "100vh"
+    }
     return (
 
-      <Flex direction="column"  align="stretch" className="container-flex">
-      <Flex.Item>    
+      <Flex direction="column"  align="stretch" style={style}>
+      <Flex.Item flex={1}>
       <Flex.Item align="center">
           <NavBar
             rightContent={<Icon type="ellipsis" onClick={this.props.layoutStore.handleDrawerDocker}/>}>
@@ -48,22 +51,20 @@ class DeviceView extends React.Component {
               {this.device.name}
           </Item>
       </Link>
-      </Flex.Item>
+      <WhiteSpace size="lg" />
       <Flex.Item align="center">
             <div>Serial ID: </div>
             <div>{this.device.id}</div>
         </Flex.Item>
         <Flex.Item align="center">
           <QrGenerator id={this.device.id}/>
-        </Flex.Item>
-      <Flex>
-        <Flex.Item>
-          {/* <Link to={`/devices/${this.device.id}/transfer`}> */}
+        </Flex.Item> 
+     </Flex.Item>
+    <Flex flex={2}>
+      <Flex.Item>
           <Button type="primary" onClick = {this.toTransfer}>Transfer</Button>
-        
-        </Flex.Item>
-        
-      </Flex>
+      </Flex.Item>
+    </Flex>
     </Flex> 
 
     );

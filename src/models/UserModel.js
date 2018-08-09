@@ -1,5 +1,6 @@
 import { observable, computed } from "mobx";
 import { remove } from 'lodash';
+import OfficesStore from '../stores/OfficesStore';
 
 export default class UserModel {
       @observable id;
@@ -9,6 +10,7 @@ export default class UserModel {
       @observable email;
       @observable login;
       @observable officeId;
+      @observable office;
       @observable isAdmin;
 
       @observable devices = [];      
@@ -23,10 +25,17 @@ export default class UserModel {
           this.login = data.login;
           this.officeId = data.officeId;
           this.isAdmin = data.isAdmin;
+
+          OfficesStore.getOfficeById(this.officeId).then(office => this.office = office);
       }
 
       @computed get fullName(){
         return `${this.firstName} ${this.lastName}`;
+      }
+
+      @computed get officeName() {
+        if (!this.office) return null;
+        return this.office.name;
       }
 
       // addDevice(device) {

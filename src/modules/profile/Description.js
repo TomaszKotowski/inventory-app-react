@@ -7,20 +7,6 @@ import AuthService from '../../services/AuthService';
 @inject('userStore', 'officesStore')
 @observer
 class Description extends Component {
-  @observable officeName;
-
-  componentDidMount() {
-    reaction(
-      () => this.props.officesStore.officesList,
-      () => {
-        const officeArr = this.props.officesStore.officesList.forEach(item => {
-          if(item.id == this.props.userStore.currentUser.officeId) {
-            this.officeName = item.name;
-          }
-        });
-      }
-    );
-  }
 
   render() {
     const { userStore } = this.props;
@@ -35,7 +21,7 @@ class Description extends Component {
         </Flex>
         <Flex justify='center'>
           <Row-Flex>
-            <span className='userCity'>{this.officeName}</span>
+            <span className='userCity'>{userStore.currentUser.officeName}</span>
           </Row-Flex>
         </Flex>
         <WhiteSpace size="lg" />
@@ -45,4 +31,10 @@ class Description extends Component {
 }
 
 export default Description;
+
+
+
+
+
+
 

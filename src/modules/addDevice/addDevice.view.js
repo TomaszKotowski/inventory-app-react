@@ -66,56 +66,53 @@ class AddDevice extends Component {
     }
     
     render() {
+      var style = {
+        height: "100vh"
+      }
       return(
-        <div>
-        <NavBarView title="Add device" />
-        <Flex>
-          <Flex.Item>
-            {this.notificationMsg && <NoticeBar mode='closable' onClick={this.resetNotificationMessage}>{this.notificationMsg}</NoticeBar>}
-          </Flex.Item>
-        </Flex>
-        <Flex>
-          <Flex.Item>
-            <List renderHeader={() => 'Device name'}>
+      <Flex direction="column" align="stretch" className="container-flex-item" style={style}>
+      
+        <Flex.Item flex={1}>
+        <NavBarView title="Add device"/>
+            <Flex.Item>
+              {this.notificationMsg && <NoticeBar mode='closable' onClick={this.resetNotificationMessage}>{this.notificationMsg}</NoticeBar>}
+            </Flex.Item>
+            <Flex.Item>
+              <List renderHeader={() => 'Device name'}>
                 <InputItem
                   clear
                   onChange={this.onChangeName}
                 />
-            </List>
-          </Flex.Item>
-        </Flex>
-        <Flex>
-          <Flex.Item>
-            <List renderHeader={() => 'Device description'}>
+              </List>
+            </Flex.Item>
+            <Flex.Item>
+              <List renderHeader={() => 'Device description'}>
                 <TextareaItem
                   clear
                   rows='6'
                   onChange={this.onChangeDescription}
                 />
-            </List>
-          </Flex.Item>
-        </Flex>
-        <Flex>
-          <Flex.Item>
-            <List renderHeader={() => 'Device picture URL'}>
-              <InputItem
+              </List>
+            </Flex.Item>  
+            <Flex.Item>
+              <List renderHeader={() => 'Device picture URL'}>
+                <InputItem
                   clear
 
                   onChange={this.onChangeImageUrl}
                 />
-            </List>
-          </Flex.Item>
-        </Flex>
-
-        <WhiteSpace size='xl'/>
-        <Flex justify='center' align='end'>
-          <Flex.Item>
+              </List>
+            </Flex.Item>
+            <WhiteSpace size='xl'/>
+      </Flex.Item>
+      <Flex>
+        <Flex.Item align="end">
               <Button onClick={this.sendToDatabase} type="primary">
                   ADD
               </Button>
-          </Flex.Item>
-        </Flex>
-      </div>
+        </Flex.Item>
+      </Flex>
+    </Flex>
     );
   }
 }

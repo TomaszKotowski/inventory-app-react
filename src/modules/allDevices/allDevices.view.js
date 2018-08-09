@@ -50,8 +50,8 @@ class AllDevices extends React.Component {
         <Flex.Item className="navbar-sticky">
         <NavBarView title='My Devices' />
         </Flex.Item>
+
           <Flex.Item className="input-item" direction="row">
-         
           <List  className="item-under-sticky">
             <InputItem
               clear
@@ -65,6 +65,7 @@ class AllDevices extends React.Component {
             </Link>
             <WhiteSpace size='sm'/>
           </Flex.Item>
+          
         <Flex.Item>
           {devicesList.map(e => {
             return (

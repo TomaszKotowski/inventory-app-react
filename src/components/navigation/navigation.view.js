@@ -13,9 +13,7 @@ import AdminOnly from '../../modules/adminLogin/isAdmin';
 @observer
 export default class NavigationView extends React.Component {
 
-componentWillMount() {
-  console.log("aaaa");
-}
+
 
   render() {
     const sidebar = (
