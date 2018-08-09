@@ -1,8 +1,8 @@
 import React from 'react';
-import { observer, inject, Observer } from 'mobx-react';
+import { observable } from 'mobx';
+import { observer, inject } from 'mobx-react';
 import { Link } from 'react-router-dom';
 import { Bind } from 'lodash-decorators';
-import { observable } from 'mobx';
 import NavBarView from '../../components/navigation/navBar.view'
 import { NavBar, Icon, Flex, Button, WhiteSpace, Tabs, List, InputItem } from 'antd-mobile';
 import 'antd-mobile/dist/antd-mobile.css';
@@ -28,9 +28,11 @@ class AllDevices extends React.Component {
     }
   }
 
-  componentDidMount() {
-    this.devicesList = this.props.devicesStore.devicesList;
-    
+  @observable deviceList = [];
+
+  async componentDidMount() {
+    const { devicesStore } = this.props;
+    this.deviceList = await devicesStore.getAllDevices();
   }
 
   @Bind()
@@ -39,7 +41,8 @@ class AllDevices extends React.Component {
   }
   
   render() {
-    const { devicesStore } = this.props;
+    const { match, devicesStore } = this.props;
+
     let devicesList = devicesStore.devicesList;
     if (this.search) {
       devicesList = devicesStore.devicesList.filter(e => e.name.toLowerCase().indexOf(this.search) > -1)
@@ -48,7 +51,7 @@ class AllDevices extends React.Component {
     return (
       <div>
         <Flex.Item className="navbar-sticky">
-        <NavBarView title='My Devices' />
+        <NavBarView title='All Devices' />
         </Flex.Item>
 
           <Flex.Item className="input-item" direction="row">
@@ -69,7 +72,7 @@ class AllDevices extends React.Component {
         <Flex.Item>
           {devicesList.map(e => {
             return (
-              <Link to={`/devices/${e.id}`} key={e.id}>
+              <Link to={`${match.path}/${e.id}`} key={e.id}>
                 <Flex.Item>
                   <Item arrow="horizontal" multipleLine >
                     {e.name}

@@ -11,61 +11,63 @@ import './deviceViewStyle.css'
 const Item = List.Item;
 const Brief = Item.Brief;
 
-@inject('devicesStore','layoutStore')
+@inject('devicesStore', 'layoutStore')
 @observer
 class DeviceView extends React.Component {
 
   @observable device = {};
 
-  componentDidMount() {   
+  componentDidMount() {
     reaction(
       () => this.props.devicesStore.devicesList,
       () => {
-              let  id = this.props.match.params.id;
-              this.device = this.props.devicesStore.findDeviceById(id);
-            }
+        let id = this.props.match.params.id;
+        this.device = this.props.devicesStore.findDeviceById(id);
+      }
     );
   }
 
-  @Bind()
-  toTransfer(){
-    this.props.history.push(`/devices/${this.device.id}/transfer`);
+  toTransfer() {
+    const { match } = this.props;
+    this.props.history.push(`${match.path}/${this.device.id}/transfer`);
   }
 
   render() {
+    const { match } = this.props;
+
     var style = {
       height: "100vh"
     }
-    return (
 
-      <Flex direction="column"  align="stretch" style={style}>
-      <Flex.Item flex={1}>
-      <Flex.Item align="center">
-          <NavBar
-            rightContent={<Icon type="ellipsis" onClick={this.props.layoutStore.handleDrawerDocker}/>}>
-            My Devices
-          </NavBar>
-      </Flex.Item>
-      <Link to="/devices/all">
-          <Item arrow="horizontal" multipleLine onClick={() => {}}>
+    return (
+      <Flex direction="column" align="stretch" style={style}>
+        <Flex.Item flex={1}>
+          <Flex.Item align="center">
+            <NavBar
+              rightContent={<Icon type="ellipsis" onClick={this.props.layoutStore.handleDrawerDocker} />}>
+              My Devices
+            </NavBar>
+          </Flex.Item>
+          <Link to={match.path}>
+            <Item arrow="horizontal" multipleLine onClick={() => { }}>
               {this.device.name}
-          </Item>
-      </Link>
-      <WhiteSpace size="lg" />
-      <Flex.Item align="center">
+            </Item>
+          </Link>
+          <WhiteSpace size="lg" />
+          <Flex.Item align="center">
             <div>Serial ID: </div>
             <div>{this.device.id}</div>
+          </Flex.Item>
+          <Flex.Item align="center">
+            <QrGenerator id={this.device.id} />
+          </Flex.Item>
         </Flex.Item>
-        <Flex.Item align="center">
-          <QrGenerator id={this.device.id}/>
-        </Flex.Item> 
-     </Flex.Item>
-    <Flex flex={2}>
-      <Flex.Item>
-          <Button type="primary" onClick = {this.toTransfer}>Transfer</Button>
-      </Flex.Item>
-    </Flex>
-    </Flex> 
+        <Flex flex={2}>
+          <Flex.Item>
+            <Button type="primary" onClick={this.toTransfer}>Transfer</Button>
+          </Flex.Item>
+        </Flex>
+      </Flex>
 
     );
   }

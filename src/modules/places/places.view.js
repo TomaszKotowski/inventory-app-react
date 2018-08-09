@@ -21,8 +21,15 @@ class PlacesView extends Component {
   @observable officeList = [];
 
   async componentDidMount() {
-    this.officeList = await this.props.officesStore.getAllOffices();
-    this.placeList = await this.props.placesStore.getAllPlaces();
+    const { officesStore, placesStore } = this.props;
+
+    const [officeList, placesList] = await Promise.all([
+      officesStore.getAllOffices(),
+      placesStore.getAllPlaces(),
+    ]);
+
+    this.officeList = officeList;
+    this.placeList = placesList;
   }
 
   @bind
@@ -32,6 +39,7 @@ class PlacesView extends Component {
   }
 
   render() {
+    const { match } = this.props
     return (
       <div>
         <div className='top-content'>
@@ -41,7 +49,7 @@ class PlacesView extends Component {
             <Flex.Item>
               Offices
           </Flex.Item>
-            <Link to='/places/add'>
+            <Link to={`${match.path}/add`}>
               <Icon type="cross" className="cross" />
             </Link>
           </Flex>
@@ -73,7 +81,7 @@ class PlacesView extends Component {
                   .filter((place) => place.officeId === this.filterOfficeId)
                   .map((place) => {
                     return (
-                      <Link key={place.id + 1} to={`/places/${place.id}`}>
+                      <Link key={place.id + 1} to={`${match.path}/${place.id}`}>
                         <List.Item
                           key={place.id}
                           arrow="horizontal"

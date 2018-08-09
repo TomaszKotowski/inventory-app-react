@@ -23,6 +23,8 @@ class MyDevices extends React.Component {
   // }
 
   componentDidMount() {
+
+    console.log(this.props.userStore)
     reaction(
       () => this.props.userStore.currentUser.id,
       () => {

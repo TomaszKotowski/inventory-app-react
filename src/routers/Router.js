@@ -6,21 +6,30 @@ import DevicesRouter from './devices.router';
 import EmployeesRouter from './employees.router';
 import IdentifyRouter from './identify.router';
 import PlacesRouter from './places.router';
-import NoMatch from '../NoMatch';
 import ProfileRouter from './profile.router';
+import Login from '../modules/auth/login.view';
+import PrivateRoute from './private.router';
+import AuthService from '../services/AuthService';
+import NoMatch from '../NoMatch';
 
-const AppRouter = () => (
-  <Switch>
-    <Route exact path="/" render={() => <div>Home page by now</div>} />
-    <Route path="/login" component={AuthRouter} />
-    <Route path="/user" component={UserRouter} />
-    <Route path="/devices" component={DevicesRouter} />
-    <Route path="/employees" component={EmployeesRouter} />
-    <Route path="/identify" component={IdentifyRouter} />
-    <Route path="/places" component={PlacesRouter} />
-    <Route path="/profile" component={ProfileRouter} />
-    <Route component={NoMatch} />
-  </Switch>
-);
+class AppRouter extends React.Component {
+  render() {
+    const { match } = this.props
+    return (
+      <Switch>
+        {
+          console.log('App Router', this.props)
+        }
+        <Route exact path={match.path} component={NoMatch} />
+        <Route path={`${match.path}/user`} component={UserRouter} />
+        <Route path={`${match.path}/devices`} component={DevicesRouter} />
+        <Route path={`${match.path}/employees`} component={EmployeesRouter} />
+        <Route path={`${match.path}/identify`} component={IdentifyRouter} />
+        <Route path={`${match.path}/places`} component={PlacesRouter} />
+        <Route path={`${match.path}/profile`} component={ProfileRouter} />
+      </Switch>
+    )
+  }
+};
 
 export default AppRouter;

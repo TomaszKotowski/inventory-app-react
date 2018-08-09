@@ -13,12 +13,13 @@ import './placeDevices.style.css'
 export default class PlaceDevices extends Component {
 
   @observable place
-  @observable deviceList
+  @observable deviceList = [];
 
   async componentDidMount() {
-    const { placesStore, match } = this.props;
+    const { placesStore, devicesStore, match } = this.props;
     this.place = await placesStore.getPlaceById(match.params.id);
-    console.log(this.place)
+    this.deviceList = await devicesStore.getAllDevices();
+
   }
 
   render() {
@@ -40,7 +41,7 @@ export default class PlaceDevices extends Component {
             <Flex.Item className='list-item'>
               <List className='list' >
                 {
-                  this.props.devicesStore.devicesList
+                  this.deviceList
                     .filter((device) => device.belongsToId == this.props.match.params.id)
                     .map((device) => {
                       return (

@@ -8,15 +8,17 @@ import DeviceTransfer from '../modules/deviceTransfer/deviceTransfer';
 import DeviceTransferStatus from '../modules/deviceTransferStatus/deviceTransferStatus.view'
 
 
-const DevicesRouter = ({ match }) => (
-  <Switch>
-    <Route exact path='/devices' component={MyDevices} />
-    <Route path="/devices/add" component={AddDevice} />
-    <Route path="/devices/all" component={AllDevices} />
-    <Route exact path="/devices/:id" component={DeviceView} />
-    <Route exact path="/devices/:id/transfer" component={DeviceTransfer} />
-    <Route exact path="/devices/:id/transfer/status" component={DeviceTransferStatus} />
-  </Switch>
-);
+const DevicesRouter = ({ match }) => {
+  console.log('DevRouter', match); return (
+    <Switch>
+      <Route exact path={match.path} component={MyDevices} />
+      <Route path={`${match.path}/add`} component={AddDevice} />
+      <Route path={`${match.path}/devices/all`} component={AllDevices} />
+      <Route exact path={`${match.path}/:id`} component={DeviceView} />
+      <Route exact path={`${match.path}/:id/transfer`} component={DeviceTransfer} />
+      <Route exact path={`${match.path}/:id/transfer/status`} component={DeviceTransferStatus} />
+    </Switch>
+  )
+};
 
 export default DevicesRouter;

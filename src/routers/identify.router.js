@@ -5,8 +5,8 @@ import IdentifyResult from '../modules/identifyResult/identifyResult.view';
 
 const IdentifyRouter = ({ match }) => (
   <Switch>
-    <Route exact path="/identify" component={Identify}/>
-    <Route path="/identify/:id"  component={IdentifyResult}/>
+    <Route exact path={match.path} component={Identify} />
+    <Route path={`${match.path}/:id`} component={IdentifyResult} />
   </Switch>
 );
 
