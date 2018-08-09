@@ -4,6 +4,7 @@ import { observer, inject } from 'mobx-react';
 import 'antd-mobile/dist/antd-mobile.css';
 import { NavBar, Icon, Flex, List, WhiteSpace } from 'antd-mobile';
 import { Link } from 'react-router-dom';
+import QrReader from "../../components/qrCode/reader/qrReader";
 
 const Item = List.Item;
 const Brief = Item.Brief;
@@ -12,7 +13,6 @@ const Brief = Item.Brief;
 @observer
 class Identify extends React.Component {
   
-
   render() {
     return (
       <Flex direction="column" align="stretch">
@@ -27,7 +27,7 @@ class Identify extends React.Component {
       <WhiteSpace size="xl" />
       <WhiteSpace size="xl" />
         <Flex.Item align="center" className="device-targed-box2" justify="center;">
-            <div>Camera Hereeeeeeeeeeeeeee</div>
+          <QrReader identify={true} transfer={false}/>
         </Flex.Item>
     </Flex> 
     );

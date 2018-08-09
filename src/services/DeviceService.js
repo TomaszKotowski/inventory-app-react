@@ -48,6 +48,11 @@ class DeviceService {
     })
   }
 
+  /**
+   * Update device belongsToId
+   * @param {string} deviceId 
+   * @param {string} newOwnerId 
+   */
   changeOwner(deviceId, newOwnerId) {
     const data = JSON.stringify({
       belongsToId: newOwnerId,
