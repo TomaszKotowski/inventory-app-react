@@ -5,7 +5,7 @@ import { Drawer, NavBar, Icon, Flex, List } from 'antd-mobile';
 import 'antd-mobile/dist/antd-mobile.css';
 import './navigation.style.css';
 import UserModel from "../../models/UserModel";
-import AdminOnly from '../../modules/adminLogin/isAdmin';
+import AdminOnly from '../../modules/adminLogin/adminOnly';
 
 
 
@@ -13,9 +13,7 @@ import AdminOnly from '../../modules/adminLogin/isAdmin';
 @observer
 export default class NavigationView extends React.Component {
 
-componentWillMount() {
-  console.log("aaaa");
-}
+
 
   render() {
     const sidebar = (
