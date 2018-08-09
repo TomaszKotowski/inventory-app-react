@@ -15,14 +15,17 @@ import UserService from '../../services/UserService';
 @observer
 export default class EmployeeDevices extends Component {
 
-  @observable empoloyeeName;
   @observable employee;
+  @observable deviceList = [];
 
   async componentDidMount() {
-    const { userStore, match } = this.props;
+    console.log(this.props)
+    const { userStore, devicesStore, match } = this.props;
     this.employee = await userStore.getUserById(match.params.id);
+    this.deviceList = await devicesStore.getAllDevices();
+
   }
-  
+
   render() {
     return this.employee ? (
       <div>
@@ -42,7 +45,7 @@ export default class EmployeeDevices extends Component {
             <Flex.Item className='list-item'>
               <List className='list' >
                 {
-                  this.props.devicesStore.devicesList
+                  this.deviceList
                     .filter((device) => device.belongsToId == this.props.match.params.id)
                     .map((device) => {
                       return (

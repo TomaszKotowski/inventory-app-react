@@ -17,9 +17,11 @@ class EmployeesView extends Component {
 
   async componentDidMount() {
     this.usersList = await this.props.userStore.getAllUsers();
+    console.log("did mount emp view", this.props)
   }
 
   render() {
+    const { match } = this.props
     return (
       <div>
         <div className='top-content'>
@@ -33,7 +35,7 @@ class EmployeesView extends Component {
                 this.usersList
                   .map((user) => {
                     return (
-                      <Link key={user.id + 1} to={`/employees/${user.id}`}>
+                      <Link key={user.id + 1} to={`${match.path}/${user.id}`}>
                         <List.Item
                           key={user.id}
                           arrow="horizontal"

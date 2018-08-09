@@ -40,6 +40,14 @@ class DeviceService {
     }) 
   }
 
+  findByDeviceId(deviceId) {
+    return ApiClient.getInstance().get(`/api/devices?id=${deviceId}`)
+    .then(result => new DeviceModel(result.data[0]))
+    .catch((err) => {
+      console.log(err);
+    })
+  }
+
   changeOwner(deviceId, newOwnerId) {
     const data = JSON.stringify({
       belongsToId: newOwnerId,

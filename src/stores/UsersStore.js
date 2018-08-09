@@ -11,7 +11,7 @@ class UserStore {
    * Set user data to current user store
    * @param {Object} data 
    */
-  setUser(data) {
+  setUser(data = {}) {
     this.currentUser = data;
   }
 

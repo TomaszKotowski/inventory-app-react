@@ -43,7 +43,7 @@ class DeviceTransfer extends React.Component {
   }
 
   render() {
-    console.log(this.props.match.params.id);
+    const { match } = this.props
     return (
       <Flex direction="column" align="stretch">
         <Flex.Item>
@@ -53,14 +53,16 @@ class DeviceTransfer extends React.Component {
               My Devices
           </NavBar>
           </Flex.Item>
-          <Link to="/devices">
-            <Item arrow="horizontal" multipleLine onClick={() => { }}>
-              {this.device.name}
-            </Item>
-          </Link>
-        </Flex.Item>
-        <Flex.Item align="center" className="device-targed-box1">
-          <div>CHOOSE TARGET</div>
+      </Flex.Item>
+      <Flex.Item>
+        <Link to={match.path}>
+          <Item arrow="horizontal" multipleLine onClick={() => {}}>
+            {this.device.name}
+          </Item>
+      </Link>
+      </Flex.Item>
+      <Flex.Item align="center" className="device-targed-box1">
+            <div>CHOOSE TARGET</div>
         </Flex.Item>
         <Flex.Item align="center" className="device-targed-box2" justify="center;">
           <QrReader deviceId={this.device.id} transfer={true} reject={this.reject} accept={this.accept} />

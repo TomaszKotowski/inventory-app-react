@@ -31,6 +31,7 @@ class AuthService {
       if (response.data.token) {
         AuthData.setToken(response.data.token);
         ApiClient.updateToken();
+        this.getProfile();
       }
     })
     .catch(err => {
@@ -55,7 +56,7 @@ class AuthService {
 
   getProfile() {
     if (this.isLoggedIn()) {
-      ApiClient.getInstance().get('/api/users/current')
+      return ApiClient.getInstance().get('/api/users/current')
       .then(result => {
         const currentUser = new UserModel(result.data);
         UsersStore.setUser(currentUser);

@@ -2,9 +2,9 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Profile from '../modules/profile/profile.view';
 
-const ProfileRouter = () => (
+const ProfileRouter = ({ match }) => (
   <Switch>
-    <Route exact path='/profile' component={Profile} />
+    <Route exact path={match.path} component={Profile} />
   </Switch>
 );
 

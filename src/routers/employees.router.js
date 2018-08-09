@@ -5,8 +5,8 @@ import EmployeeDevices from '../modules/empoloyeeDevices/employeeDevices.view'
 
 const EmployeesRouter = ({ match }) => (
   <Switch>
-    <Route exact path="/employees" component={EmployeesView} />
-    <Route path="/employees/:id" component={EmployeeDevices} />
+    <Route exact path={match.path} component={EmployeesView} />
+    <Route path={`${match.path}/:id`} component={EmployeeDevices} />
   </Switch>
 );
 

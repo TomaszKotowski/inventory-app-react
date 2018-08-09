@@ -1,15 +1,10 @@
-import { observable } from 'mobx';
+import { observable, action } from 'mobx';
 import { find } from 'lodash';
 import DeviceService from '../services/DeviceService';
 
 class DevicesStore {
-  
+
   @observable devicesList = [];
-
-  constructor() {
-    DeviceService.getAllDevices().then((list) => this.addDeviceList(list));
-  }
-
 
   /**
    * Reset devices list. 
@@ -39,6 +34,15 @@ class DevicesStore {
     this.devicesList = devicesList;
   }
 
+  async getAllDevices() {
+    if (this.devicesList.length < 2) {
+      const deviceList = await DeviceService.getAllDevices();
+      this.addDeviceList(deviceList);
+    }
+
+    return this.devicesList;
+  }
+
   /**
    * Return device object form all devices list
    * @param {number} index 
@@ -53,10 +57,19 @@ class DevicesStore {
    * @param {string} deviceId
    * @returns {Object}
    */
-  findDeviceById(deviceId) {
-    const result = find(this.devicesList, el => el.id === deviceId);
+  @action
+  async findDeviceById(deviceId) {
+    const result = await find(this.devicesList, el => el.id === deviceId);
 
-    return (result === null) ? null : result;
+    if (!result) {
+      const newDevices = await DeviceService.findByDeviceId(deviceId);
+      this.setToDeviceList(newDevices)
+      // console.log(newDevices);
+      // console.log(newDevices.belongsToId);
+      return newDevices;
+    }
+
+    return result;
   }
 
   /**
@@ -70,6 +83,13 @@ class DevicesStore {
     });
 
     return (result === null) ? null : result;
+  }
+
+  setToDeviceList(data) {
+    const device = find(this.devicesList, item => item.id === data.id);
+    if (!device) {
+      this.devicesList.push(data);
+    }
   }
 }
 

@@ -19,11 +19,7 @@ class ApiClient {
   }
 
   updateToken() {
-    this.client = axios.create({
-      headers: {
-        'Authorization': 'Bearer ' + AuthData.getToken()
-      }
-    });
+    this.client.defaults.headers['Authorization'] = `Bearer ${AuthData.getToken()}`;
   }
 }
 
