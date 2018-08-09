@@ -39,6 +39,7 @@ class AllDevices extends React.Component {
   }
   
   render() {
+   
     const { devicesStore } = this.props;
     let devicesList = devicesStore.devicesList;
     if (this.search) {
@@ -47,11 +48,13 @@ class AllDevices extends React.Component {
 
     return (
       <div>
+
         <Flex.Item className="navbar-sticky">
         <NavBarView title='My Devices' />
         </Flex.Item>
 
-          <Flex.Item className="input-item" direction="row">
+          <Flex align="center" alignContent="center" justify="center">
+            <Flex.Item>
           <List  className="item-under-sticky">
             <InputItem
               clear
@@ -59,12 +62,15 @@ class AllDevices extends React.Component {
               onChange={this.onChangeSearch}
             />
           </List>
+          </Flex.Item>
           <WhiteSpace size='sm'/>
-          <Link to='/devices/add'>
+          <Flex.Item align="start" className="item-under-sticky">
+            <Link to='/devices/add' className="item-under-sticky">
               <Icon type="cross" className="cross" />
             </Link>
+            </Flex.Item>
             <WhiteSpace size='sm'/>
-          </Flex.Item>
+          </Flex>
           
         <Flex.Item>
           {devicesList.map(e => {
