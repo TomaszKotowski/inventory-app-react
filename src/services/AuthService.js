@@ -55,9 +55,8 @@ class AuthService {
   }
 
   getProfile() {
-    console.log(ApiClient.getInstance().defaults.headers['Authorization'])
     if (this.isLoggedIn()) {
-     return ApiClient.getInstance().get('/api/users/current')
+      return ApiClient.getInstance().get('/api/users/current')
       .then(result => {
         const currentUser = new UserModel(result.data);
         UsersStore.setUser(currentUser);

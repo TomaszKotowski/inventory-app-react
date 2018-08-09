@@ -9,11 +9,11 @@ import DeviceTransferStatus from '../modules/deviceTransferStatus/deviceTransfer
 
 
 const DevicesRouter = ({ match }) => {
-  console.log('DevRouter', match); return (
+  return (
     <Switch>
       <Route exact path={match.path} component={MyDevices} />
       <Route path={`${match.path}/add`} component={AddDevice} />
-      <Route path={`${match.path}/devices/all`} component={AllDevices} />
+      <Route path={`${match.path}/all`} component={AllDevices} />
       <Route exact path={`${match.path}/:id`} component={DeviceView} />
       <Route exact path={`${match.path}/:id/transfer`} component={DeviceTransfer} />
       <Route exact path={`${match.path}/:id/transfer/status`} component={DeviceTransferStatus} />

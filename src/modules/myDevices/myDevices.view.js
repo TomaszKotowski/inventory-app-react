@@ -17,34 +17,41 @@ const Brief = Item.Brief;
 class MyDevices extends React.Component {
   @observable myDevicesList = [];
   
-  // constructor() {
-    // super();
-    // AuthService.getProfile();
-  // }
 
   componentDidMount() {
+    const { currentUser } = this.props.userStore;
 
-    console.log(this.props.userStore)
+    if (currentUser.devices && currentUser.devices.length) {
+      this.myDevicesList = currentUser.devices;
+    } else if (currentUser.id) {
+      this.findDevices(currentUser.id);
+    }
+    
     reaction(
       () => this.props.userStore.currentUser.id,
-      () => {
-        DeviceService.findDevicesAllocatedToUser(this.props.userStore.currentUser.id)
-        .then((value) => {
-          this.myDevicesList = value.data;
-          this.props.userStore.currentUser.devices = value.data;
-        })
+      (id) => {
+        this.findDevices(id);
       }
     );
   }
   
+  findDevices(id) {
+    DeviceService.findDevicesAllocatedToUser(id)
+      .then((value) => {
+        this.myDevicesList = value.data;
+        this.props.userStore.currentUser.devices = value.data;
+      })
+  }
+
   render() {
-    const { devicesStore } = this.props;
+    const { devicesStore, match} = this.props;
+    
     return (
       <div>
         <NavBarView title="My devices" />
           {this.myDevicesList.map(e =>{
             return (
-            <Link to={`/devices/${e.id}`} key={e.id}>
+            <Link to={`${match.path}/${e.id}`} key={e.id}>
               <Flex.Item key={`flexItem-${e.id}`}>
                 <Item key={`item-${e.id}`} arrow="horizontal" multipleLine>
                   {e.name}

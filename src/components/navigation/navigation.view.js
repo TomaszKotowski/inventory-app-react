@@ -15,8 +15,7 @@ import AdminOnly from '../../modules/adminLogin/adminOnly';
 export default class NavigationView extends React.Component {
   constructor(props) {
     super(props);
-    const { location } = this.props
-    console.log('NavigatioView', location);
+    const { location } = this.props;
     if (!AuthService.isLoggedIn()) {
 
       location.history.push('/');
@@ -27,7 +26,7 @@ export default class NavigationView extends React.Component {
     const sidebar = (
       <div>
         <NavBar
-          className="navbar-sticky"
+          // className="navbar-sticky"
           rightContent={
             <Icon type="ellipsis"
               onClick={layoutStore.handleDrawerDocker}

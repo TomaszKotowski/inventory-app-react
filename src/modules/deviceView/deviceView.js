@@ -6,6 +6,7 @@ import { NavBar, Icon, Flex, Button, List, WhiteSpace } from 'antd-mobile';
 import { Link, Redirect } from 'react-router-dom';
 import { Bind } from 'lodash-decorators';
 import QrGenerator from '../../components/qrCode/generator/qrGenerator';
+import DeviceService from '../../services/DeviceService';
 import './deviceViewStyle.css'
 
 const Item = List.Item;
@@ -17,19 +18,19 @@ class DeviceView extends React.Component {
 
   @observable device = {};
 
-  componentDidMount() {
-    reaction(
-      () => this.props.devicesStore.devicesList,
-      () => {
-        let id = this.props.match.params.id;
-        this.device = this.props.devicesStore.findDeviceById(id);
-      }
-    );
+  async componentDidMount() {
+    this.device = await this.props.devicesStore.findDeviceById(this.props.match.params.id)
   }
 
+  @Bind()
+  sendDeviceId() {
+    this.props.history.push(`/devices/${this.device.id}/transfer`);
+  }
+
+  @Bind()
   toTransfer() {
     const { match } = this.props;
-    this.props.history.push(`${match.path}/${this.device.id}/transfer`);
+    this.props.history.push(`${match.url}/transfer`);
   }
 
   render() {
@@ -37,8 +38,8 @@ class DeviceView extends React.Component {
 
     var style = {
       height: "100vh"
-    }
-
+    } 
+    console.log(match)
     return (
       <Flex direction="column" align="stretch" style={style}>
         <Flex.Item flex={1}>
@@ -58,13 +59,14 @@ class DeviceView extends React.Component {
             <div>Serial ID: </div>
             <div>{this.device.id}</div>
           </Flex.Item>
-          <Flex.Item align="center">
-            <QrGenerator id={this.device.id} />
-          </Flex.Item>
+        </Flex.Item>
+        <Flex.Item align="center">
+          <QrGenerator id={this.device.id} />
         </Flex.Item>
         <Flex flex={2}>
           <Flex.Item>
             <Button type="primary" onClick={this.toTransfer}>Transfer</Button>
+            {/* <Button type="primary" onClick = {this.sendDeviceId}>Transfer</Button> WAŻNE  */}
           </Flex.Item>
         </Flex>
       </Flex>

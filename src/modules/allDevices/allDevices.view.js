@@ -72,7 +72,7 @@ class AllDevices extends React.Component {
         <Flex.Item>
           {devicesList.map(e => {
             return (
-              <Link to={`${match.path}/${e.id}`} key={e.id}>
+              <Link to={`/app/devices/${e.id}`} key={e.id}>
                 <Flex.Item>
                   <Item arrow="horizontal" multipleLine >
                     {e.name}

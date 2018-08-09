@@ -1,4 +1,4 @@
-import { observable } from 'mobx';
+import { observable, action } from 'mobx';
 import { find } from 'lodash';
 import DeviceService from '../services/DeviceService';
 
@@ -28,10 +28,10 @@ class DevicesStore {
 
   /**
    * Add all device list
-   * @param {Array} deviceList 
+   * @param {Array} devicesList
    */
-  addDeviceList(deviceList) {
-    this.devicesList = deviceList;
+  addDeviceList(devicesList) {
+    this.devicesList = devicesList;
   }
 
   async getAllDevices() {
@@ -57,12 +57,19 @@ class DevicesStore {
    * @param {string} deviceId
    * @returns {Object}
    */
-  findDeviceById(deviceId) {
-    const result = find(this.devicesList, el => el.id === deviceId);
+  @action
+  async findDeviceById(deviceId) {
+    const result = await find(this.devicesList, el => el.id === deviceId);
 
+    if (!result) {
+      const newDevices = await DeviceService.findByDeviceId(deviceId);
+      this.setToDeviceList(newDevices)
+      // console.log(newDevices);
+      // console.log(newDevices.belongsToId);
+      return newDevices;
+    }
 
-
-    return (result === null) ? null : result;
+    return result;
   }
 
   /**
@@ -76,6 +83,13 @@ class DevicesStore {
     });
 
     return (result === null) ? null : result;
+  }
+
+  setToDeviceList(data) {
+    const device = find(this.devicesList, item => item.id === data.id);
+    if (!device) {
+      this.devicesList.push(data);
+    }
   }
 }
 
