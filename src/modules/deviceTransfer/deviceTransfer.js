@@ -18,13 +18,16 @@ class DeviceTransfer extends React.Component {
     reaction(
       () => this.props.devicesStore.devicesList,
       () => {
-        let  id = this.props.match.params.id;
+        let id = this.props.match.params.id;
         this.device = this.props.devicesStore.findDeviceById(id);       
       }
     );
   }
 
   render() {
+    console.log(this.device.id);
+    console.log(this.device);
+    console.log('jest');
     return (
       <Flex direction="column" align="stretch">
       <Flex.Item>    
@@ -44,7 +47,7 @@ class DeviceTransfer extends React.Component {
             <div>CHOOSE TARGET</div>
         </Flex.Item>
         <Flex.Item align="center" className="device-targed-box2" justify="center;">
-          <QrReader />
+          <QrReader deviceId=''/>
         </Flex.Item>
     </Flex> 
     );

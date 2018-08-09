@@ -39,6 +39,17 @@ class DeviceService {
       console.log(err);
     }) 
   }
+
+  changeOwner(deviceId, newOwnerId) {
+    const data = JSON.stringify({
+      belongsToId: newOwnerId,
+    });
+
+    ApiClient.getInstance().patch(`/api/devices/${deviceId}`, data)
+    .catch((err) => {
+      console.log(err);
+    })
+  }
 }
 
 export default new DeviceService();
