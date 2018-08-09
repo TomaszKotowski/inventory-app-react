@@ -5,6 +5,10 @@ import { Drawer, NavBar, Icon, Flex, List } from 'antd-mobile';
 import 'antd-mobile/dist/antd-mobile.css';
 import './navigation.style.css';
 import AuthService from '../../services/AuthService';
+import UserModel from "../../models/UserModel";
+import AdminOnly from '../../modules/adminLogin/adminOnly';
+
+
 
 @inject('layoutStore')
 @observer
@@ -23,6 +27,7 @@ export default class NavigationView extends React.Component {
     const sidebar = (
       <div>
         <NavBar
+          className="navbar-sticky"
           rightContent={
             <Icon type="ellipsis"
               onClick={layoutStore.handleDrawerDocker}
@@ -42,15 +47,17 @@ export default class NavigationView extends React.Component {
                 MY DEVICES
             </List.Item>
             </Link>
-            <Link to={`${match.path}/devices/all`} onClick={layoutStore.handleDrawerDocker}>
-              <List.Item key='allDevices'>
-                ALL DEVICES
+            <AdminOnly>
+              <Link to={`${match.path}/devices/all`} onClick={layoutStore.handleDrawerDocker}>
+                <List.Item key='allDevices'>
+                  ALL DEVICES
               </List.Item>
-            </Link>
+              </Link>
+            </AdminOnly>
             <Link to={`${match.path}/employees`} onClick={layoutStore.handleDrawerDocker}>
               <List.Item key='employees'>
                 EMPLOYEES
-            </List.Item>
+              </List.Item>
             </Link>
             <Link to={`${match.path}/identify`} onClick={layoutStore.handleDrawerDocker}>
               <List.Item key='identify'>

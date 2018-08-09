@@ -13,7 +13,10 @@ class OfficesStore {
    * @param {Object} data 
    */
   addOffice(data) {
-    this.officesList.push(data);
+    const office = find(this.officesList, item => item.id === data.id);
+    if (!office) {
+      this.officesList.push(data);
+    }
   }
 
   async getAllOffices() {
@@ -38,6 +41,19 @@ class OfficesStore {
     const office = find(this.officesList, element => element.id === officeId);
 
     return (office === null) ? 'Office not found' : office;
+  }
+
+  @action
+  async getOfficeById(id) {
+    const office = find(this.officesList, item => item.id === id);
+
+    if (!office) {
+      const newOffice = await OfficeService.getOfficeById(id);
+      this.addOffice(newOffice);
+      return newOffice;
+    }
+
+    return office;
   }
 
   /**
