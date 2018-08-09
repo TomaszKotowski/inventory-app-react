@@ -15,7 +15,7 @@ class MyDevices extends React.Component {
 
   render() {
     const { devicesStore } = this.props;
-
+    
     return (
       <div>
         <Flex.Item className="navbar-sticky">

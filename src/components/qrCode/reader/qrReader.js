@@ -13,7 +13,7 @@ class QrReader extends Component {
   canvas;
   videoWidth;
   videoHeight;
-  picBind;
+  scanBind;
   @observable showPopup = false;
   recording;
 
@@ -27,8 +27,8 @@ class QrReader extends Component {
   componentDidMount() {
     this.getCamera();
     this.recording = true;
-    this.picBind = this.makePic.bind(this);
-    requestAnimationFrame(this.picBind);
+    this.scanBind = this.scan.bind(this);
+    requestAnimationFrame(this.scanBind);
   }
   
   componentWillUnmount() {
@@ -62,7 +62,7 @@ class QrReader extends Component {
   }
 
   @Bind
-  makePic() {
+  scan() {
     if (this.recording) {
       if (this.video.current.readyState === 4) {
         this.videoWidth = this.video.current.videoWidth;
@@ -77,41 +77,40 @@ class QrReader extends Component {
         }
       }
       if (!this.idFromQr) {
-        requestAnimationFrame(this.picBind);
+        requestAnimationFrame(this.scanBind);
       } else {
-        console.log(this.idFromQr);
-        this.showPopup = true;
-        this.stopRecording();
-        this.video.current.style.display = 'none';
+        // console.log(this.idFromQr);
+        if (this.props.transfer) {
+          this.showPopup = true;
+          this.stopRecording();
+          this.video.current.style.display = 'none';
+        } else {
+          requestAnimationFrame(this.scanBind);
+        }
       }
     }
   }
 
-  @Bind
-  accept() {
+  // identifyUserToSend() {
 
-  }
+  // }
 
-  @Bind
-  reject() {
-    this.showPopup = false;
-    this.video.current.style.display = 'block';
-    this.idFromQr = '';
-    this.getCamera();
-    this.recording = true;
-    requestAnimationFrame(this.picBind);
-  }
+  // @Bind
+  // accept() {
+
+  // }
 
   render() {
     const style = { width: '90%', margin: '5%' };
     const buttonStyle = { width: '100%' };
     const cardStyle = { margin: '30% 0.5rem 0.5rem 0.5rem'}
+    console.log(this.props.deviceId);
 
     return (
       <div>
         <video id='ok' ref={this.video} style={style}></video>
         {
-          this.showPopup &&
+          (this.showPopup && this.props.transfer) &&
           <Card title='Transfer' style={cardStyle}>
             <p>Czy na pewno chcesz przekazać to urządzenie?</p>
             <Row gutter={16}>
@@ -119,7 +118,7 @@ class QrReader extends Component {
                 <Button size='default' style={buttonStyle}>Tak</Button>
               </Col>
               <Col span={12} >
-                <Button size='default' onClick={this.reject} style={buttonStyle}>Nie</Button>
+                <Button size='default' onClick={this.props.reject.bind(this)} style={buttonStyle}>Nie</Button>
               </Col>
             </Row>
           </Card>

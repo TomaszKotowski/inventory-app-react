@@ -6,6 +6,7 @@ import { NavBar, Icon, Flex, Button, List } from 'antd-mobile';
 import { Link, Redirect } from 'react-router-dom';
 import { Bind } from 'lodash-decorators';
 import QrGenerator from '../../components/qrCode/generator/qrGenerator';
+import DeviceService from '../../services/DeviceService';
 
 const Item = List.Item;
 const Brief = Item.Brief;
@@ -17,23 +18,30 @@ class DeviceView extends React.Component {
   @observable device = {};
 
   componentDidMount() {   
+    if (this.props.match.params.id && this.props.devicesStore.devicesList) {
+      this.showDevice();
+    }
+
     reaction(
       () => this.props.devicesStore.devicesList,
       () => {
-              let  id = this.props.match.params.id;
-              this.device = this.props.devicesStore.findDeviceById(id);
-            }
+        this.device = this.props.devicesStore.findDeviceById(this.props.match.params.id);
+      }
     );
+  }
+  
+  async showDevice() {
+    await DeviceService.getAllDevices();
+    this.device = await this.props.devicesStore.findDeviceById(this.props.match.params.id);
   }
 
   @Bind()
-  abc(){
+  sendDeviceId(){
     this.props.history.push(`/devices/${this.device.id}/transfer`);
   }
 
   render() {
     return (
-
       <Flex direction="column" align="stretch" className="container-flex">
       <Flex.Item>    
       <Flex.Item align="center">
@@ -58,10 +66,8 @@ class DeviceView extends React.Component {
       <Flex>
         <Flex.Item>
           {/* <Link to={`/devices/${this.device.id}/transfer`}> */}
-          <Button type="primary" onClick = {this.abc}>Transfer</Button>
-        
+          <Button type="primary" onClick = {this.sendDeviceId}>Transfer</Button>
         </Flex.Item>
-        
       </Flex>
     </Flex> 
 

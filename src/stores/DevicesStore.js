@@ -36,7 +36,7 @@ class DevicesStore {
    * @param {Array} devicesList
    */
   addDeviceList(devicesList) {
-    this.devicesList = [...devicesList];
+    this.devicesList = devicesList;
   }
 
   /**

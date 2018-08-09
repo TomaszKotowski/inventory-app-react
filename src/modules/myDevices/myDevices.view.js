@@ -16,26 +16,35 @@ const Brief = Item.Brief;
 class MyDevices extends React.Component {
   @observable myDevicesList = [];
   
+
   componentDidMount() {
     const { currentUser } = this.props.userStore;
-    if (currentUser.id) {
-      this.myDevicesList = currentUser.devices
+
+    if (currentUser.devices && currentUser.devices.length) {
+      this.myDevicesList = currentUser.devices;
+    } else if (currentUser.id) {
+      this.findDevices(currentUser.id);
     }
+    
     reaction(
       () => this.props.userStore.currentUser.id,
-      () => {
-        DeviceService.findDevicesAllocatedToUser(this.props.userStore.currentUser.id)
-        .then((value) => {
-          this.myDevicesList = value.data;
-          this.props.userStore.currentUser.devices = value.data;
-        })
+      (id) => {
+        this.findDevices(id);
       }
     );
   }
   
+  findDevices(id) {
+    DeviceService.findDevicesAllocatedToUser(id)
+      .then((value) => {
+        this.myDevicesList = value.data;
+        this.props.userStore.currentUser.devices = value.data;
+      })
+  }
+
   render() {
     const { devicesStore } = this.props;
-    console.log(this.myDevicesList);
+    
     return (
       <div>
         <NavBarView title="My devices" />
