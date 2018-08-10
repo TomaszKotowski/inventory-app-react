@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { Bind } from 'lodash-decorators';
 import NavBarView from '../../components/navigation/navBar.view'
 import { NavBar, Icon, Flex, Button, WhiteSpace, Tabs, List, InputItem } from 'antd-mobile';
+import { Row, Col } from 'antd';
 import 'antd-mobile/dist/antd-mobile.css';
 import './allDevicesStyle.css';
 
@@ -54,7 +55,8 @@ class AllDevices extends React.Component {
         <NavBarView title='All Devices' />
         </Flex.Item>
 
-          <Flex.Item className="input-item" direction="row">
+          <Flex align="stretch" direction="row">
+          
           <List  className="item-under-sticky">
             <InputItem
               clear
@@ -62,12 +64,13 @@ class AllDevices extends React.Component {
               onChange={this.onChangeSearch}
             />
           </List>
-          <WhiteSpace size='sm'/>
-          <Link to={`/app/devices/add`}>
+        
+          
+          <Link to={`/app/devices/add`} className="item-under-sticky-cross">
               <Icon type="cross" className="cross" />
             </Link>
-            <WhiteSpace size='sm'/>
-          </Flex.Item>
+            
+          </Flex>
           
         <Flex.Item>
           {devicesList.map(e => {
