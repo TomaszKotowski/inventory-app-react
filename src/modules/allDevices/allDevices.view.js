@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { Bind } from 'lodash-decorators';
 import NavBarView from '../../components/navigation/navBar.view'
 import { NavBar, Icon, Flex, Button, WhiteSpace, Tabs, List, InputItem } from 'antd-mobile';
+import { Row, Col } from 'antd';
 import 'antd-mobile/dist/antd-mobile.css';
 import './allDevicesStyle.css';
 
@@ -41,6 +42,15 @@ class AllDevices extends React.Component {
   }
   
   render() {
+    var style22 = {
+      width: "50px",
+      height: "50px",
+      display: "block",
+      margin: "16px auto",
+      borderRadius: "5px",
+      border: "1px solid black"
+    }
+    
     const { match, devicesStore } = this.props;
 
     let devicesList = devicesStore.devicesList;
@@ -54,7 +64,8 @@ class AllDevices extends React.Component {
         <NavBarView title='All Devices' />
         </Flex.Item>
 
-          <Flex.Item className="input-item" direction="row">
+          <Flex align="stretch" direction="row">
+          
           <List  className="item-under-sticky">
             <InputItem
               clear
@@ -62,23 +73,34 @@ class AllDevices extends React.Component {
               onChange={this.onChangeSearch}
             />
           </List>
-          <WhiteSpace size='sm'/>
-          <Link to={`/app/devices/add`}>
+        
+          
+          <Link to={`/app/devices/add`} className="item-under-sticky-cross">
               <Icon type="cross" className="cross" />
             </Link>
-            <WhiteSpace size='sm'/>
-          </Flex.Item>
+            
+          </Flex>
           
         <Flex.Item>
           {devicesList.map(e => {
             return (
               <Link to={`/app/devices/${e.id}`} key={e.id}>
+              <List >
+              <Row>
                 <Flex.Item>
+              <Col span={4} align="center">
+              <img src={e.imageUrl} style={style22}/>
+              </Col>
+              
+              <Col span={20} >
                   <Item arrow="horizontal" multipleLine >
                     {e.name}
                     <Brief>{e.id}</Brief>
                   </Item> 
-                </Flex.Item>
+              </Col>
+              </Flex.Item>
+                </Row>
+                </List>
               </Link>
             )
           })}
@@ -89,3 +111,25 @@ class AllDevices extends React.Component {
 }
 
 export default AllDevices;
+
+
+
+
+{/* <Flex.Item>
+          {devicesList.map(e => {
+            return (
+              <Link to={`/app/devices/${e.id}`} key={e.id}>
+              <Flex>
+              <Flex.Item>
+              <img src={e.imageUrl} style={style22}/>
+                
+                  <Item arrow="horizontal" multipleLine >
+                    {e.name}
+                    <Brief>{e.id}</Brief>
+                  </Item> 
+                </Flex.Item>
+                </Flex>
+              </Link>
+            )
+          })}
+        </Flex.Item> */}

@@ -25,11 +25,11 @@ class EmployeesView extends Component {
     const { match } = this.props
     return (
       <div>
-        <div className='top-content'>
+        <div className='top-content' className="navbar-sticky">
           <NavBarView title="Employees" />
           <WhiteSpace />
         </div>
-        <div>
+        <div className="item-under-sticky">
           <Flex>
             <List className="employees-list">
               {
