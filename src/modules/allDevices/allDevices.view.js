@@ -63,7 +63,7 @@ class AllDevices extends React.Component {
             />
           </List>
           <WhiteSpace size='sm'/>
-          <Link to='/devices/add'>
+          <Link to={`/app/devices/add`}>
               <Icon type="cross" className="cross" />
             </Link>
             <WhiteSpace size='sm'/>
