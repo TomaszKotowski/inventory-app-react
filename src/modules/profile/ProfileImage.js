@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import mobx from 'mobx';
-import { Flex, WhiteSpace } from 'antd-mobile';
-import { Icon } from 'antd';
+import { Flex, WhiteSpace, Icon } from 'antd-mobile';
 import { Link } from 'react-router-dom';
 import UsersStore from '../../stores/UsersStore';
 import { inject, observer } from 'mobx-react';
@@ -15,7 +14,7 @@ class ProfileImage extends Component {
   
   
   render() {
-    return(
+    return (
       <div>
         <WhiteSpace size="xl"/>
         <Flex justify='end'>
@@ -24,9 +23,13 @@ class ProfileImage extends Component {
           </Link>
         </Flex>
         <Flex justify='center'>
-          <img className='avatar' src={this.props.userStore.getPictureAvatarLink} alt="User avatar"/>
+          {this.props.src ? (
+            <img className='avatar' src={this.props.src} alt="User avatar" />
+          ) : (
+              <Icon type="loading" />
+            )}
         </Flex>
-        <WhiteSpace size="lg"/>
+        <WhiteSpace size="lg" />
       </div>
     );
   }

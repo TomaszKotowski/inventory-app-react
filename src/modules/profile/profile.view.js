@@ -20,7 +20,7 @@ export default class ProfileView extends React.Component {
     return this.currentUser ? (
       <div>
         <NavBarView title="My profile" />
-        <ProfileImage/>
+        <ProfileImage src={this.props.userStore.getPictureAvatarLink}/>
         <Description/>
         <QrGenerator id={this.currentUser.id} />
       </div>
