@@ -20,7 +20,8 @@ class Identify extends React.Component {
   @Bind()
   onIdentify(idFromQr, data) {
     this.data = data;
-    this.props.history.push(`/app/identify/${this}`);
+    console.log('okon', this.data);
+    this.props.history.push(`/app/identify/${this.data[1].id}`);
   }
 
   render() {

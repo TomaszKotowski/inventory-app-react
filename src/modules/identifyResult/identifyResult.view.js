@@ -5,6 +5,7 @@ import 'antd-mobile/dist/antd-mobile.css';
 import { NavBar, Icon, Flex, List, Button, WhiteSpace } from 'antd-mobile';
 import { Link } from 'react-router-dom';
 import { Bind } from 'lodash-decorators';
+import OfficesStore from '../../stores/OfficesStore';
 
 const Item = List.Item;
 const Brief = Item.Brief;
@@ -14,8 +15,13 @@ const Brief = Item.Brief;
 @observer
 class identifyResult extends React.Component {
   
+  @observable office = '';
+
+  async componentDidMount() {
+    this.office = await OfficesStore.getOfficeById(this.props.data[1].officeId).name;
+  }
+
   render() {
-console.log(this.props.data);
 
       return (
         <Flex direction="column" align="stretch" className="full-height">
@@ -25,24 +31,31 @@ console.log(this.props.data);
             </NavBar>
           <WhiteSpace size="md" />
           {(this.props.data[0] === 'user') &&
-          <Flex>
-          <Flex.Item align="left">
-              <div>THIS IS: </div>
-          </Flex.Item>
-          <Flex.Item align="center" className="bold-text">
-              <div>ITEM NAME HERE</div>
-          </Flex.Item>
-          <Flex.Item align="left">
-              <div>IT'S ASSIGNED TO: </div>
-          </Flex.Item>
-          <Flex.Item align="center" className="bold-text">
-              <div>PERSON NAME HERE</div>
-          </Flex.Item>
+          <Flex direction="column">
+            <img src={this.props.data[1].avatar} alt=""/>
+            <WhiteSpace size="md" />
+              <Flex.Item align="Center">
+                  <h4>User: </h4>
+                  <h2>{`${this.props.data[1].firstName} ${this.props.data[1].lastName}`}</h2>
+              </Flex.Item>  
+          </Flex>
+          }
+          {(this.props.data[0] === 'device') &&
+          <Flex direction="column">
+            <img src={this.props.data[1].imageUrl} alt=""/>
+            <WhiteSpace size="md" />
+              <Flex.Item align="Center">
+                  <h4>User: </h4>
+                  <h2>{`${this.props.data[1].name}`}</h2>
+              </Flex.Item>
+              <Flex.Item align="Center">
+                  <h4>User: </h4>
+              <h3>{`${this.props.data[1].description}`}</h3>
+              </Flex.Item>
           </Flex>
           }
 
-          <Flex>
-      </Flex>
+          
     </Flex> 
 
       )
