@@ -24,15 +24,6 @@ class UserService {
       })
   }
 
-<<<<<<< HEAD
-  updateUserData(userId, updatedData) {
-    const data = JSON.stringify(updatedData);
-
-    ApiClient.getInstance().patch(`/api/users/${userId}`, data)
-      .catch((error) => {
-        console.log(error);
-      })
-=======
   /**
    * Update user data in database
    * @param {string} userId 
@@ -53,7 +44,6 @@ class UserService {
       .catch(err => {
         console.log(err);
       });
->>>>>>> preDevelop
   }
 }
 
