@@ -29,7 +29,6 @@ export default class NavigationView extends React.Component {
 
   render() {
     const { match, layoutStore } = this.props;
-    console.log(this.props)
     const sidebar = (
       <div>
         <NavBar

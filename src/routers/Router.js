@@ -24,6 +24,7 @@ class AppRouter extends React.Component {
         <Route path={`${match.path}/identify`} component={IdentifyRouter} />
         <Route path={`${match.path}/places`} component={PlacesRouter} />
         <Route path={`${match.path}/profile`} component={ProfileRouter} />
+        <Route component={NoMatch} />
       </Switch>
     )
   }
