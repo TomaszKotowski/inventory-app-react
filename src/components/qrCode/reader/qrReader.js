@@ -23,7 +23,7 @@ class QrReader extends Component {
     this.video = createRef();
     this.canvas = document.createElement('canvas');
   }
-  
+
   componentDidMount() {
     // console.log(this.props.deviceId);
     this.getCamera();
@@ -31,30 +31,30 @@ class QrReader extends Component {
     this.scanBind = this.scan.bind(this);
     requestAnimationFrame(this.scanBind);
   }
-  
+
   componentWillUnmount() {
     this.stopRecording();
   }
-  
+
   getCamera() {
     const constraints = {
       audio: false,
       video: true
     };
-    
+
     navigator.mediaDevices.getUserMedia(constraints)
-    .then((stream) => {
-      window.stream = stream;
-      this.video.current.srcObject = stream;
-      this.recording = true;
-      this.video.current.play();
-    })
-    .catch((error) => {
-      console.log('navigator.getUserMedia error: ', error);
-      this.recording = false;
-    });
+      .then((stream) => {
+        window.stream = stream;
+        this.video.current.srcObject = stream;
+        this.recording = true;
+        this.video.current.play();
+      })
+      .catch((error) => {
+        console.log('navigator.getUserMedia error: ', error);
+        this.recording = false;
+      });
   }
-  
+
   stopRecording() {
     if (this.video.current.readyState === 4) {
       this.video.current.srcObject.getTracks().forEach(track => track.stop());
@@ -83,12 +83,12 @@ class QrReader extends Component {
           if (this.user) {
             this.showPopup = true;
             this.stopRecording();
-            this.video.current.style.display = 'none'; 
+            this.video.current.style.display = 'none';
           } else {
             this.idFromQr = '';
             requestAnimationFrame(this.scanBind);
           }
-        } else if(this.props.identify) {
+        } else if (this.props.identify) {
           this.identifyLogic();
         } else {
           requestAnimationFrame(this.scanBind);
@@ -97,8 +97,10 @@ class QrReader extends Component {
     }
   }
 
+  @Bind()
   async identifyLogic() {
     const data = await IdentifyService.findByIdAndPack(this.idFromQr);
+    this.props.history.push(`/app/identify/${this.idFromQr}`);
     return data;
   }
 
@@ -120,7 +122,7 @@ class QrReader extends Component {
   render() {
     const style = { width: '90%', margin: '5%' };
     const buttonStyle = { width: '100%' };
-    const cardStyle = { margin: '30% 0.5rem 0.5rem 0.5rem'}
+    const cardStyle = { margin: '30% 0.5rem 0.5rem 0.5rem' }
 
     // console.log('id', this.props.deviceId);
 
@@ -133,10 +135,10 @@ class QrReader extends Component {
             <p>{`Czy na pewno chcesz przekazać to urządzenie użytkownikowi ${this.user}?`}</p>
             <Row gutter={16}>
               <Col span={12} >
-                <Button size='default' onClick={this.props.accept.bind(this)} style={buttonStyle}>Tak</Button>
+                <Button size='default' onClick={() => this.props.accept(this.idFromQr)} style={buttonStyle}>Tak</Button>
               </Col>
               <Col span={12} >
-                <Button size='default' onClick={this.props.reject.bind(this)} style={buttonStyle}>Nie</Button>
+                <Button size='default' onClick={this.props.reject} style={buttonStyle}>Nie</Button>
               </Col>
             </Row>
           </Card>

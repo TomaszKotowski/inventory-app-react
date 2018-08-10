@@ -27,7 +27,7 @@ class Identify extends React.Component {
       <WhiteSpace size="xl" />
       <WhiteSpace size="xl" />
         <Flex.Item align="center" className="device-targed-box2" justify="center;">
-          <QrReader identify={true} transfer={false}/>
+          <QrReader {...this.props} identify={true} transfer={false}/>
         </Flex.Item>
     </Flex> 
     );

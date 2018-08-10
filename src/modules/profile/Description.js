@@ -2,11 +2,28 @@ import React, { Component } from 'react';
 import { observable, reaction } from 'mobx';
 import { Flex, WhiteSpace } from 'antd-mobile';
 import { inject, observer } from 'mobx-react';
-import AuthService from '../../services/AuthService';
+import OfficesStore from '../../stores/OfficesStore';
 
 @inject('userStore', 'officesStore')
 @observer
 class Description extends Component {
+
+  @observable city = '';
+
+  async componentDidMount() {
+    console.log('oficeID', this.props.userStore.currentUser.officeId);
+    const tmp = await OfficesStore.getOfficeById(this.props.userStore.currentUser.officeId);
+    console.log(tmp);
+    this.city = tmp.name;
+
+    reaction(
+      () => this.props.userStore.currentUser.officeId,
+      () => {
+        const tmp = OfficesStore.getOfficeById(this.props.userStore.currentUser.officeId).data;
+        console.log('raect', tmp);
+        this.city = tmp.data;
+      })
+  }
 
   render() {
     const { userStore } = this.props;
@@ -21,7 +38,7 @@ class Description extends Component {
         </Flex>
         <Flex justify='center'>
           <Row-Flex>
-            <span className='userCity'>{userStore.currentUser.officeName}</span>
+            <span className='userCity'>Miasto: {this.city}</span>
           </Row-Flex>
         </Flex>
         <WhiteSpace size="lg" />
