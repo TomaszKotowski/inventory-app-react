@@ -23,6 +23,15 @@ class UserService {
         console.log(err);
       })
   }
+
+  updateUserData(userId, updatedData) {
+    const data = JSON.stringify(updatedData);
+
+    ApiClient.getInstance().patch(`/api/users/${userId}`, data)
+      .catch((error) => {
+        console.log(error);
+      })
+  }
 }
 
 export default new UserService();
