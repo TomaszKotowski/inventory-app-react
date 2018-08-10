@@ -29,7 +29,7 @@ class PlacesStore {
 
     if (!place) {
       const newPlace = await PlaceService.getPlaceById(id);
-      this.setToUsersList(newPlace);
+      this.setToPlaceList(newPlace);
       return newPlace;
     }
 
@@ -40,7 +40,7 @@ class PlacesStore {
     this.placesList = placeList;
   }
 
-  setToUsersList(data) {
+  setToPlaceList(data) {
     const place = find(this.placesList, item => item.id === data.id);
     if (!place) {
       this.placesList.push(data);

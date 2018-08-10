@@ -31,7 +31,7 @@ class OfficeService {
   }
 
   getOfficeById(officeId) {
-    return ApiClient.getInstance().get('/api/offices/' + officeId)
+    return ApiClient.getInstance().get(`/api/offices?id=${officeId}`)
       .then(result => new OfficeModel(result.data))
       .catch(err => {
         console.log(err);
