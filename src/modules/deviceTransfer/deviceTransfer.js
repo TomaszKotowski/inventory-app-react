@@ -5,6 +5,8 @@ import 'antd-mobile/dist/antd-mobile.css';
 import { NavBar, Icon, Flex, List } from 'antd-mobile';
 import { Link } from 'react-router-dom';
 import QrReader from "../../components/qrCode/reader/qrReader";
+import DevicesStore from '../../stores/DevicesStore';
+import DeviceService from '../../services/DeviceService';
 
 const Item = List.Item;
 const Brief = Item.Brief;
@@ -16,6 +18,11 @@ class DeviceTransfer extends React.Component {
   @observable id = '';
 
   componentDidMount() {
+    // console.log('ID: ', this.props.match.params.id);
+    if (this.device) {
+      this.findById();
+    }
+
     reaction(
       () => this.props.devicesStore.devicesList,
       () => {
@@ -24,13 +31,17 @@ class DeviceTransfer extends React.Component {
     );
   }
 
-  findById() {
-    this.id = this.props.match.params.id;
-    this.device = this.props.devicesStore.findDeviceById(this.id);
+  @action
+  async findById() {
+    this.device = await DevicesStore.findDeviceById(this.props.match.params.id);
+    this.id = this.device.id;
   }
 
   accept() {
-
+    if (this.props.deviceId !== null) {
+      DeviceService.changeOwner(this.props.deviceId, this.idFromQr);
+    }
+    // DevicesService.changeOwner('61cf7c69-2ed0-4d76-9db8-dd4cdc986078', this.idFromQr);
   }
 
   reject() {
@@ -43,7 +54,7 @@ class DeviceTransfer extends React.Component {
   }
 
   render() {
-    const { match } = this.props
+    const { match } = this.props;
     return (
       <Flex direction="column" align="stretch">
         <Flex.Item>
@@ -65,7 +76,7 @@ class DeviceTransfer extends React.Component {
             <div>CHOOSE TARGET</div>
         </Flex.Item>
         <Flex.Item align="center" className="device-targed-box2" justify="center;">
-          <QrReader deviceId={this.device.id} transfer={true} reject={this.reject} accept={this.accept} />
+          <QrReader deviceId={this.id} transfer={true} identify={false} reject={this.reject} accept={this.accept} />
         </Flex.Item>
       </Flex>
     );
