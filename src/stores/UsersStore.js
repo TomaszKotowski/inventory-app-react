@@ -45,6 +45,11 @@ class UserStore {
     return this.currentUser.avatar;
   }
 
+  getPicturesAvatar(id) {
+    const user = find(this.usersList, item => item.id === id)
+    return user.avatar;
+  }
+
   setToUsersList(data) {
     const user = find(this.usersList, item => item.id === data.id);
     if (!user) {
