@@ -51,16 +51,21 @@ class AddPlace extends Component {
   }
 
   render() {
+    var style = {
+      height: "100vh"
+    }
     return (
-      <div>
+      
+      <Flex direction="column" align="stretch" className="container-flex-item" style={style}>
+      <Flex.Item flex={1}>
         <NavBarView title="Add place" />
         <WhiteSpace size='xl' />
-        <Flex>
+        
           <Flex.Item>
             {this.notificationMsg && <NoticeBar mode='closable' onClick={this.resetErrMessage}>{this.notificationMsg}</NoticeBar>}
           </Flex.Item>
-        </Flex>
-        <Flex>
+      
+        
           <Flex.Item>
             <List renderHeader={() => 'Office'}>
               <Select
@@ -80,8 +85,15 @@ class AddPlace extends Component {
               </Select>
             </List>
           </Flex.Item>
-        </Flex>
-        <Flex>
+        <WhiteSpace size="lg"/>
+        <WhiteSpace size="lg"/>
+        <WhiteSpace size="lg"/>
+        <WhiteSpace size="lg"/>
+        <WhiteSpace size="lg"/>
+        <WhiteSpace size="lg"/>
+        <WhiteSpace size="lg"/>
+        <WhiteSpace size="lg"/>
+        <WhiteSpace size="lg"/>
           <Flex.Item>
             <List renderHeader={() => 'New place name'}>
               <InputItem
@@ -90,16 +102,19 @@ class AddPlace extends Component {
               />
             </List>
           </Flex.Item>
-        </Flex>
-        <WhiteSpace size='xl' />
+      </Flex.Item>
+     
+
+      
+        
         <Flex justify='center' align='end'>
           <Flex.Item>
-            <Button onClick={this.sendToDatabase}>
-              Send
+            <Button onClick={this.sendToDatabase} type="primary">
+              Add
               </Button>
           </Flex.Item>
         </Flex>
-      </div>
+        </Flex>
     );
   }
 }
