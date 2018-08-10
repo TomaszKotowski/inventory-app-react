@@ -103,13 +103,17 @@ class QrReader extends Component {
   }
 
   async identifyIsItUser() {
-    const data = await IdentifyService.findById(this.idFromQr);
-    if (data.data.objectType === 'user') {
-      this.user = `${data.data.user.firstName} ${data.data.user.lastName}`;
-      // return true;
-    } else {
-      // console.log('Błąd to nie jest użytkownik');
-      // return false;
+    try {
+      const data = await IdentifyService.findById(this.idFromQr);
+      if (data.data.objectType === 'user') {
+        this.user = `${data.data.user.firstName} ${data.data.user.lastName}`;
+        // return true;
+      } else {
+        // console.log('Błąd to nie jest użytkownik');
+        // return false;
+      }
+    } catch (error) {
+      console.log(error);
     }
   }
 
