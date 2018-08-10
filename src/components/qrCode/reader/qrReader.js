@@ -99,9 +99,10 @@ class QrReader extends Component {
 
   @Bind()
   async identifyLogic() {
+    const { onIdentify } = this.props;
     const data = await IdentifyService.findByIdAndPack(this.idFromQr);
-    this.props.history.push(`/app/identify/${this.idFromQr}`);
-    return data;
+    console.log('ql', data);
+    onIdentify(this.idFromQr, data);
   }
 
   async identifyIsItUser() {

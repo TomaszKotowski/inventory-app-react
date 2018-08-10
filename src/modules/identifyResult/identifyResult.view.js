@@ -15,15 +15,18 @@ const Brief = Item.Brief;
 class identifyResult extends React.Component {
   
   render() {
-      return (
+console.log(this.props.data);
 
+      return (
         <Flex direction="column" align="stretch" className="full-height">
             <NavBar
               rightContent={<Icon type="ellipsis" onClick={this.props.layoutStore.handleDrawerDocker} />}>
               Identify
             </NavBar>
-            <WhiteSpace size="md" />
-            <Flex.Item align="left">
+          <WhiteSpace size="md" />
+          {(this.props.data[0] === 'user') &&
+          <Flex>
+          <Flex.Item align="left">
               <div>THIS IS: </div>
           </Flex.Item>
           <Flex.Item align="center" className="bold-text">
@@ -35,6 +38,9 @@ class identifyResult extends React.Component {
           <Flex.Item align="center" className="bold-text">
               <div>PERSON NAME HERE</div>
           </Flex.Item>
+          </Flex>
+          }
+
           <Flex>
       </Flex>
     </Flex> 
