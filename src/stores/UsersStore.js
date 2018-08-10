@@ -19,6 +19,15 @@ class UserStore {
     this.currentUser = {};
   }
 
+  @action
+  async getCurrentUser() {
+    if (!this.currentUser.id) {
+      this.currentUser = await UserService.getCurrentUser();
+    }
+
+    return this.currentUser;
+  }
+
   async getAllUsers() {
     if (this.usersList.length < 2) {
       const userList = await UserService.getAllUsers();

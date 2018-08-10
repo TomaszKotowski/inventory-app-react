@@ -11,16 +11,16 @@ class IdentifyService {
       console.log(value.data);
       switch (value.data.objectType) {
         case 'device':
-            return new DeviceModel(value.data.device);
+            return ['device', new DeviceModel(value.data.device)];
           break;
         case 'user':
-            return new UserModel(value.data.user);
+          return ['user', new UserModel(value.data.user)];
           break;
           case 'place':
-            return new PlaceModel(value.data.place);
+          return ['place', new PlaceModel(value.data.place)];
           break;
           case 'office':
-            return new OfficeModel(value.data.office);
+          return ['office', new OfficeModel(value.data.office)];
           break;
       }
     })

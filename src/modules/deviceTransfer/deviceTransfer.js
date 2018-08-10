@@ -6,7 +6,7 @@ import { NavBar, Icon, Flex, List } from 'antd-mobile';
 import { Link } from 'react-router-dom';
 import QrReader from "../../components/qrCode/reader/qrReader";
 import DevicesStore from '../../stores/DevicesStore';
-import DeviceService from '../../services/DeviceService';
+import { Bind } from 'lodash-decorators';
 
 const Item = List.Item;
 const Brief = Item.Brief;
@@ -37,9 +37,11 @@ class DeviceTransfer extends React.Component {
     this.id = this.device.id;
   }
 
-  accept() {
-    if (this.props.deviceId !== null) {
-      DeviceService.changeOwner(this.props.deviceId, this.idFromQr);
+  @Bind()
+  accept(idFromQr) {
+    if (this.id !== null) {
+      this.device.changeOwner(idFromQr);
+      this.props.history.push(`${this.props.match.url}/status`);
     }
     // DevicesService.changeOwner('61cf7c69-2ed0-4d76-9db8-dd4cdc986078', this.idFromQr);
   }

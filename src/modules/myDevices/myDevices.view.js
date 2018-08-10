@@ -22,9 +22,7 @@ class MyDevices extends React.Component {
   componentDidMount() {
     const { currentUser } = this.props.userStore;
 
-    if (currentUser.devices && currentUser.devices.length) {
-      this.myDevicesList = currentUser.devices;
-    } else if (currentUser.id) {
+    if (currentUser.id) {
       this.findDevices(currentUser.id);
     }
     
@@ -35,12 +33,22 @@ class MyDevices extends React.Component {
       }
     );
   }
+
+  componentWillReceiveProps(props) {
+    const { currentUser } = props.userStore;
+
+    if (currentUser.id) {
+      this.findDevices(currentUser.id);
+    }
+  }
   
   findDevices(id) {
+    console.log('asdf', id);
     DeviceService.findDevicesAllocatedToUser(id)
       .then((value) => {
         this.myDevicesList = value.data;
         this.props.userStore.currentUser.devices = value.data;
+        console.log(value.data);
       })
   }
 
