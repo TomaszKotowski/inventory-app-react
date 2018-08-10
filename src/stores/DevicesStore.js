@@ -57,14 +57,14 @@ class DevicesStore {
    * @param {string} deviceId
    * @returns {Object}
    */
-  @action
+  // @action
   async findDeviceById(deviceId) {
     const result = await find(this.devicesList, el => el.id === deviceId);
 
     if (!result) {
       const newDevices = await DeviceService.findByDeviceId(deviceId);
       this.setToDeviceList(newDevices)
-      // console.log(newDevices);
+      // console.log('Prosto z devicestore',newDevices);
       // console.log(newDevices.belongsToId);
       return newDevices;
     }

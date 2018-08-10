@@ -15,7 +15,7 @@ class ApiClient {
   }
 
   getInstance() {
-      return this.client;
+    return this.client;
   }
 
   updateToken() {
