@@ -15,7 +15,7 @@ import AdminOnly from '../../modules/adminLogin/adminOnly';
 export default class NavigationView extends React.Component {
   constructor(props) {
     super(props);
-    const { location } = this.props
+    const { location } = this.props;
     if (!AuthService.isLoggedIn()) {
 
       location.history.push('/');
@@ -24,6 +24,7 @@ export default class NavigationView extends React.Component {
 
   handleLogOut() {
     AuthService.logout();
+    this.props.layoutStore.handleDrawerDocker
   }
 
   render() {

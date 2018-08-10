@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@types/react": "^16.4.8",
     "antd": "^3.7.2",
     "antd-mobile": "^2.2.2",
     "axios": "^0.18.0",

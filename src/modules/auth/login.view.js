@@ -28,7 +28,6 @@ class Login extends React.Component {
   constructor(props) {
     super(props)
     if (AuthService.isLoggedIn()) {
-      console.log(AuthService.isLoggedIn())
       this.props.history.push('/app/profile');
 
       // this.history.push('/app/profile');

@@ -1,9 +1,10 @@
 import React from 'react';
-import { observable, reaction } from 'mobx';
+import { observable, reaction, action } from 'mobx';
 import { observer, inject } from 'mobx-react';
 import 'antd-mobile/dist/antd-mobile.css';
 import { NavBar, Icon, Flex, List } from 'antd-mobile';
 import { Link } from 'react-router-dom';
+import QrReader from "../../components/qrCode/reader/qrReader";
 
 const Item = List.Item;
 const Brief = Item.Brief;
@@ -12,15 +13,33 @@ const Brief = Item.Brief;
 @observer
 class DeviceTransfer extends React.Component {
   @observable device = {};
+  @observable id = '';
 
   componentDidMount() {
     reaction(
       () => this.props.devicesStore.devicesList,
       () => {
-        let id = this.props.match.params.id;
-        this.device = this.props.devicesStore.findDeviceById(id);
+        this.findById();
       }
     );
+  }
+
+  findById() {
+    this.id = this.props.match.params.id;
+    this.device = this.props.devicesStore.findDeviceById(this.id);
+  }
+
+  accept() {
+
+  }
+
+  reject() {
+    this.showPopup = false;
+    this.video.current.style.display = 'block';
+    this.idFromQr = '';
+    this.getCamera();
+    this.recording = true;
+    requestAnimationFrame(this.scanBind);
   }
 
   render() {
@@ -46,9 +65,9 @@ class DeviceTransfer extends React.Component {
             <div>CHOOSE TARGET</div>
         </Flex.Item>
         <Flex.Item align="center" className="device-targed-box2" justify="center;">
-            <div>QR CODE</div>
+          <QrReader deviceId={this.device.id} transfer={true} reject={this.reject} accept={this.accept} />
         </Flex.Item>
-    </Flex> 
+      </Flex>
     );
   }
 }
