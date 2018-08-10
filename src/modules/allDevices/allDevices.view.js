@@ -42,6 +42,15 @@ class AllDevices extends React.Component {
   }
   
   render() {
+    var style22 = {
+      width: "50px",
+      height: "50px",
+      display: "block",
+      margin: "16px auto",
+      borderRadius: "5px",
+      border: "1px solid black"
+    }
+    
     const { match, devicesStore } = this.props;
 
     let devicesList = devicesStore.devicesList;
@@ -76,12 +85,22 @@ class AllDevices extends React.Component {
           {devicesList.map(e => {
             return (
               <Link to={`/app/devices/${e.id}`} key={e.id}>
+              <List >
+              <Row>
                 <Flex.Item>
+              <Col span={4} align="center">
+              <img src={e.imageUrl} style={style22}/>
+              </Col>
+              
+              <Col span={20} >
                   <Item arrow="horizontal" multipleLine >
                     {e.name}
                     <Brief>{e.id}</Brief>
                   </Item> 
-                </Flex.Item>
+              </Col>
+              </Flex.Item>
+                </Row>
+                </List>
               </Link>
             )
           })}
@@ -92,3 +111,25 @@ class AllDevices extends React.Component {
 }
 
 export default AllDevices;
+
+
+
+
+{/* <Flex.Item>
+          {devicesList.map(e => {
+            return (
+              <Link to={`/app/devices/${e.id}`} key={e.id}>
+              <Flex>
+              <Flex.Item>
+              <img src={e.imageUrl} style={style22}/>
+                
+                  <Item arrow="horizontal" multipleLine >
+                    {e.name}
+                    <Brief>{e.id}</Brief>
+                  </Item> 
+                </Flex.Item>
+                </Flex>
+              </Link>
+            )
+          })}
+        </Flex.Item> */}

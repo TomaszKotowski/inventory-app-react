@@ -13,12 +13,13 @@ import UserModel from '../../models/UserModel';
 @observer
 class ProfileImage extends Component {
   
+  
   render() {
     return(
       <div>
         <WhiteSpace size="xl"/>
         <Flex justify='end'>
-          <Link to="">
+          <Link to={`/app/profile/edit`}>
           <Icon type="edit" style={{ fontSize: 26, color: '#08c', marginRight:40 }} />
           </Link>
         </Flex>
