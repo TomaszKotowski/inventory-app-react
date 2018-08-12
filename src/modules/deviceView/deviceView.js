@@ -17,7 +17,7 @@ const Brief = Item.Brief;
 class DeviceView extends React.Component {
 
   @observable device = {};
-
+  
   async componentDidMount() {
     this.device = await this.props.devicesStore.findDeviceById(this.props.match.params.id)
   }
@@ -38,8 +38,7 @@ class DeviceView extends React.Component {
 
     var style = {
       height: "100vh"
-    } 
-    console.log(match)
+    }
     return (
       <Flex direction="column" align="stretch" style={style}>
         <Flex.Item flex={1}>

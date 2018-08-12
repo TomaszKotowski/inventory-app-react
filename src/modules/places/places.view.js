@@ -86,7 +86,7 @@ class PlacesView extends Component {
                           key={place.id}
                           arrow="horizontal"
                         >{place.name}
-                          <List.Item.Brief key={place.id} >
+                          <List.Item.Brief key={place.id+2} >
                             {this.office.name}
                           </List.Item.Brief>
                         </List.Item>

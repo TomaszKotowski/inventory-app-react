@@ -8,6 +8,7 @@ import { bind } from 'lodash-decorators';
 import { Link } from 'react-router-dom';
 import './employees.style.css';
 import NavBarView from '../../components/navigation/navBar.view';
+import ProfileImage from '../profile/ProfileImage';
 
 
 @inject('userStore')
@@ -24,11 +25,11 @@ class EmployeesView extends Component {
     const { match } = this.props
     return (
       <div>
-        <div className='top-content'>
+        <div className='top-content' className="navbar-sticky">
           <NavBarView title="Employees" />
           <WhiteSpace />
         </div>
-        <div>
+        <div className="item-under-sticky">
           <Flex>
             <List className="employees-list">
               {
@@ -36,6 +37,7 @@ class EmployeesView extends Component {
                   .map((user) => {
                     return (
                       <Link key={user.id + 1} to={`${match.path}/${user.id}`}>
+                        <ProfileImage src={this.props.userStore.getPicturesAvatar(user.id)} />
                         <List.Item
                           key={user.id}
                           arrow="horizontal"

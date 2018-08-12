@@ -4,6 +4,7 @@ import AuthData from './AuthorizationData';
 
 import UsersStore from "../stores/UsersStore";
 import UserModel from '../models/UserModel';
+import UserService from './UserService';
 
 
 class AuthService {
@@ -56,14 +57,7 @@ class AuthService {
 
   getProfile() {
     if (this.isLoggedIn()) {
-      return ApiClient.getInstance().get('/api/users/current')
-      .then(result => {
-        const currentUser = new UserModel(result.data);
-        UsersStore.setUser(currentUser);
-      })
-      .catch(err => {
-        console.log(err);
-      });
+      return UsersStore.getCurrentUser();
     } else {
       // Redirect to login screen 
     }

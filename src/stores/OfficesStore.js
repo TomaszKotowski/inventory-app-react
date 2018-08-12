@@ -49,6 +49,7 @@ class OfficesStore {
 
     if (!office) {
       const newOffice = await OfficeService.getOfficeById(id);
+      // console.log('service', newOffice.id);
       this.addOffice(newOffice);
       return newOffice;
     }
